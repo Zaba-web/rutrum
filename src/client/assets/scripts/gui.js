@@ -65,5 +65,15 @@ $(document).ready(function(){
         
     });
     
+    jQuery(function($){
+        $(document).mouseup(function (e){ 
+            var div = $(".rut-sub-toolbar-submenu"); 
+            if (!div.is(e.target) 
+                && div.has(e.target).length === 0) { 
+                div.hide(); 
+            }
+        });
+    });
+    
 });
 

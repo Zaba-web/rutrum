@@ -55,6 +55,13 @@ var toolList = {
             $(newImage).removeAttr("data-image-id");
             $("#rut-elem-prop-attr-src-selector").click();
         }
+    },
+    span:{
+        title:"Текстовое поле",
+        template:"<span class='rut-display rut-dynamic rut-text-element'></span>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
     }
 }
 
