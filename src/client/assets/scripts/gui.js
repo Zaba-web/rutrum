@@ -2,6 +2,10 @@ $(document).ready(function(){
     
     changeTool($("#rut-tool-pointer"));
     
+    for(i = 0; i<window.fontList.length;i++){
+        $("#rut-elem-prop-font-family").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
+    }
+    
 	$("#rut-app-minimaze").click(function(){
 		win.minimize();
 	});
@@ -45,6 +49,8 @@ $(document).ready(function(){
         var openFileDialog = document.getElementById('rut-add-image');
         var files = openFileDialog.files;
         
+        window.mediaContainer.images.push(files[0].path);
+        
         $("#rut-elem-prop-background-image").val(files[0].path);
         
         var target = $("#rut-elem-prop-background-image");
@@ -56,6 +62,8 @@ $(document).ready(function(){
     $("#rut-elem-prop-attr-src-selector").on("change",function(){
         var openFileDialog = document.getElementById('rut-elem-prop-attr-src-selector');
         var files = openFileDialog.files;
+        
+        window.mediaContainer.images.push(files[0].path);
         
         $("#rut-elem-prop-attr-src").val(files[0].path);
         
@@ -75,5 +83,8 @@ $(document).ready(function(){
         });
     });
     
+    $(".rut-item-operation").on("click",function(){
+        doElementOperation(window.toolList.tool_pointer.selected,$(this).data("op"));
+    });
 });
 
