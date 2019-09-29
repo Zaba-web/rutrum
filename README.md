@@ -1,2 +1,2 @@
 # rutrum
-Web page constructor
+Open source web page constructor.
