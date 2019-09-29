@@ -188,6 +188,7 @@ body.rut{
     box-sizing: border-box;
     background: #fff;
     overflow: auto;
+    transform: scale(1);
 }
 .rut-dockers-container{
     min-height:267px;

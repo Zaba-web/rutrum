@@ -86,5 +86,34 @@ $(document).ready(function(){
     $(".rut-item-operation").on("click",function(){
         doElementOperation(window.toolList.tool_pointer.selected,$(this).data("op"));
     });
+    
+    $(window).on('mousewheel', function(event) 
+    {
+        if(event.ctrlKey == true)
+        {
+            var transformValue = $(".rut-workspace-container").css("transform");
+            
+            var values = transformValue.split('(')[1];
+            values = values.split(')')[0];
+            values = values.split(',');
+            
+            var a = values[0];
+            var b = values[1];
+
+            var scale = Math.sqrt(a*a + b*b);
+            
+            if(event.originalEvent.wheelDelta > 0) {
+                 if(scale < 1){
+                     scale += 0.1;
+                 }
+             }else {
+                 if(scale > 0.1){
+                     scale -= 0.1;
+                 }
+             }
+            
+             $(".rut-workspace-container").css("transform","scale("+scale+")");
+        }
+    });
 });
 

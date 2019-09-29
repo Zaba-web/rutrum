@@ -27,7 +27,7 @@ function appendElement(targetElement,template){
 function getItemOperations(target){
     $(".rut-item-opertaions-container").show();
     var position = $(target).offset();
-    $(".rut-item-opertaions-container").css({"left":position.left-$(".rut-item-opertaions-container").width(),"top":position.top});
+    $(".rut-item-opertaions-container").css({"left":position.left-$(".rut-item-opertaions-container").width()-12,"top":position.top});
 }
 
 
