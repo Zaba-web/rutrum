@@ -5,7 +5,9 @@
     <title>Rutrum</title>
     <script src="libs/jquery.js"></script>
     <script src="libs/propertiesList.js"></script>
+    <script src="libs/toolList.js"></script>
     <script src="libs/rutSysLib.js"></script>
+    <script src="libs/opertaionsList.js"></script>
     <script src="assets/scripts/init.js"></script>
     <script src="assets/scripts/toolHandler.js"></script>
     <script src="assets/scripts/gui.js"></script>
@@ -246,9 +248,17 @@
                         <div class="rut-dockets-properties-split">
                             <div class="rut-dockets-proteprties-item">
                                 <h4 class="rut-h4">Цвет</h4>
+                                <input type="color" id="rut-elem-prop-color" class="rut-inner-controls rut-elem-prop-change">
                             </div>
                             <div class="rut-dockets-proteprties-item">
                                 <h4 class="rut-h4">Размер</h4>
+                                <input id="rut-elem-prop-font-size" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                            </div>
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">Шрифт</h4>
+                                <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-font-family">
+                                
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -264,6 +274,15 @@
             </div>
         </div>
     </main>
-    
+    <div class="rut-item-opertaions-container">
+        <ul>
+            <li class="rut-item-operation" data-op="delete">
+                <img src="assets/images/operationDelete.svg">
+            </li>
+            <li class="rut-item-operation" data-op="copy"> 
+                <img src="assets/images/operationClone.svg">
+            </li>
+        </ul>
+    </div>
 </body>
 </html>

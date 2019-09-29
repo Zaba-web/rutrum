@@ -177,17 +177,17 @@ body.rut{
     height:100%;
     min-width:1140px;
     width:80%;
-    background: #3C424B;
+    background: #2D3038;
     margin:0 auto;
     overflow: auto;
 }
 .rut-workspace-container{
-    min-height:100%;
-    height:auto;
+    height:100%;
     width:1140px;
     margin:0 auto;
     box-sizing: border-box;
     background: #fff;
+    overflow: auto;
 }
 .rut-dockers-container{
     min-height:267px;
@@ -389,6 +389,37 @@ body.rut{
 .rut-dockers-property-small-value{
     width:25px;
     position: relative;
+}
+.rut-item-opertaions-container{
+    position: absolute;
+    width:30px;
+    height:auto;
+    background: rgba(60, 66, 75, .8);
+    display: none;
+}
+.rut-item-opertaions-container>ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    height:100%;
+    padding-bottom: 5px;
+}
+.rut-item-opertaions-container>ul>li{
+    text-align: center;
+    margin:0 auto;
+    transition: .2s;
+    cursor: pointer;
+    width:24px;
+    height:24px;
+    list-style-type: none;
+    margin-top:5px;
+    box-sizing: border-box;
+    padding-top:4px;
+    border-radius: 5px;
+}
+.rut-item-opertaions-container>ul>li:hover{
+    background: #313641;
 }
 
 
