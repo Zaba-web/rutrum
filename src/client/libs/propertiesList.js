@@ -1,4 +1,4 @@
-var propList = ["width","height","margin","margin-top","margin-bottom","margin-left","margin-right","padding","padding-top","padding-bottom","padding-right","padding-left","background-color","background-image","background-repeat","attr-title","attr-src","background-position"];
+var propList = ["width","height","margin","margin-top","margin-bottom","margin-left","margin-right","padding","padding-top","padding-bottom","padding-right","padding-left","background-color","background-image","background-repeat","attr-title","attr-src","background-position","color","font-size","font-family"];
 
 class Property{
     static getInstance(el, name){
