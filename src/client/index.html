@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" class="rut">
+<head>
+    <meta charset="UTF-8">
+    <title>Rutrum</title>
+    <script src="libs/jquery.js"></script>
+    <script src="libs/propertiesList.js"></script>
+    <script src="libs/rutSysLib.js"></script>
+    <script src="assets/scripts/init.js"></script>
+    <script src="assets/scripts/toolHandler.js"></script>
+    <script src="assets/scripts/gui.js"></script>
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/fonts.css">
+    <link rel="stylesheet" href="assets/styles/vendor/bootstrap-grid.min.css">
+</head>
+<body class="rut">
+    <div class='rut-main-top-container'>
+    	<nav>
+    		<div class="rut-logo"></div>
+    		<ul>
+    			<li>Файл</li>
+    			<li>Редактирование</li>
+    			<li>Окно</li>
+    			<li>Хранилище</li>
+    			<li>Справка</li>
+    		</ul>
+    	</nav>
+    	<div class="rut-window-controlls">
+    		<div id="rut-app-minimaze">
+                <img src="assets/images/minimizeIcon.svg">
+    		</div>
+    		<div id="rut-app-change-mode">
+                <img src="assets/images/maximizeIcon.svg">
+    		</div>
+    		<div id="rut-app-close">
+                <img src="assets/images/closeIcon.svg">
+    		</div>
+    	</div>
+    </div>
+    
+    <div class="rut-project-pannel-container">
+    	<span>
+    	    Страницы: <span>1</span> • Скрипты: <span>1</span> • Стили: <span>1</span> • Инструмент: <span id='rut-tool-name' data-tool-name></span>
+    	</span>
+    	<span>
+    	    <ul>
+    	        <li title="Новая страница">
+                    <img src="assets/images/newPageIcon.svg">
+    	        </li>
+    	        <li title="Новый стиль">
+                    <img src="assets/images/newStyleIcon.svg">
+    	        </li>
+    	        <li title="Новый скрипт">
+                    <img src="assets/images/newScriptIcon.svg">
+    	        </li>
+    	        <li title="Посмотреть код">
+    	            <img src="assets/images/showCodeIcon.svg">
+    	        </li>
+    	        <li title="Скрыть интерфейс">
+    	            <img src="assets/images/hideInterfaceIcon.svg">
+    	        </li>
+    	    </ul>
+    	</span>
+    </div>
+    
+    <div class="rut-display-mode-container">
+        <div class="rut-display-mode rut-display-mode-editing rut-display-mode-active">
+            <span>Редактирование</span>
+        </div>
+        <div class="rut-display-mode rut-display-mode-preview">
+            <span>Предпросмотр</span>
+        </div>
+    </div>
+    
+    <main>
+        <div class="rut-toolbar-container">
+            <ul>
+                <li class="rut-tool" id="rut-tool-pointer" data-rut-tool-category="pointer">
+                    <img src="assets/images/pointerIcon.svg">
+                    <div class="rut-toolbar-item-hint" >
+                       <h4>Инструмент "Выделение"</h4>
+                       <p>Позволяет выбирать элементы на странице</p>
+                    </div>
+                </li>
+                <li class="rut-toolbar-item-expandable" id="rut-tool-block">
+                  <img src="assets/images/blockIcon.svg">
+                  <ul class="rut-sub-toolbar-submenu">
+                       <li id="rut-container" class="rut-tool" data-rut-tool-category="block">Контейнер</li>
+                       <li id="rut-container-fluid" class="rut-tool" data-rut-tool-category="block">Полноэкранный контейнер</li>
+                       <li id="rut-row" class="rut-tool" data-rut-tool-category="block">Строка</li>
+                       <li id="rut-col" class="rut-tool" data-rut-tool-category="block">Колонка</li>
+                   </ul>
+                    <div class="rut-toolbar-item-hint">
+                       <h4>Инструмент "Блок"</h4>
+                       <p>Позволяет создавать на странице элементы блочного типа</p>
+                   </div>
+                </li>
+                <li class="rut-toolbar-item-expandable">
+                   <img src="assets/images/textIcon.svg"> 
+                   <div class="rut-toolbar-item-hint">
+                       <h4>Инструмент "Текст"</h4>
+                       <p>Позволяет создавать текстовые элементы на странице</p>
+                   </div>
+                </li>
+                <li class='rut-tool' id="rut-tool-img" data-rut-tool-category="img">
+                   <img src="assets/images/imageIcon.svg"> 
+                   <div class="rut-toolbar-item-hint">
+                       <h4>Инструмент "Изображение"</h4>
+                       <p>Позволяет загружать изображения на страницу</p>
+                   </div>
+                </li>
+                <li class="rut-toolbar-item-expandable">
+                    <img src="assets/images/listIcon.svg"> 
+                    <div class="rut-toolbar-item-hint">
+                       <h4>Инструмент "Список"</h4>
+                       <p>Позволяет создавать списки</p>
+                    </div>
+                </li>
+                <li class="rut-toolbar-item-expandable">
+                    <img src="assets/images/tableIcon.svg"> 
+                    <div class="rut-toolbar-item-hint">
+                       <h4>Инструмент "Таблица"</h4>
+                       <p>Позволяет создавать таблицы</p>
+                    </div>
+                </li>
+                <li class="rut-toolbar-item-expandable">
+                    <img src="assets/images/formIcon.svg"> 
+                    <div class="rut-toolbar-item-hint">
+                       <h4>Инструмент "Формы"</h4>
+                       <p>Позволяет создавать формы и их элементы</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="rut-workspace-wrapper">
+            <div class="rut-workspace-container rut-insertable rut-dynamic">
+                
+            </div>
+        </div>
+        <div class="rut-dockers-container">
+            <div class="rut-dockers-item rut-dockets-item-active">
+                Свойства
+            </div>
+                <div class="rut-dockers-item-inner-container">
+                    <h4>Атрибуты</h4>
+                    <div class="rut-dockets-properties-split">
+                        <div class="rut-dockets-proteprties-item">
+                            <h4>Подсказка</h4>
+                            <input id="rut-elem-prop-attr-title" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                        </div>
+                        <div class="rut-dockets-proteprties-item">
+                            <h4>Путь к файлу</h4>
+                            <label for="rut-elem-prop-attr-src-selector" class="rut-controls-button-like">Выбрать</label>
+                            <input type="file" id="rut-elem-prop-attr-src-selector" style="display: none">
+                            <input type="hidden" id="rut-elem-prop-attr-src">
+                        </div>
+                    </div>
+                    <h4>Размеры</h4>
+                    <div class="rut-dockets-properties-split">
+                        <div class="rut-dockets-proteprties-item">
+                            <h4>Ширина</h4>
+                            <input id="rut-elem-prop-width" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                            <select id="rut-elem-prop-col-spec" class="rut-inner-controls rut-input-short rut-default-hidden rut-elem-prop-spec-change" data-list="cols">
+                                
+                            </select>
+                        </div>
+                        <div class="rut-dockets-proteprties-item">
+                            <h4>Высота</h4>
+                            <input id="rut-elem-prop-height" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                        </div>
+                    </div>
+                    <h4 class="rut-dockers-properties-title">Оступы</h4>
+                    <div class="rut-dockets-properties-split">
+                        <div class="rut-dockets-proteprties-item" style="margin:0 auto;">
+                            <h4>Внешние</h4>
+                            <input id="rut-elem-prop-margin-top" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value"  type="text" style="left:29px;">
+                            <div class="rut-dockets-proteprties-split">
+                                <input id="rut-elem-prop-margin-left" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value"  type="text">
+                                <input id="rut-elem-prop-margin" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value" type="text">
+                                <input id="rut-elem-prop-margin-right" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value" type="text">
+                            </div>
+                            <input id="rut-elem-prop-margin-bottom" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value" type="text" style="left:29px;">
+                        </div>
+                        <div class="rut-dockets-proteprties-item" style="margin:0 auto;">
+                            <h4>Внутренние</h4>
+                            <input id="rut-elem-prop-padding-top" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value"  type="text" style="left:29px;">
+                            <div class="rut-dockets-proteprties-split">
+                                <input id="rut-elem-prop-padding-left" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value"  type="text">
+                                <input id="rut-elem-prop-padding" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value" type="text">
+                                <input id="rut-elem-prop-padding-right" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value" type="text">
+                            </div>
+                            <input id="rut-elem-prop-padding-bottom" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value" type="text" style="left:29px;">
+                        </div>
+                    </div>
+                    <h4 class="rut-dockers-properties-title">Фон</h4>
+                    <div class="rut-dockets-properties-split">
+                        <div class="rut-dockets-proteprties-item" style="margin:0 auto;">
+                            <h4>Цвет</h4>
+                            <div class="rut-dockets-proteprties-item">
+                                <input type="color" id="rut-elem-prop-background-color" class="rut-inner-controls rut-elem-prop-change">
+                            </div>
+                        </div>
+                        <div class="rut-dockets-proteprties-item" style="margin:0 auto;">
+                            <h4>Изображение</h4>
+                            <div class="rut-dockets-proteprties-item"> 
+                                <label for="rut-add-image" class="rut-controls-button-like">Выбрать</label>
+                                <input type="file" id="rut-add-image" style="display: none"><br>
+                                <input type="hidden" id="rut-elem-prop-background-image">
+                            </div>
+                        </div>
+                        <div class="rut-dockets-properties-split" style="margin:0 auto;">
+                            <div class="rut-dockets-proteprties-item">
+                                <h4>Повторение</h4>
+                                <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-background-repeat">
+                                    <option value="auto">Авто</option>
+                                    <option value="no-repeat">Не повторять</option>
+                                    <option value="repeat">Повторять</option>
+                                    <option value="repeat-x">Повторять по горизонтали</option>
+                                    <option value="repeat-y">Повторять по вертикали</option>
+                                </select>
+                            </div>
+                            <div class="rut-dockets-proteprties-item">
+                                <h4>Позиция</h4>
+                                <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-background-position">
+                                    <option value="inherit">Авто</option>
+                                    <option value="left">По левой стороне</option>
+                                    <option value="center">По центру</option>
+                                    <option value="right">По правой стороне</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="rut-dockers-item">
+                Состояния
+            </div>
+             <div class="rut-dockers-item">
+                Обозреватель
+            </div>
+            <div class="rut-dockers-item">
+                Облако
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>

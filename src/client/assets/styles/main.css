@@ -1,0 +1,395 @@
+*{padding:0px 0px 0px 0px;margin: 0px 0px 0px 0px;}
+
+body.rut h4{
+    color:#fff;
+    font-family:Raleway-Light;
+    font-size:15px;
+    font-weight: 500;
+}
+body.rut p{
+    color:#fff;
+    font-family:Raleway-Light;
+    font-size:13px;
+    font-weight: 500;
+}
+
+.rut{
+    height:100%;
+}
+
+body.rut{
+    display: flex;
+    flex-direction: column;
+    background: #260327;
+}
+
+.rut-main-top-container{
+    width:100%;
+    height:28px;
+    background: #382039;
+    -webkit-app-region: drag;
+    display: flex;
+    box-sizing: border-box;
+	padding:0px 10px;
+	justify-content: space-between;
+}
+
+.rut-main-top-container nav{
+	display: flex;
+	align-items: center;
+}
+
+.rut-logo{
+	width:14px;
+	height:16px;
+	background:url(../images/logo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
+}
+
+.rut-main-top-container nav>ul{
+	display: block;
+	margin-left:20px;
+	-webkit-app-region: no-drag;
+}
+
+.rut-main-top-container nav>ul li{
+	display: inline-block;
+	color:#fff;
+	margin-left:12px;
+	font-family:Raleway;
+	font-size:12px;
+	cursor: pointer;
+	box-sizing: border-box;
+	padding:3px 5px;
+	transition: .2s;
+	border-radius: 5px;
+}
+
+.rut-main-top-container nav>ul li:hover{
+	background:#5A3D5C;
+}
+
+.rut-main-top-container nav>ul li:first-child{
+	margin-left:0px;
+}
+
+.rut-window-controlls{
+	display: flex;
+	align-items: center;
+	-webkit-app-region: no-drag;
+	cursor: pointer;
+}
+.rut-window-controlls div{
+	margin-left:15px;
+	transition: .2s;
+	box-sizing: border-box;
+	float: left;
+	padding:3px;
+	border-radius: 5px;
+}
+.rut-window-controlls div:hover{
+	background:#5A3D5C;
+}
+.rut-project-pannel-container{
+	width:1100px;
+	margin:0 auto;
+	height:32px;
+	background: #5A3D5C;
+	clip-path: polygon(0 0, 100% 0, 100% 62%, 99% 100%, 1% 100%, 0% 62%);
+    display: flex;
+    padding:0px 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+.rut-project-pannel-container span{
+    color:#fff;
+    font-family:Raleway-Light;
+    font-size: 12px;
+}
+.rut-display-mode-container{
+    min-width:250px;
+    width:auto;
+    margin:0 auto;
+    margin-top:27px;
+    margin-bottom:27px;
+    display: flex;
+}
+.rut-display-mode{
+    width:50%;
+    height:100%;
+    background: #382039;
+    cursor: pointer;
+    transition: .2s;
+    text-align: center;
+    padding:5px;
+}
+.rut-display-mode:hover{
+    background: #5A3D5C;
+}
+.rut-display-mode-active{
+    background: #5A3D5C;
+}
+.rut-display-mode-editing{
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0% 38%);
+}
+.rut-display-mode-preview{
+    clip-path: polygon(100% 0, 100% 62%, 90% 100%, 0 99%, 0 0);
+}
+.rut-display-mode span{
+    color:#fff;
+    font-size:12px;
+    font-family:Roboto;
+    text-align: center;
+}
+.rut main{
+    width:100%;
+    height:75%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.rut-toolbar-container{
+    width:48px;
+    height:auto;
+    padding:25px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 999;
+}
+.rut-toolbar-container::before{
+    content: '';
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    z-index: 1;
+    position: absolute;
+    background: rgba(56, 32, 57, .8);
+    clip-path: polygon(50% 0%, 80% 0, 100% 5%, 100% 95%, 80% 100%, 50% 100%, 0 100%, 0% 70%, 0% 35%, 0 0);
+}
+.rut-workspace-wrapper{
+    height:100%;
+    min-width:1170px;
+    width:80%;
+    background: #fff;
+    margin:0 auto;
+    overflow: auto;
+}
+.rut-workspace-container{
+    min-height:100%;
+    height:auto;
+    width:1170px;
+    border-right:1px dashed #D9534F;
+    border-left:1px dashed #D9534F;
+    margin:0 auto;
+    box-sizing: border-box;
+}
+.rut-dockers-container{
+    min-height:267px;
+    background:rgba(56, 32, 57, .8);
+    position: relative;
+    z-index: 999;
+}
+.rut-dockers-item{
+    writing-mode: tb-rl;
+    color:#fff;
+    padding:8px;
+    font-size:14px;
+    font-family:Raleway-Light;
+    cursor: pointer;
+    transition: .2s;
+    position: relative;
+}
+.rut-dockets-item-active{
+    background:rgba(90, 61, 92, .8);
+}
+.rut-dockers-item:hover{
+    background:rgba(90, 61, 92, .8);
+}
+.rut-toolbar-container>ul{
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+.rut-toolbar-container>ul>li{
+    display: block;
+    width:40px;
+    height:40px;
+    margin-top:10px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+    border-radius: 5px;
+}
+.rut-toolbar-container>ul>li:hover{
+    background: rgba(90, 61, 92, .8);
+}
+.rut-toolbar-container>ul>li:hover .rut-toolbar-item-hint{
+    transform: scale(1);
+}
+.rut-toolbar-container>ul>li:first-child{
+    margin-top:0px;
+}
+.rut-toolbar-item-expandable::after{
+    content: '';
+    display: block;
+    position: absolute;
+    right:3px;
+    bottom:3px;
+    width:5px;
+    height:5px;
+    background:#fff;
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+}
+.rut-toolbar-item-hint{
+    position: absolute;
+    background: rgba(90, 61, 92, .8);
+    width:230px;
+    padding:8px;
+    left:60px;
+    top:0px;
+    clip-path: polygon(95% 0, 100% 13%, 100% 100%, 0 100%, 0 0);
+    transform: scale(0);
+    transition: .3s;
+    transform-origin: left;
+}
+.rut-project-pannel-container span ul li{
+    display: inline-block;
+    list-style-type: none;
+    margin:0px 5px;
+    padding:4px;
+    cursor: pointer;
+    transition: .2s;
+    box-sizing: border-box;
+}
+.rut-project-pannel-container span ul li:hover{
+    background: #382039;
+    border-radius: 5px;
+}
+.rut-sub-toolbar-submenu{
+    position: absolute;
+    left:50px;
+    top:0;
+    background:rgba(90, 61, 92, .8);
+    display: none;
+}
+.rut-sub-toolbar-submenu li{
+    list-style-type: none;
+    padding:6px;
+    color:#fff;
+    font-family: Raleway-Light;
+    font-size:13px;
+}
+.rut-sub-toolbar-submenu li:hover{
+    background:rgba(90, 61, 92, .8);
+}
+.rut-sub-toolbar-submenu:hover+.rut-toolbar-item-hint{
+    display: none;
+}
+.rut-toolbar-item-active{
+    background: rgba(90, 61, 92, .8);
+}
+.rut-insertable:hover{
+    border: 1px solid #5A3D5C;
+    cursor: alias;
+}
+.rut-display{
+    box-sizing: border-box;
+    padding:3px;
+    border:1px dashed #4F3051;
+}
+.rut-element-selected{
+    border: 1px solid #AC44B4;
+}
+.rut-dockers-item-inner-container{
+    position: absolute;
+    min-width:230px;
+    width:auto;
+    max-height:400px;
+    overflow-x: auto;
+    right:32px;
+    padding:13px;
+    box-sizing: border-box;
+    padding-bottom:20px;
+    background:rgba(90, 61, 92, .8);
+    top:0;
+    writing-mode:horizontal-tb;
+    padding-bottom: 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 97%);
+}
+.rut-dockers-item-inner-container::-webkit-scrollbar{
+    display: block;
+    width:8px;
+    overflow: auto;
+    background: #382039;
+}
+.rut-dockers-item-inner-container::-webkit-scrollbar-thumb{
+    background: #5A3D5C;
+}
+.rut-dockets-properties-split{
+    width:100%;
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+.rut-dockers-properties-title{
+    margin-top:15px;
+}
+.rut-element-properties-value{
+    color:#fff;
+    font-family:Raleway-Light;
+    list-style: none;
+    display: block;
+    background: #382039;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.rut-dockets-proteprties-item{
+    width: 50%;
+    box-sizing: border-box;
+    padding:0px 0px 10px 0px;
+}
+.rut-inner-controls, .rut-controls-button-like{
+    background: #382039;
+    padding: 4px;
+    box-sizing: border-box;
+    color:#fff;
+    font-family: Raleway-Light;
+    border: 0;
+    outline: 0;
+    border-radius:5px;
+    margin-top:4px;
+    font-size:14px;
+    display: inline-block;
+}
+.rut-input-short{
+    width:80px;
+}
+.rut-default-hidden{
+    display: none;
+}
+.rut-dockers-property-small-value{
+    width:25px;
+    position: relative;
+}
+
+
+
+@media(max-width:1270px){
+    .rut-dockers-container, .rut-toolbar-container{
+        position: fixed;
+    }
+    .rut-dockers-container{
+        right:0;
+    }
+}

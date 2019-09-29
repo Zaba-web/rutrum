@@ -1,0 +1,1 @@
+.\nwjs-sdk-win-x64\nw.exe src\client

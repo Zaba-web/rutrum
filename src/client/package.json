@@ -1,0 +1,9 @@
+{
+  "name": "Rutrum",
+  "main": "index.html",
+  "window": {
+    "frame": false,
+    "toolbar": false,
+    "icon": "icon.png"
+  }
+}
