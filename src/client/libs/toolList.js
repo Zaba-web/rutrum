@@ -64,5 +64,47 @@ var toolList = {
         execute: function(el){
             appendElement(el,this.template);
         }
+    },
+    p:{
+        title:"Параграф",
+        template:"<p class='rut-display rut-dynamic rut-text-element' contenteditable='true'></p>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
+    h1:{
+        title:"Заголовок 1",
+        template:"<h1 class='rut-display rut-dynamic rut-text-element' contenteditable='true'></h1>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
+    h2:{
+        title:"Заголовок 2",
+        template:"<h2 class='rut-display rut-dynamic rut-text-element' contenteditable='true'></h2>",
+        execute: function(el){
+            appendElement(el,this.template);
+    }
+    },
+    h3:{
+        title:"Заголовок 3",
+        template:"<h3 class='rut-display rut-dynamic rut-text-element' contenteditable='true'></h3>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
+    h4:{
+        title:"Заголовок 4",
+        template:"<h4 class='rut-display rut-dynamic rut-text-element' contenteditable='true'></h4>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
+    h5:{
+        title:"Заголовок 5",
+        template:"<h5 class='rut-display rut-dynamic rut-text-element' contenteditable='true'></h5>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
     }
 }
