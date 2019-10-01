@@ -35,6 +35,7 @@ $(document).ready(function(){
         e.stopPropagation();
         useTool(this,$("#rut-tool-name").data("tool-name"));
         console.log(this);
+        return false;
     });
     
     $(".rut-elem-prop-change").on("change",function(){

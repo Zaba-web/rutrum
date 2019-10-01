@@ -381,6 +381,9 @@ body.rut{
     font-size:14px;
     display: inline-block;
 }
+button.rut-inner-controls, .rut-controls-button-like{
+    cursor: pointer;
+}
 .rut-input-short{
     width:80px;
 }
@@ -422,8 +425,9 @@ body.rut{
 .rut-item-opertaions-container>ul>li:hover{
     background: #313641;
 }
-
-
+a.rut-dynamic{
+    display: inline-block;
+}
 
 @media(max-width:1270px){
     .rut-dockers-container, .rut-toolbar-container{
