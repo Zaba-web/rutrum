@@ -1,6 +1,8 @@
 
-var specialClasses = { // used to change the width of bootstrap column
-    cols:["col","col-1","col-2","col-3","col-4","col-5","col-6","col-7","col-8","col-9","col-10","col-11","col-12"]
+var specialClasses = { // used to change the bootstrap elements values
+    cols:["col","col-1","col-2","col-3","col-4","col-5","col-6","col-7","col-8","col-9","col-10","col-11","col-12"],
+    valign:["align-items-start","align-items-center","align-items-end"],
+    halign:["justify-content-start","justify-content-center","justify-content-end","justify-content-around","justify-content-between"]
 }
 
 function getAllProp(el){

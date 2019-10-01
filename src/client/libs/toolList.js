@@ -3,7 +3,6 @@ var toolList = {
       title: "Выделение",
       selected: null,
       execute: function(el){
-          
           $(".rut-element-selected").removeClass("rut-element-selected");
           this.selected = null;
           clearAllProp();
@@ -58,6 +57,13 @@ var toolList = {
             $("#rut-elem-prop-attr-src-selector").click();
         }
     },
+    tool_a:{
+        title:"Ссылка",
+        template:"<a class='rut-insertable rut-display rut-dynamic' href='' contenteditable='true'></a>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
     span:{
         title:"Текстовое поле",
         template:"<span class='rut-display rut-dynamic rut-text-element' contenteditable='true'></span>",
@@ -84,7 +90,7 @@ var toolList = {
         template:"<h2 class='rut-display rut-dynamic rut-text-element' contenteditable='true'></h2>",
         execute: function(el){
             appendElement(el,this.template);
-    }
+        }
     },
     h3:{
         title:"Заголовок 3",

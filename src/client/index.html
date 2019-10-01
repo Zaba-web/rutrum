@@ -120,6 +120,13 @@
                        <p class="rut-p">Позволяет загружать изображения на страницу</p>
                    </div>
                 </li>
+                <li class='rut-tool' data-rut-tool-category="a" id="rut-tool-a">
+                    <img src="assets/images/linkIcon.svg"> 
+                    <div class="rut-toolbar-item-hint">
+                       <h4 class="rut-h4">Инструмент "Ссылка"</h4>
+                       <p class="rut-p">Позволяет создавать ссылки</p>
+                    </div>
+                </li>
                 <li class="rut-toolbar-item-expandable">
                     <img src="assets/images/listIcon.svg"> 
                     <div class="rut-toolbar-item-hint">
@@ -166,9 +173,17 @@
                                 <input type="file" id="rut-elem-prop-attr-src-selector" style="display: none">
                                 <input type="hidden" id="rut-elem-prop-attr-src">
                             </div>
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">ID</h4>
+                                <input id="rut-elem-prop-attr-id" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                            </div>
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">Ссылка</h4>
+                                <input id="rut-elem-prop-attr-href" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                            </div>
                         </div>
                     </div>
-                    <div class="rut-tools-group">
+                    <div class="rut-tools-group" id="rut-spec-prop-sizes">
                         <h4 class="rut-h4 rut-h4-tools-group-title">Размеры</h4>
                         <div class="rut-dockets-properties-split">
                             <div class="rut-dockets-proteprties-item">
@@ -181,6 +196,29 @@
                             <div class="rut-dockets-proteprties-item">
                                 <h4 class="rut-h4">Высота</h4>
                                 <input id="rut-elem-prop-height" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-tools-group" id="rut-spec-prop-bs-align">
+                        <h4 class="rut-h4 rut-h4-tools-group-title">Выравнивание блоков</h4>
+                        <div class="rut-dockets-properties-split">
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">Вертикаль</h4>
+                                <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-valign">
+                                    <option value="align-items-start">Сверху</option>
+                                    <option value="align-items-center">По центру</option>
+                                    <option value="align-items-end">Снизу</option>
+                                </select>
+                            </div>
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">Горизонталь</h4>
+                                <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-halign">
+                                    <option value="justify-content-start">По левой стороне</option>
+                                    <option value="justify-content-center">По центру</option>
+                                    <option value="justify-content-end">По правой стороне</option>
+                                    <option value="justify-content-around">По ширине</option>
+                                    <option value="justify-content-between">Равномерно</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -279,6 +317,45 @@
                                     <option value="800">800</option>
                                     <option value="900">900</option>
                                 </select>
+                            </div>
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">Выравниван.</h4>
+                                <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-text-align">
+                                    <option value="left">По левому краю</option>
+                                    <option value="center">По центру</option>
+                                    <option value="right">По правому краю</option>
+                                </select>
+                            </div>
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">Обтекание</h4>
+                                <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-float">
+                                    <option value="none">Нет</option>
+                                    <option value="left">Слева</option>
+                                    <option value="right">Справа</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-tools-group">
+                        <h4 class="rut-h4 rut-h4-tools-group-title">Позиционирование</h4>
+                        <div class="rut-dockets-properties-split">
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">Тип</h4>
+                                <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-position">
+                                    <option value="static">Статичное</option>
+                                    <option value="relative">Относительное</option>
+                                    <option value="absolute">Абсолютное</option>
+                                    <option value="fixed">Фиксированное</option>
+                                </select>
+                            </div>
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">Перемещение</h4>
+                                <input id="rut-elem-prop-top" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value" type="text" style="left:29px;">
+                                <div class="rut-dockets-proteprties-split">
+                                    <input id="rut-elem-prop-left" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value"  type="text">
+                                    <input id="rut-elem-prop-right" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value" style="left:29px;" type="text">
+                                </div>
+                                <input id="rut-elem-prop-bottom" class="rut-inner-controls rut-elem-prop-change rut-dockers-property-small-value" type="text" style="left:29px;">
                             </div>
                         </div>
                     </div>
