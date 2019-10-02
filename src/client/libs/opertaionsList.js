@@ -4,5 +4,8 @@ var operationsList = {
         clearAllProp();
         $(".rut-item-opertaions-container").hide();
         window.toolList.tool_pointer.selected = null;
+    },
+    edit: function(el){
+        $(el).attr("contenteditable",true);
     }
 }

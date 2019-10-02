@@ -1,3 +1,5 @@
+var insertableTypes = ["block","inline-block","flex","list-item","table-cell","table","table-row"];
+
 function selectTool(el){
     var tool = $(el).attr("id");
     tool = tool.slice(4,tool.length);
@@ -20,7 +22,8 @@ function getToolTitle(currentTool){
     return toolList[currentTool].title;
 }
 function appendElement(targetElement,template){
-    if($(targetElement).css("display") == "block" || $(targetElement).css("display") == "inline-block" || $(targetElement).css("display") == "flex"){
+    var appendElementType = $(targetElement).css("display");
+    if(insertableTypes.indexOf(appendElementType) != -1){
         $(targetElement).append(template);
     }
 }

@@ -428,6 +428,10 @@ button.rut-inner-controls, .rut-controls-button-like{
 a.rut-dynamic{
     display: inline-block;
 }
+.rut-table-row-temp{
+    padding:3px;
+}
+
 
 @media(max-width:1270px){
     .rut-dockers-container, .rut-toolbar-container{
