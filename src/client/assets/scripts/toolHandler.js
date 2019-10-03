@@ -32,7 +32,11 @@ function getItemOperations(target){
     var position = $(target).offset();
     $(".rut-item-opertaions-container").css({"left":position.left-$(".rut-item-opertaions-container").width()-12,"top":position.top});
 }
-
+function getItemTextEditor(target){
+    $(".rut-item-text-editor-container").show();
+    var position = $(target).offset();
+    $(".rut-item-text-editor-container").css({"left":position.left,"top":position.top-$(".rut-item-text-editor-container").height()*1.2});
+}
 
 
 

@@ -370,6 +370,15 @@
                                     <option value="right">Справа</option>
                                 </select>
                             </div>
+                            <div class="rut-dockets-proteprties-item">
+                                <h4 class="rut-h4">Начертание</h4>
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-font-style">
+                                        <option value="normal">Нормальное начертание</option>
+                                        <option value="italic">Курсивное начертание</option>
+                                        <option value="oblique">Наклонное начертание</option>
+                                    </select>
+                            </div>
+                                    
                         </div>
                     </div>
                     <div class="rut-tools-group">
@@ -458,6 +467,49 @@
                 <img src="assets/images/operationClone.svg" title="Скопировать элемент">
             </li>
         </ul>
+    </div>
+    <div class="rut-item-text-editor-container">
+        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-font-family' id="rut-input-font-family-link"></select>
+        <select class="rut-inner-controls rut-input-small rut-control-link" data-control-target='rut-elem-prop-font-size'>
+            <option value="8pt">8</option>
+            <option value="9pt">9</option>
+            <option value="10pt">10</option>
+            <option value="11pt">11</option>
+            <option value="12pt">12</option>
+            <option value="14pt">14</option>
+            <option value="16pt">16</option>
+            <option value="18pt">18</option>
+            <option value="21pt">21</option>
+            <option value="22pt">22</option>
+            <option value="24pt">24</option>
+            <option value="26pt">26</option>
+            <option value="28pt">28</option>
+            <option value="36pt">36</option>
+            <option value="48pt">48</option>
+            <option value="72pt">72</option>
+        </select>
+        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-font-weight'>
+           <option value="100">Тонкий шрифт</option>
+            <option value="400">Нормальный шрифт</option>
+            <option value="900">Жирный шрифт</option>
+        </select>
+        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-font-style'>
+            <option value="normal">Нормальное начертание</option>
+            <option value="italic">Курсивное начертание</option>
+            <option value="oblique">Наклонное начертание</option>
+        </select>
+        <input type="color" class="rut-inner-controls rut-control-link" data-control-target='rut-elem-prop-color' style="position: relative;bottom:3px;">
+        
+        <input class="rut-inner-controls rut-control-link" data-control-target='rut-elem-prop-color' style="width:60px;" placeholder="HEX">
+        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-text-align'>
+            <option value="left">Слева на право</option>
+            <option value="center">По центру</option>
+            <option value="right">Справа на лево</option>
+        </select>
+        
+    </div>
+    <div class="rut-workspace-width-container">
+        <input type="text" class="rut-inner-controls rut-input-short rut-inner-controls-light rut-workspace-width" style="text-align:center">
     </div>
 </body>
 </html>

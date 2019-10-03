@@ -4,8 +4,16 @@ $(document).ready(function(){
     
     for(i = 0; i<window.fontList.length;i++){
         $("#rut-elem-prop-font-family").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
+        
+        $("#rut-input-font-family-link").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
+        
     }
     
+    $(".rut-workspace-width").val($(".rut-workspace-container").width());
+    $(".rut-workspace-width").change(function(){
+        $(".rut-workspace-container").width($(this).val());
+    })
+        
 	$("#rut-app-minimaze").click(function(){
 		win.minimize();
 	});
@@ -59,6 +67,12 @@ $(document).ready(function(){
         setProp(target);
         
     });
+    
+    $(".rut-control-link").change(function(){
+        var target = $(this).data("control-target");
+        $("#"+target).val($(this).val());
+        $("#"+target).change();
+    })
     
     $("#rut-elem-prop-attr-src-selector").on("change",function(){
         var openFileDialog = document.getElementById('rut-elem-prop-attr-src-selector');

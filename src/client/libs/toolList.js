@@ -13,8 +13,15 @@ var toolList = {
           clearAllProp();
           $(".rut-default-hidden").fadeOut(200);
           $(".rut-item-opertaions-container").hide();
+          $(".rut-item-text-editor-container").hide();
           
           if(!$(el).hasClass("rut-workspace-container")){
+              
+            if($(el).data("text")){
+                $(el).attr("contenteditable","true");
+                getItemTextEditor(el);
+            }  
+              
             this.selected = el;
             $(el).addClass("rut-element-selected");
             console.log("Result of pointer tool: "+this.selected);
@@ -72,56 +79,56 @@ var toolList = {
     },
     tool_a:{
         title:"Ссылка",
-        template:"<a class='rut-insertable rut-display rut-dynamic' href=''>Новая ссылка</a>",
+        template:"<a class='rut-insertable rut-display rut-dynamic' href='' data-text='true'>Новая ссылка</a>",
         execute: function(el){
             appendElement(el,this.template);
         }
     },
     span:{
         title:"Текстовое поле",
-        template:"<span class='rut-display rut-dynamic rut-text-element'>Новое текстовое поле</span>",
+        template:"<span class='rut-display rut-dynamic rut-text-element' data-text='true'>Новое текстовое поле</span>",
         execute: function(el){
             appendElement(el,this.template);
         }
     },
     p:{
         title:"Параграф",
-        template:"<p class='rut-display rut-dynamic rut-text-element'>Новый параграф</p>",
+        template:"<p class='rut-display rut-dynamic rut-text-element' data-text='true'>Новый параграф</p>",
         execute: function(el){
             appendElement(el,this.template);
         }
     },
     h1:{
         title:"Заголовок 1",
-        template:"<h1 class='rut-display rut-dynamic rut-text-element'>Новый заголовок 1 уровня</h1>",
+        template:"<h1 class='rut-display rut-dynamic rut-text-element' data-text='true'>Новый заголовок 1 уровня</h1>",
         execute: function(el){
             appendElement(el,this.template);
         }
     },
     h2:{
         title:"Заголовок 2",
-        template:"<h2 class='rut-display rut-dynamic rut-text-element'>Новый заголовок 2 уровня</h2>",
+        template:"<h2 class='rut-display rut-dynamic rut-text-element' data-text='true'>Новый заголовок 2 уровня</h2>",
         execute: function(el){
             appendElement(el,this.template);
         }
     },
     h3:{
         title:"Заголовок 3",
-        template:"<h3 class='rut-display rut-dynamic rut-text-element'>Новый заголовок 3 уровня</h3>",
+        template:"<h3 class='rut-display rut-dynamic rut-text-element' data-text='true'>Новый заголовок 3 уровня</h3>",
         execute: function(el){
             appendElement(el,this.template);
         }
     },
     h4:{
         title:"Заголовок 4",
-        template:"<h4 class='rut-display rut-dynamic rut-text-element'>Новый заголовок 4 уровня</h4>",
+        template:"<h4 class='rut-display rut-dynamic rut-text-element' data-text='true'>Новый заголовок 4 уровня</h4>",
         execute: function(el){
             appendElement(el,this.template);
         }
     },
     h5:{
         title:"Заголовок 5",
-        template:"<h5 class='rut-display rut-dynamic rut-text-element'>Новый заголовок 5 уровня</h5>",
+        template:"<h5 class='rut-display rut-dynamic rut-text-element' data-text='true'>Новый заголовок 5 уровня</h5>",
         execute: function(el){
             appendElement(el,this.template);
         }
@@ -142,7 +149,7 @@ var toolList = {
     },
     li:{
         title:"Маркированный список",
-        template:"<li class='rut-display rut-insertable rut-dynamic rut-text-element'></li>",
+        template:"<li class='rut-display rut-insertable rut-dynamic rut-text-element' data-text='true'></li>",
         execute: function(el){
             appendElement(el,this.template);
         }
@@ -163,14 +170,14 @@ var toolList = {
     },
     th:{
         title:"Заглавная ячейка",
-        template:"<th class='rut-display rut-insertable rut-dynamic'></th>",
+        template:"<th class='rut-display rut-insertable rut-dynamic' data-text='true'></th>",
         execute: function(el){
             appendElement(el,this.template);
         }
     },
     td:{
         title:"Ячейка",
-        template:"<td class='rut-display rut-insertable rut-dynamic'></td>",
+        template:"<td class='rut-display rut-insertable rut-dynamic' data-text='true'></td>",
         execute: function(el){
             appendElement(el,this.template);
         }

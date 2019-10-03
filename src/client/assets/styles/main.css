@@ -189,6 +189,7 @@ body.rut{
     background: #fff;
     overflow: auto;
     transform: scale(1);
+    padding:3px;
 }
 .rut-dockers-container{
     min-height:267px;
@@ -231,7 +232,7 @@ body.rut{
     border-radius: 5px;
 }
 .rut-toolbar-container>ul>li:hover{
-    background: #313641;
+    background: #2D3038;
 }
 .rut-toolbar-container>ul>li:hover .rut-toolbar-item-hint{
     transform: scale(1);
@@ -298,7 +299,7 @@ body.rut{
     display: none;
 }
 .rut-toolbar-item-active{
-    background: #313641;
+    background: #2D3038;
 }
 .rut-insertable:hover{
     border: 1px solid #5A3D5C;
@@ -431,7 +432,23 @@ a.rut-dynamic{
 .rut-table-row-temp{
     padding:3px;
 }
-
+.rut-item-text-editor-container{
+    position: absolute;
+    min-height:30px;
+    width:auto;
+    background: rgba(60, 66, 75, .8);
+    display: none;
+    box-sizing: border-box;
+    padding:3px;
+}
+.rut-workspace-width-container{
+    margin: 0 auto;
+    text-align: center;
+    margin-top:5px;
+}
+.rut-inner-controls-light{
+    background: rgba(60, 66, 75, 1);
+}
 
 @media(max-width:1270px){
     .rut-dockers-container, .rut-toolbar-container{
