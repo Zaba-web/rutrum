@@ -1,19 +1,22 @@
 $(document).ready(function(){
     
-    changeTool($("#rut-tool-pointer"));
     
-    for(i = 0; i<window.fontList.length;i++){
-        $("#rut-elem-prop-font-family").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
-        
-        $("#rut-input-font-family-link").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
-        
-    }
+    changeTool($("#rut-tool-pointer")); // set Pointer tool as default
     
-    $(".rut-workspace-width").val($(".rut-workspace-container").width());
-    $(".rut-workspace-width").change(function(){
+    // loading default fonts
+    loadFonts();
+    
+    // loading separate parts 
+    loadPart("propertyBar","#rut-dockers-item-inner-container-properties");
+    
+    $(".rut-workspace-width").val($(".rut-workspace-container").width()); // getting default workspace width
+    
+    $(".rut-workspace-width").change(function(){ // updating workspace width
         $(".rut-workspace-container").width($(this).val());
     })
-        
+     
+    // window controls
+    
 	$("#rut-app-minimaze").click(function(){
 		win.minimize();
 	});
@@ -26,6 +29,8 @@ $(document).ready(function(){
 		nw.App.quit();
 	});
 	
+    
+    
     $(".rut-toolbar-item-expandable").on("click",function(){
         $(this).children(".rut-sub-toolbar-submenu").fadeToggle(100);
         $(".rut-toolbar-item-hint").hide();

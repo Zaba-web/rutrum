@@ -1,0 +1,125 @@
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-attributes'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Атрибуты</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-attributes">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Подсказка:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-attr-title" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Путь к файлу:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <label for="rut-elem-prop-attr-src-selector" class="rut-controls-button-like rut-input-short">Выбрать</label>
+                                    <input type="file" id="rut-elem-prop-attr-src-selector" style="display: none">
+                                    <input type="hidden" id="rut-elem-prop-attr-src">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">ID:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                   <input id="rut-elem-prop-attr-id" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-link'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Ссылки</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-link">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Адрес:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                   <input id="rut-elem-prop-attr-href" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Цель:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-attr-target">
+                                        <option value="_self">В текущем окне</option>
+                                        <option value="_blank">В новом окне</option>
+                                        <option value="_parent">В фрейме-родителе</option>
+                                        <option value="_top">Отменить все фреймы и загрузить ссылку в текущем окне</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-size'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Размеры</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-size">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Ширина:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-width" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                    <br>
+                                    <select id="rut-elem-prop-col-spec" class="rut-inner-controls rut-input-short rut-default-hidden rut-elem-prop-spec-change" data-list="cols">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Высота:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-height" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-row-align'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Вырванивание колонок</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-row-align">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Вертикаль:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-valign">
+                                        <option value="align-items-start">Сверху</option>
+                                        <option value="align-items-center">По центру</option>
+                                        <option value="align-items-end">Снизу</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Горизонталь:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-halign">
+                                        <option value="justify-content-start">По левой стороне</option>
+                                        <option value="justify-content-center">По центру</option>
+                                        <option value="justify-content-end">По правой стороне</option>
+                                        <option value="justify-content-around">По ширине</option>
+                                        <option value="justify-content-between">Равномерно</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
