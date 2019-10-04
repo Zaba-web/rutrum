@@ -1,4 +1,4 @@
-                    <div class="rut-tools-group">
+1                    <div class="rut-tools-group">
                         <h4 class="rut-h4 rut-h4-tools-group-title">Атрибуты</h4>
                         <div class="rut-dockets-properties-split">
                             <div class="rut-dockets-proteprties-item">
