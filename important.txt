@@ -1,0 +1,17 @@
+Export:
+	delete system border,padding
+	delete contenteditable property !
+
+To do:
+	01.10.2019:
+		- Position properties - ok
+		- Classes and id attributes - 1/2
+		- Bootstrap align - ok
+		- Link tool - ok
+	02.10.2019:
+		- Border properties: - ok
+			- radius 
+			- color, size, type
+			- box-sizing
+	03.10.2019:
+		- Improve text editing - ok

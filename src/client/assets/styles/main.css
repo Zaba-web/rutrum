@@ -320,7 +320,6 @@ body.rut{
     max-height:400px;
     overflow-x: auto;
     right:32px;
-    padding:13px;
     box-sizing: border-box;
     padding-bottom:20px;
     background:rgba(49, 54, 65, .8);
@@ -346,7 +345,7 @@ body.rut{
 }
 .rut-h4-tools-group-title{
     font-family: Raleway-Regular;
-    font-size:17px;
+    font-size:15px;
 }
 .rut-tools-group{
     margin-top:10px;
@@ -449,6 +448,46 @@ a.rut-dynamic{
 .rut-inner-controls-light{
     background: rgba(60, 66, 75, 1);
 }
+.rut-docker-prop-group-header{
+    width:100%;
+    box-sizing: border-box;
+    background:#313641;
+    padding:6px;
+    display: flex;
+    align-items: center;
+}
+.rut-docker-prop-group-body{
+    width:100%;
+    border-left:6px solid #313641;
+    padding-bottom: 10px;
+}
+.rut-docker-prop-item-container{
+    display: flex;
+    box-sizing: border-box;
+    padding:10px 0px 0px 10px;
+    align-items: center;
+}
+.rut-docker-prop-item-input,.rut-docker-prop-item-title{
+    width:50%;
+}
+.rut-prop-group-expander{
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media(max-width:1270px){
     .rut-dockers-container, .rut-toolbar-container{

@@ -62,3 +62,12 @@ function updateAllProps(el){
 function doElementOperation(el,opCode){
     window.operationsList[opCode](el);
 }
+
+function loadFonts(){
+    for(i = 0; i<window.fontList.length;i++){
+        $("#rut-elem-prop-font-family").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
+        
+        $("#rut-input-font-family-link").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
+        
+    }
+}
