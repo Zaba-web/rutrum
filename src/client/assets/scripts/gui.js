@@ -1,13 +1,15 @@
 $(document).ready(function(){
     
     
+    
+    
+    // loading separate parts 
+    loadPart("propertyBar","#rut-dockers-item-inner-container-properties");
+    
     changeTool($("#rut-tool-pointer")); // set Pointer tool as default
     
     // loading default fonts
     loadFonts();
-    
-    // loading separate parts 
-    loadPart("propertyBar","#rut-dockers-item-inner-container-properties");
     
     $(".rut-workspace-width").val($(".rut-workspace-container").width()); // getting default workspace width
     
@@ -77,6 +79,13 @@ $(document).ready(function(){
         var target = $(this).data("control-target");
         $("#"+target).val($(this).val());
         $("#"+target).change();
+    });
+    
+    $(".rut-control-link-button").click(function(){
+        var target = $(this).data("control-target");
+        $("#"+target).val($(this).data("val"));
+        $("#"+target).change();
+        console.log($(this).data("val"));
     })
     
     $("#rut-elem-prop-attr-src-selector").on("change",function(){
@@ -93,6 +102,11 @@ $(document).ready(function(){
         
     });
     
+    $(".rut-prop-group-expander").click(function(){
+        var group = $(this).data("group-id");
+        $("#"+group).slideToggle(200);
+    })
+    
     jQuery(function($){
         $(document).mouseup(function (e){ 
             var div = $(".rut-sub-toolbar-submenu"); 
@@ -105,6 +119,14 @@ $(document).ready(function(){
     
     $(".rut-item-operation").on("click",function(){
         doElementOperation(window.toolList.tool_pointer.selected,$(this).data("op"));
+    });
+    
+    $(".rut-dockers-item").on("click",function(){
+       $(".rut-dockers-item-inner-container").hide();
+       var containerId = $(this).data("container");
+       $("#"+containerId).show(100);
+       $(".rut-dockets-item-active").removeClass("rut-dockets-item-active");
+       $(this).addClass("rut-dockets-item-active");
     });
     
     $(window).on('mousewheel', function(event) 

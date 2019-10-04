@@ -1,4 +1,5 @@
-                    <div class="rut-docker-prop-group">
+
+                       <div class="rut-docker-prop-group">
                         <div class="rut-docker-prop-group-header">
                             <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-attributes'>
                             <h4 class="rut-h4 rut-h4-tools-group-title">Атрибуты</h4>
@@ -119,6 +120,412 @@
                                         <option value="justify-content-around">По ширине</option>
                                         <option value="justify-content-between">Равномерно</option>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-spaces'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Оступы</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-spaces">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Внешние:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-margin" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                                <div class="rut-docker-prop-item-container">
+                                    <div class="rut-docker-prop-item-title">
+                                        <h4 class="rut-h4">Слева:</h4>
+                                    </div>
+                                    <div class="rut-docker-prop-item-input">
+                                        <input id="rut-elem-prop-margin-left" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                    </div>
+                                    <div class="rut-docker-prop-item-title">
+                                        <h4 class="rut-h4">Сверху:</h4>
+                                    </div>
+                                    <div class="rut-docker-prop-item-input">
+                                        <input id="rut-elem-prop-margin-top" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                    </div>
+                                    <div class="rut-docker-prop-item-title">
+                                        <h4 class="rut-h4">Справа:</h4>
+                                    </div>
+                                    <div class="rut-docker-prop-item-input">
+                                        <input id="rut-elem-prop-margin-right" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                    </div>
+                                    <div class="rut-docker-prop-item-title">
+                                        <h4 class="rut-h4">Снизу:</h4>
+                                    </div>
+                                    <div class="rut-docker-prop-item-input">
+                                        <input id="rut-elem-prop-margin-bottom" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Внутренние:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-padding" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                                <div class="rut-docker-prop-item-container">
+                                    <div class="rut-docker-prop-item-title">
+                                        <h4 class="rut-h4">Слева:</h4>
+                                    </div>
+                                    <div class="rut-docker-prop-item-input">
+                                        <input id="rut-elem-prop-padding-left" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                    </div>
+                                    <div class="rut-docker-prop-item-title">
+                                        <h4 class="rut-h4">Сверху:</h4>
+                                    </div>
+                                    <div class="rut-docker-prop-item-input">
+                                        <input id="rut-elem-prop-padding-top" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                    </div>
+                                    <div class="rut-docker-prop-item-title">
+                                        <h4 class="rut-h4">Справа:</h4>
+                                    </div>
+                                    <div class="rut-docker-prop-item-input">
+                                        <input id="rut-elem-prop-padding-right" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                    </div>
+                                    <div class="rut-docker-prop-item-title">
+                                        <h4 class="rut-h4">Снизу:</h4>
+                                    </div>
+                                    <div class="rut-docker-prop-item-input">
+                                        <input id="rut-elem-prop-padding-bottom" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-bg'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Задний фон</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-bg">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Цвет:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input type="color" id="rut-elem-prop-background-color" class="rut-inner-controls rut-elem-prop-change">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Картинка:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <label for="rut-add-image" class="rut-controls-button-like">Выбрать</label>
+                                    <input type="file" id="rut-add-image" style="display: none"><br>
+                                    <input type="hidden" id="rut-elem-prop-background-image">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Повторение:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-background-repeat">
+                                        <option value="auto">Авто</option>
+                                        <option value="no-repeat">Не повторять</option>
+                                        <option value="repeat">Повторять</option>
+                                        <option value="repeat-x">Повторять по горизонтали</option>
+                                        <option value="repeat-y">Повторять по вертикали</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Позиция:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input type='hidden' class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-background-position">
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="left top" data-control-target="rut-elem-prop-background-position">
+                                    ⌜
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="center top" data-control-target="rut-elem-prop-background-position">
+                                    -
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="right top" data-control-target="rut-elem-prop-background-position">
+                                    <div class="rut-symbol-reversed">⌜</div>
+                                    </button>
+                                    
+                                    <br>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="left center" data-control-target="rut-elem-prop-background-position">
+                                    |
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="center center" data-control-target="rut-elem-prop-background-position">
+                                    •
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="center right" data-control-target="rut-elem-prop-background-position">
+                                    |
+                                    </button>
+                                    
+                                    <br>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="bottom center" data-control-target="rut-elem-prop-background-position">
+                                        <div style="transform: rotate(270deg)">⌜</div>
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="bottom center" data-control-target="rut-elem-prop-background-position">
+                                    -
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="bottom right" data-control-target="rut-elem-prop-background-position">
+                                        <div style="transform: rotate(180deg)">⌜</div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Размер:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-background-size">
+                                        <option value="auto">Авто</option>
+                                        <option value="cover">Растянуть на весь блок</option>
+                                        <option value="contain">Показать полностью</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-text'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Текст</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-text">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Цвет:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input type="color" id="rut-elem-prop-color" class="rut-inner-controls rut-elem-prop-change">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Размер:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-font-size" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Шрифт:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-font-family">
+                                
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Толщина:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-font-weight">
+                                        <option value="100">100</option>
+                                        <option value="200">200</option>
+                                        <option value="300">300</option>
+                                        <option value="400">400</option>
+                                        <option value="500">500</option>
+                                        <option value="600">600</option>
+                                        <option value="700">700</option>
+                                        <option value="800">800</option>
+                                        <option value="900">900</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Выравн:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input type="hidden" class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-text-align">
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="left" data-control-target="rut-elem-prop-text-align">
+                                    |
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="center" data-control-target="rut-elem-prop-text-align">
+                                    •
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="right" data-control-target="rut-elem-prop-text-align">
+                                    |
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Обтекание:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input type="hidden" class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-float">
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="left" data-control-target="rut-elem-prop-float">
+                                    |
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="none" data-control-target="rut-elem-prop-float">
+                                    x
+                                    </button>
+                                    
+                                    <button type="button" class="rut-inner-controls rut-dockers-property-small-value rut-control-link-button" data-val="right" data-control-target="rut-elem-prop-float">
+                                    |
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Выс. строки:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-line-height" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-pos'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Позиционирование</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-pos">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Позиция:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-position">
+                                        <option value="static">Статичная</option>
+                                        <option value="relative">Относительная</option>
+                                        <option value="absolute">Абсолютная</option>
+                                        <option value="fixed">Фиксированная</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Слева:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-left" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Сверху:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-top" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Справа:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-right" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Снизу:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-bottom" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-border'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Рамка</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-border">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Цвет:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input type="color" id="rut-elem-prop-border-color" class="rut-inner-controls rut-elem-prop-change">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Толщина:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-border-width" class="rut-inner-controls rut-elem-prop-change rut-input-short"  type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Тип линии:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-border-style">
+                                        <option value="solid">Сплошная</option>
+                                        <option value="dotted">Пунктирная</option>
+                                        <option value="dashed">Штриховая</option>
+                                        <option value="double">Двойная</option>
+                                        <option value="groove">Вогнутая</option>
+                                        <option value="ridge">Четкая</option>
+                                        <option value="inset">Тень вовнутрь</option>
+                                        <option value="outset">Тень наружу</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Радиус:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-border-radius" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-other'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Другое</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-other">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Модель блока:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-box-sizing">
+                                        <option value="content-box">Width и height задают ширину и высоту контента и не включают в себя значения отступов, полей и границ</option>
+                                        <option value="border-box">Свойства width и height включают в себя значения полей и границ, но не отступов</option>
+                                        <option value="padding-box">Свойства width и height включают в себя значения полей, но не отступов и границ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Непрозр.:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-opacity" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
                                 </div>
                             </div>
                         </div>

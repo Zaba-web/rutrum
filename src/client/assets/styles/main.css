@@ -460,12 +460,14 @@ a.rut-dynamic{
     width:100%;
     border-left:6px solid #313641;
     padding-bottom: 10px;
+    display: none;
 }
 .rut-docker-prop-item-container{
     display: flex;
     box-sizing: border-box;
     padding:10px 0px 0px 10px;
     align-items: center;
+    flex-wrap: wrap;
 }
 .rut-docker-prop-item-input,.rut-docker-prop-item-title{
     width:50%;
@@ -474,6 +476,12 @@ a.rut-dynamic{
     margin-right: 8px;
     cursor: pointer;
 }
+.rut-symbol-reversed{
+    transform: rotate(90deg);
+}
+.rut-dockers-item-inner-container{
+    display: none;
+}
 
 
 
@@ -487,9 +495,7 @@ a.rut-dynamic{
 
 
 
-
-
-@media(max-width:1270px){
+@media(max-width:1280px){
     .rut-dockers-container, .rut-toolbar-container{
         position: fixed;
     }

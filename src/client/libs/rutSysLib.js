@@ -71,3 +71,11 @@ function loadFonts(){
         
     }
 }
+
+function rgbToHex(rgb) {
+  var a = rgb.split("(")[1].split(")")[0].split(",");
+  return "#" + a.map(function(x) {
+    x = parseInt(x).toString(16);
+    return (x.length == 1) ? "0"+x : x;
+  }).join("");
+}
