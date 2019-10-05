@@ -98,6 +98,20 @@ var toolList = {
             appendElement(el,this.template);
         }
     },
+    strong:{
+        title:"Жирный текст",
+        template:"<strong class='rut-display rut-dynamic rut-text-element' data-text='true'>Новый жирный текст</strong>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
+    i:{
+        title:"Курсив",
+        template:"<i class='rut-display rut-dynamic rut-text-element' data-text='true'>Новый курсив</i>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
     h1:{
         title:"Заголовок 1",
         template:"<h1 class='rut-display rut-dynamic rut-text-element' data-text='true'>Новый заголовок 1 уровня</h1>",
@@ -178,6 +192,27 @@ var toolList = {
     td:{
         title:"Ячейка",
         template:"<td class='rut-display rut-insertable rut-dynamic' data-text='true'></td>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
+    form:{
+        title:"Форма",
+        template:"<form class='rut-display rut-insertable rut-dynamic' method='GET' action></form>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
+    label:{
+        title:"Метка",
+        template:"<label class='rut-display rut-insertable rut-dynamic' data-text='true'>Новая метка</label>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
+    input:{
+        title:"Поле",
+        template:"<input class='rut-display rut-insertable rut-dynamic'>",
         execute: function(el){
             appendElement(el,this.template);
         }

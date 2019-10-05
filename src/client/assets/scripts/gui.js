@@ -107,6 +107,7 @@ $(document).ready(function(){
         $("#"+group).slideToggle(200);
     })
     
+    
     jQuery(function($){
         $(document).mouseup(function (e){ 
             var div = $(".rut-sub-toolbar-submenu"); 
@@ -122,11 +123,18 @@ $(document).ready(function(){
     });
     
     $(".rut-dockers-item").on("click",function(){
-       $(".rut-dockers-item-inner-container").hide();
-       var containerId = $(this).data("container");
-       $("#"+containerId).show(100);
-       $(".rut-dockets-item-active").removeClass("rut-dockets-item-active");
-       $(this).addClass("rut-dockets-item-active");
+        var containerId = $(this).data("container");
+        if($("#"+containerId).css("display") == "none"){ 
+            $(".rut-dockers-item-inner-container").hide();
+            $("#"+containerId).show(100);
+            $(".rut-dockets-item-active").removeClass("rut-dockets-item-active");
+            $(this).addClass("rut-dockets-item-active");
+        }
+    });
+    
+    $(".rut-close-docker-pannel").click(function(){
+        $(".rut-dockers-item-inner-container").hide();
+        $(".rut-dockets-item-active").removeClass("rut-dockets-item-active");
     });
     
     $(window).on('mousewheel', function(event) 

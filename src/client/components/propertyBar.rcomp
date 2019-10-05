@@ -1,4 +1,7 @@
-
+                       <div class="rut-docker-prop-main-header">
+                           <h4 class="rut-h4">Панель свойств</h4>
+                           <img src="assets/images/closePannelIcon.svg" alt="" class="rut-close-docker-pannel">
+                       </div>
                        <div class="rut-docker-prop-group">
                         <div class="rut-docker-prop-group-header">
                             <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-attributes'>
@@ -58,6 +61,88 @@
                                         <option value="_parent">В фрейме-родителе</option>
                                         <option value="_top">Отменить все фреймы и загрузить ссылку в текущем окне</option>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rut-docker-prop-group">
+                        <div class="rut-docker-prop-group-header">
+                            <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-forms'>
+                            <h4 class="rut-h4 rut-h4-tools-group-title">Формы</h4>
+                        </div>
+                        <div class="rut-docker-prop-group-body" id="rut-group-forms">
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Обработчик:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                   <input id="rut-elem-prop-attr-action" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Тип запроса:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                   <select id="rut-elem-prop-attr-method" class="rut-inner-controls rut-elem-prop-change rut-input-short">
+                                       <option value="GET">GET</option>
+                                       <option value="POST">POST</option>
+                                   </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Цель метки:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-attr-for" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Тип поля:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                   <select id="rut-elem-prop-attr-type" class="rut-inner-controls rut-elem-prop-change rut-input-short">
+                                       <option value="text">Поле для ввода текста</option>
+                                       <option value="password">Поле для ввода пароля</option>
+                                       <option value="button">Кнопка</option>
+                                       <option value="submit">Кнопка для отправки данных</option>
+                                       <option value="checkbox">Чекбокс</option>
+                                       <option value="radio">Переключатель</option>
+                                       <option value="file">Выбор файла</option>
+                                       <option value="hidden">Скрытое поле</option>
+                                       <option value="image">Поле с изображением</option>
+                                       <option value="reset">Кнопка для сброса формы</option>
+                                       <option value="color">Выбор цвета</option>
+                                       <option value="date">Дата</option>
+                                       <option value="time">Время</option>
+                                       <option value="datetime">Дата и время</option>
+                                       <option value="month">Месяц</option>
+                                       <option value="week">Неделя</option>
+                                       <option value="email">Поле для электронной почты</option>
+                                       <option value="number">Поле для чисел</option>
+                                       <option value="range">Ползунок для выбора чисел</option>
+                                       <option value="search">Поле для поиска</option>
+                                       <option value="tel">Поле для телефонных номеров</option>
+                                       <option value="url">Поле для веб адреса</option>
+                                   </select>
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Значение поля:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-attr-value" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Заглушка:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-attr-placeholder" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
                                 </div>
                             </div>
                         </div>

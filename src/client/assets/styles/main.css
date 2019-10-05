@@ -192,7 +192,6 @@ body.rut{
     padding:3px;
 }
 .rut-dockers-container{
-    min-height:267px;
     background:rgba(58, 63, 72, .8);
     position: relative;
     z-index: 999;
@@ -482,7 +481,19 @@ a.rut-dynamic{
 .rut-dockers-item-inner-container{
     display: none;
 }
-
+.rut-docker-prop-main-header{
+    width:100%;
+    box-sizing: border-box;
+    padding:10px;
+    position: relative;
+    background:#313641;
+}
+.rut-close-docker-pannel{
+    position: absolute;
+    right:10px;
+    top:10px;
+    cursor: pointer;
+}
 
 
 
