@@ -9,10 +9,8 @@ var mediaContainer = {
     fonts  : [],
     styles : {
         classes : {},
-        id      : {},
         media   : {
             classes : {},
-            id      : {}
         }
     }
 };

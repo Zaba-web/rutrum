@@ -494,9 +494,52 @@ a.rut-dynamic{
     top:10px;
     cursor: pointer;
 }
-
-
-
+.rut-window-wrapper{
+    position: fixed;
+    width:100vw;
+    height:95vh;
+    top:5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rut-class-window-container{
+    width:350px;
+    min-height:100px;
+    max-height: 300px;
+    overflow: auto;
+    background: rgba(46, 51, 63, .8);
+    clip-path: polygon(5% 0, 100% 0, 100% 90%, 95% 100%, 0 100%, 0 10%);
+    padding:15px;
+    position: relative;
+}
+.rut-class-window-item-container{
+    width:100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.rut-class-window-item{
+    height: 100%;
+    margin-top:12px;
+}
+.rut-new-class-prop{
+    margin-left:12px;
+}
+.rut-class-remove-prop{
+    cursor: pointer;
+}
+.rut-status{
+    color:#fff;
+    font-size:14px;
+    font-family:Raleway-Light;
+}
+.rut-class-window-close{
+    position: absolute;
+    right:12px;
+    top:12px;
+    cursor: pointer;
+}
 
 
 

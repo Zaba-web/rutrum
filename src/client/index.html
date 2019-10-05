@@ -11,12 +11,14 @@
     <script src="assets/scripts/init.js"></script>
     <script src="assets/scripts/composer.js"></script>
     <script src="assets/scripts/toolHandler.js"></script>
+    <script src="assets/scripts/styleConstructor.js"></script>
     <script src="assets/scripts/gui.js"></script>
     <link rel="stylesheet" href="assets/styles/main.css">
     <link rel="stylesheet" href="assets/styles/fonts.css">
     <link rel="stylesheet" href="assets/styles/vendor/bootstrap-grid.min.css">
 </head>
 <body class="rut">
+    <style></style>
     <div class='rut-main-top-container'>
     	<nav>
     		<div class="rut-logo"></div>
@@ -50,7 +52,7 @@
     	        <li title="Новая страница">
                     <img src="assets/images/newPageIcon.svg">
     	        </li>
-    	        <li title="Новый стиль">
+    	        <li title="Создать класс" id="rut-create-class-trigger">
                     <img src="assets/images/newStyleIcon.svg">
     	        </li>
     	        <li title="Новый скрипт">
@@ -204,41 +206,13 @@
         </ul>
     </div>
     <div class="rut-item-text-editor-container">
-        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-font-family' id="rut-input-font-family-link"></select>
-        <select class="rut-inner-controls rut-input-small rut-control-link" data-control-target='rut-elem-prop-font-size'>
-            <option value="8px">8</option>
-            <option value="9px">9</option>
-            <option value="10px">10</option>
-            <option value="11px">11</option>
-            <option value="12px">12</option>
-            <option value="14px">14</option>
-            <option value="16px">16</option>
-            <option value="18px">18</option>
-            <option value="21px">21</option>
-            <option value="22px">22</option>
-            <option value="24px">24</option>
-            <option value="26px">26</option>
-            <option value="28px">28</option>
-            <option value="36px">36</option>
-            <option value="48px">48</option>
-            <option value="72px">72</option>
-        </select>
-        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-font-weight'>
-           <option value="100">Тонкий шрифт</option>
-            <option value="400">Нормальный шрифт</option>
-            <option value="900">Жирный шрифт</option>
-        </select>
-        <input type="color" class="rut-inner-controls rut-control-link" data-control-target='rut-elem-prop-color' style="position: relative;bottom:3px;">
-
-        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-text-align'>
-            <option value="left">Слева на право</option>
-            <option value="center">По центру</option>
-            <option value="right">Справа на лево</option>
-        </select>
         
     </div>
     <div class="rut-workspace-width-container">
         <input type="text" class="rut-inner-controls rut-input-short rut-inner-controls-light rut-workspace-width" style="text-align:center">
+    </div>
+    <div class="rut-window-wrapper" id="rut-class-window">
+        
     </div>
 </body>
 </html>

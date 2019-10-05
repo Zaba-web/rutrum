@@ -72,10 +72,67 @@ function loadFonts(){
     }
 }
 
-function rgbToHex(rgb) {
-  var a = rgb.split("(")[1].split(")")[0].split(",");
-  return "#" + a.map(function(x) {
-    x = parseInt(x).toString(16);
-    return (x.length == 1) ? "0"+x : x;
-  }).join("");
+/*--------*/
+
+function addTempClassProp(el){
+    var propValue = $(el).val();
+    var propName = $(el).data("prop");
+    var endl = "";
+    
+    if(!propValue.includes(";")){
+        endl = ";";
+    }
+    
+    window.temponaryClass.properties[propName] = propValue + endl;
+    console.log(window.temponaryClass);
+}
+
+function getPropertyFromList(from,where){
+    var propTitle = $(from).data("name");
+    var propName = $(from).data("val");
+    var propHint = $(from).data("hint");
+    
+    $(where).append("<div class='rut-class-window-item' style='width:35%;' data-prop-name='"+propName+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+propName+"'>[x]</span> "+propTitle+":</h4></div><div class='rut-class-window-item' style='width:65%' data-prop-name='"+propName+"'><input data-prop='"+propName+"' placeholder='"+propHint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
+}
+
+function getAllCSSProperties(target){
+    for(i = 0; i < Object.keys(window.propertiesCollection).length; i++){
+      var currentItem = window.propertiesCollection[Object.keys(window.propertiesCollection)[i]];
+        
+      $(target).append("<option data-hint = '"+currentItem.hint+"' data-val='"+currentItem.value+"' data-name='"+currentItem.name+"'>"+currentItem.name+"</option>");
+    } 
+}
+
+function saveNewCSSClass(){
+    window.mediaContainer.styles.classes[window.temponaryClass.name] = window.temponaryClass;
+    updateCSS();
+    return true;
+}
+
+function renderCSS(){
+    var style = " ";
+    var count = Object.keys(window.mediaContainer.styles.classes).length;
+    for(var i = 0; i<count; i++){
+        var currentItemName = Object.keys(window.mediaContainer.styles.classes)[i];
+        var currentItemPropCount = Object.keys(window.mediaContainer.styles.classes[currentItemName].properties).length;
+        style += "."+currentItemName+"{";
+        for(var j = 0; j<currentItemPropCount; j++){
+            var currentPropertyName = Object.keys(window.mediaContainer.styles.classes[currentItemName].properties)[j];
+            var currentPropertyValue = window.mediaContainer.styles.classes[currentItemName].properties[currentPropertyName];
+            style += currentPropertyName + ":" + currentPropertyValue;
+        }
+        style += "}";
+        
+    }
+    console.log(style);
+    return style;
+}
+
+function updateCSS(){
+    $("style").html(renderCSS());
+}
+
+function propertyRemove(propName){
+    console.log(propName);
+    delete window.temponaryClass.properties[propName];
 }

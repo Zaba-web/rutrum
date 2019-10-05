@@ -5,11 +5,15 @@ $(document).ready(function(){
     
     // loading separate parts 
     loadPart("propertyBar","#rut-dockers-item-inner-container-properties");
+    loadPart("textEditBar",".rut-item-text-editor-container");
+    loadPart("newClassWindow","#rut-class-window");
     
     changeTool($("#rut-tool-pointer")); // set Pointer tool as default
     
     // loading default fonts
     loadFonts();
+    
+    getAllCSSProperties("#rut-new-class-props-list");
     
     $(".rut-workspace-width").val($(".rut-workspace-container").width()); // getting default workspace width
     
@@ -31,7 +35,7 @@ $(document).ready(function(){
 		nw.App.quit();
 	});
 	
-    
+    $(".rut-window-wrapper").hide();
     
     $(".rut-toolbar-item-expandable").on("click",function(){
         $(this).children(".rut-sub-toolbar-submenu").fadeToggle(100);
@@ -165,5 +169,45 @@ $(document).ready(function(){
              $(".rut-workspace-container").css("transform","scale("+scale+")");
         }
     });
+    
+    $(document).on("change",".rut-new-class-prop-change",function(e){
+        addTempClassProp(this);
+    });
+    
+    $("#rut-new-class-name").change(function(){
+        window.temponaryClass.name = $(this).val();
+    });
+    
+    $("#rut-new-class-add-prop").on("click",function(){
+        getPropertyFromList("#rut-new-class-props-list option:selected","#rut-new-class-properties-container");
+    });
+    
+    $("#rut-new-class-save").click(function(){
+        if($("#rut-new-class-name").val().length != 0){
+            if(saveNewCSSClass()){
+                $("#rut-new-class-name").val("");
+                $("[data-prop-name]").remove();
+                $("#rut-new-class-status").text("Класс создан");
+            }else{
+                $("#rut-new-class-status").text("Не удалось создать класс");
+            }
+        }else{
+            $("#rut-new-class-status").text("Укажите имя класса");
+        }
+    });
+    
+    $(document).on("click",".rut-class-remove-prop",function(){
+        propertyRemove($(this).data("target"));
+        $("[data-prop-name='"+$(this).data("target")+"']").remove();
+    })
+    
+    $("#rut-create-class-trigger").click(function(){
+        $("#rut-class-window").fadeIn(150);
+    });
+    
+    $(".rut-class-window-close").click(function(){
+        $(".rut-window-wrapper").fadeOut(150);
+    });
+    
 });
 

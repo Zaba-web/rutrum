@@ -1,0 +1,31 @@
+        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-font-family' id="rut-input-font-family-link"></select>
+        <select class="rut-inner-controls rut-input-small rut-control-link" data-control-target='rut-elem-prop-font-size'>
+            <option value="8px">8</option>
+            <option value="9px">9</option>
+            <option value="10px">10</option>
+            <option value="11px">11</option>
+            <option value="12px">12</option>
+            <option value="14px">14</option>
+            <option value="16px">16</option>
+            <option value="18px">18</option>
+            <option value="21px">21</option>
+            <option value="22px">22</option>
+            <option value="24px">24</option>
+            <option value="26px">26</option>
+            <option value="28px">28</option>
+            <option value="36px">36</option>
+            <option value="48px">48</option>
+            <option value="72px">72</option>
+        </select>
+        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-font-weight'>
+           <option value="100">Тонкий шрифт</option>
+            <option value="400">Нормальный шрифт</option>
+            <option value="900">Жирный шрифт</option>
+        </select>
+        <input type="color" class="rut-inner-controls rut-control-link" data-control-target='rut-elem-prop-color' style="position: relative;bottom:3px;">
+
+        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-text-align'>
+            <option value="left">Слева на право</option>
+            <option value="center">По центру</option>
+            <option value="right">Справа на лево</option>
+        </select>
