@@ -136,3 +136,13 @@ function propertyRemove(propName){
     console.log(propName);
     delete window.temponaryClass.properties[propName];
 }
+
+
+/*-------------------*/
+
+function pulseEffect(selector){
+    $(selector).css("animation","0.3s rut-op-active");
+    setTimeout(function(){
+        $(selector).css("animation","");
+    },300);
+}
