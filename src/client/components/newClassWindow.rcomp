@@ -7,6 +7,42 @@
         <div class="rut-class-window-item">
             <input id="rut-new-class-name" class="rut-inner-controls rut-input-short" type="text">
         </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:46px;">Псевдокласс:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <select class='rut-inner-controls rut-input-short' id="rut-new-class-pseudo">
+                <option value="" selected>Нет</option>
+                <option value=":active">active</option>
+                <option value=":any">any</option>
+                <option value=":any-link">any-link</option>
+                <option value=":checked">checked</option>
+                <option value=":default">default</option>
+                <option value=":defined">defined</option>
+                <option value=":disabled">disabled</option>
+                <option value=":empty">empty</option>
+                <option value=":enabled">enabled</option>
+                <option value=":first">first</option>
+                <option value=":first-child">first-child</option>
+                <option value=":first-of-type">first-of-type</option>
+                <option value=":fullscreen">fullscreen</option>
+                <option value=":focus">focus</option>
+                <option value=":hover">hover</option>
+                <option value=":indeterminate">indeterminate</option>
+                <option value=":in-range">in-range</option>
+                <option value=":invalid">invalid</option>
+                <option value=":last-child">last-child</option>
+                <option value=":last-of-type">last-of-type</option>
+                <option value=":left">left</option>
+                <option value=":link">link</option>
+                <option value=":visited">visited</option>
+                <option value="::after">after</option>
+                <option value="::before">before</option>
+                <option value="::first-letter">first-letter</option>
+                <option value="::first-line">first-line</option>
+                <option value="::selection">selection</option>
+            </select>
+        </div>
     </div>
     <div class="rut-class-window-item">
         <h4 class="rut-h4">Свойства:</h4>

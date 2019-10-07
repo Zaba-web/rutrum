@@ -104,6 +104,7 @@ function getAllCSSProperties(target){
 }
 
 function saveNewCSSClass(){
+    window.temponaryClass.name += $("#rut-new-class-pseudo").val();
     window.mediaContainer.styles.classes[window.temponaryClass.name] = window.temponaryClass;
     updateCSS();
     return true;
@@ -130,6 +131,7 @@ function renderCSS(){
 
 function updateCSS(){
     $("style").html(renderCSS());
+    getClassList("#rut-class-list");
 }
 
 function propertyRemove(propName){
@@ -137,6 +139,17 @@ function propertyRemove(propName){
     delete window.temponaryClass.properties[propName];
 }
 
+function getClassList(target){
+    $(target).html("");
+    for(key in window.mediaContainer.styles.classes){
+        $(target).append("<li class='rut-class-list-item' id='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"<div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить класс' data-class-name='"+window.mediaContainer.styles.classes[key].name+"' class='rut-class-list-item-delete'></div></li>");
+    }
+}
+
+function removeCSSClass(data){
+    delete window.mediaContainer.styles.classes[data];
+    $("#"+data).remove();
+}
 
 /*-------------------*/
 

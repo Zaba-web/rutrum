@@ -556,7 +556,22 @@ a.rut-dynamic{
     }
 }
 
-
+.rut-class-list-item{
+    list-style-type: none;
+    color:#fff;
+    font-size:14px;
+    font-family:Raleway-Light;
+    display: block;
+    padding:10px 0px 0px 10px;
+    width:100%;
+    position: relative;
+}
+.rut-class-list-item-operation-container{
+    position: absolute;
+    right:10px;
+    top:13px;
+    cursor: pointer;
+}
 
 
 

@@ -1,7 +1,7 @@
 var win = nw.Window.get();
 win.setMinimumSize(1170, 512);
 
-win.resizeTo(1366,768);
+win.resizeTo(1280,768);
 
 var elBuffer;
 var styleBuffer;
@@ -11,7 +11,16 @@ var mediaContainer = {
     videos : [],
     fonts  : [],
     styles : {
-        classes : {},
+        classes : {
+            myClass:{
+                name:"myClass",
+                properties:{
+                    width:"100px;",
+                    height:"90px;",
+                    border:"1px solid red;"
+                }
+            }
+        },
         media   : {
             classes : {},
         }

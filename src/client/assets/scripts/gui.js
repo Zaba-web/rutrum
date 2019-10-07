@@ -5,13 +5,17 @@ $(document).ready(function(){
     
     // loading separate parts 
     loadPart("propertyBar","#rut-dockers-item-inner-container-properties");
+    loadPart("viewerBar","#rut-dockers-item-inner-container-viewer");
     loadPart("textEditBar",".rut-item-text-editor-container");
     loadPart("newClassWindow","#rut-class-window");
+    
     
     changeTool($("#rut-tool-pointer")); // set Pointer tool as default
     
     // loading default fonts
     loadFonts();
+    
+    getClassList("#rut-class-list");
     
     getAllCSSProperties("#rut-new-class-props-list");
     
@@ -20,7 +24,7 @@ $(document).ready(function(){
     $(".rut-workspace-width").change(function(){ // updating workspace width
         $(".rut-workspace-container").width($(this).val());
     })
-     
+    
     // window controls
     
 	$("#rut-app-minimaze").click(function(){
@@ -90,7 +94,7 @@ $(document).ready(function(){
         $("#"+target).val($(this).data("val"));
         $("#"+target).change();
         console.log($(this).data("val"));
-    })
+    });
     
     $("#rut-elem-prop-attr-src-selector").on("change",function(){
         var openFileDialog = document.getElementById('rut-elem-prop-attr-src-selector');
@@ -184,12 +188,17 @@ $(document).ready(function(){
     
     $("#rut-new-class-save").click(function(){
         if($("#rut-new-class-name").val().length != 0){
-            if(saveNewCSSClass()){
-                $("#rut-new-class-name").val("");
-                $("[data-prop-name]").remove();
-                $("#rut-new-class-status").text("Класс создан");
+            if(!$("#rut-new-class-name").val().includes("rut-")){
+                if(saveNewCSSClass()){
+                    $("#rut-new-class-name").val("");
+                    $("#rut-new-class-pseudo").val("");
+                    $("[data-prop-name]").remove();
+                    $("#rut-new-class-status").text("Класс создан");
+                }else{
+                    $("#rut-new-class-status").text("Не удалось создать класс");
+                }
             }else{
-                $("#rut-new-class-status").text("Не удалось создать класс");
+                $("#rut-new-class-status").text("Вы не можете использовать системный префикс rut-");
             }
         }else{
             $("#rut-new-class-status").text("Укажите имя класса");
@@ -201,12 +210,16 @@ $(document).ready(function(){
         $("[data-prop-name='"+$(this).data("target")+"']").remove();
     })
     
-    $("#rut-create-class-trigger").click(function(){
+    $(".rut-create-class-trigger").click(function(){
         $("#rut-class-window").fadeIn(150);
     });
     
     $(".rut-class-window-close").click(function(){
         $(".rut-window-wrapper").fadeOut(150);
+    });
+    
+    $(document).on("click",".rut-class-list-item-delete",function(){
+        removeCSSClass($(this).data("class-name"));
     });
     
 });
