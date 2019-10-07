@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="rut-docker-prop-item-input">
                                     <label for="rut-elem-prop-attr-src-selector" class="rut-controls-button-like rut-input-short">Выбрать</label>
-                                    <input type="file" id="rut-elem-prop-attr-src-selector" style="display: none">
+                                    <input type="file" id="rut-elem-prop-attr-src-selector" style="display: none" accept="image/*,html">
                                     <input type="hidden" id="rut-elem-prop-attr-src">
                                 </div>
                             </div>
@@ -305,7 +305,7 @@
                                 </div>
                                 <div class="rut-docker-prop-item-input">
                                     <label for="rut-add-image" class="rut-controls-button-like">Выбрать</label>
-                                    <input type="file" id="rut-add-image" style="display: none"><br>
+                                    <input type="file" id="rut-add-image" style="display: none" accept="image/*"><br>
                                     <input type="hidden" id="rut-elem-prop-background-image">
                                 </div>
                             </div>
