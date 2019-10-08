@@ -15,5 +15,10 @@ var propertiesCollection = {
         name:"Высота",
         value:"height",
         hint:"[число][ед. измерения]"
+    },
+    border:{
+        name:"Рамка",
+        value:"border",
+        hint:"[ширина] [тип] [цвет]"
     }
 }
