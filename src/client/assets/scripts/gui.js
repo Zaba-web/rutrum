@@ -8,6 +8,7 @@ $(document).ready(function(){
     loadPart("viewerBar","#rut-dockers-item-inner-container-viewer");
     loadPart("textEditBar",".rut-item-text-editor-container");
     loadPart("newClassWindow","#rut-class-window");
+    loadPart("editClassWindow","#rut-class-edit-window");
     
     
     changeTool($("#rut-tool-pointer")); // set Pointer tool as default
@@ -18,12 +19,14 @@ $(document).ready(function(){
     getClassList("#rut-class-list");
     
     getAllCSSProperties("#rut-new-class-props-list");
+    getAllCSSProperties("#rut-edit-class-props-list");
     
     $(".rut-workspace-width").val($(".rut-workspace-container").width()); // getting default workspace width
     
     $(".rut-workspace-width").change(function(){ // updating workspace width
         $(".rut-workspace-container").width($(this).val());
     })
+    
     
     // window controls
     
@@ -39,6 +42,9 @@ $(document).ready(function(){
 		nw.App.quit();
 	});
 	
+    /*--------------*/
+    
+    
     $(".rut-window-wrapper").hide();
     
     $(".rut-toolbar-item-expandable").on("click",function(){
@@ -185,6 +191,9 @@ $(document).ready(function(){
     $("#rut-new-class-add-prop").on("click",function(){
         getPropertyFromList("#rut-new-class-props-list option:selected","#rut-new-class-properties-container");
     });
+    $("#rut-edit-class-add-prop").on("click",function(){
+        getPropertyFromList("#rut-edit-class-props-list option:selected","#rut-edit-class-properties-container");
+    });
     
     $("#rut-new-class-save").click(function(){
         if($("#rut-new-class-name").val().length != 0){
@@ -194,6 +203,7 @@ $(document).ready(function(){
                     $("#rut-new-class-pseudo").val("");
                     $("[data-prop-name]").remove();
                     $("#rut-new-class-status").text("Класс создан");
+                    clearTempClass();
                 }else{
                     $("#rut-new-class-status").text("Не удалось создать класс");
                 }
@@ -208,18 +218,34 @@ $(document).ready(function(){
     $(document).on("click",".rut-class-remove-prop",function(){
         propertyRemove($(this).data("target"));
         $("[data-prop-name='"+$(this).data("target")+"']").remove();
-    })
+    });
     
     $(".rut-create-class-trigger").click(function(){
+        $(".rut-window-wrapper").fadeOut();
         $("#rut-class-window").fadeIn(150);
     });
     
     $(".rut-class-window-close").click(function(){
         $(".rut-window-wrapper").fadeOut(150);
+        $(".rut-status").text("");
     });
     
     $(document).on("click",".rut-class-list-item-delete",function(){
         removeCSSClass($(this).data("class-name"));
+    });
+    
+    $(document).on("click",".rut-class-list-item-edit",function(){ 
+        $(".rut-window-wrapper").fadeOut();
+        window.temponaryClass = jQuery.extend(true, {}, window.mediaContainer.styles.classes[$(this).data("class-name")]);
+        getPropertyFromClass();
+        $("#rut-edit-class-name").text($(this).data("class-name"));
+        $("#rut-class-edit-window").fadeIn(150);
+    });
+    
+    $("#rut-edit-class-save").click(function(){
+        if(saveNewCSSClass()){
+            $("#rut-edit-class-status").text("Класс обновлен");
+        }
     });
     
 });

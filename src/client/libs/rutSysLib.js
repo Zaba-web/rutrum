@@ -95,6 +95,13 @@ function getPropertyFromList(from,where){
     $(where).append("<div class='rut-class-window-item' style='width:35%;' data-prop-name='"+propName+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+propName+"'>[x]</span> "+propTitle+":</h4></div><div class='rut-class-window-item' style='width:65%' data-prop-name='"+propName+"'><input data-prop='"+propName+"' placeholder='"+propHint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
 }
 
+function getPropertyFromClass(){
+    $("#rut-edit-class-properties-container").html("");
+    for(key in window.temponaryClass.properties){
+        $("#rut-edit-class-properties-container").append("<div class='rut-class-window-item' style='width:35%;' data-prop-name='"+key+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+key+"'>[x]</span> "+window.propertiesCollection[key].name+":</h4></div><div class='rut-class-window-item' style='width:65%' data-prop-name='"+key+"'><input data-prop='"+key+"' value = '"+window.temponaryClass.properties[key]+"' placeholder='"+window.propertiesCollection[key].hint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
+    }
+}
+
 function getAllCSSProperties(target){
     for(i = 0; i < Object.keys(window.propertiesCollection).length; i++){
       var currentItem = window.propertiesCollection[Object.keys(window.propertiesCollection)[i]];
@@ -142,13 +149,18 @@ function propertyRemove(propName){
 function getClassList(target){
     $(target).html("");
     for(key in window.mediaContainer.styles.classes){
-        $(target).append("<li class='rut-class-list-item' id='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"<div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить класс' data-class-name='"+window.mediaContainer.styles.classes[key].name+"' class='rut-class-list-item-delete'></div></li>");
+        $(target).append("<li class='rut-class-list-item' id='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"<div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить класс' data-class-name='"+window.mediaContainer.styles.classes[key].name+"' class='rut-class-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' title='Изменить класс' data-class-name='"+window.mediaContainer.styles.classes[key].name+"' class='rut-class-list-item-edit'></div></li>");
     }
 }
 
 function removeCSSClass(data){
     delete window.mediaContainer.styles.classes[data];
     $("#"+data).remove();
+}
+
+function clearTempClass(){
+    window.temponaryClass.name = "";
+    window.temponaryClass.properties =  "";
 }
 
 /*-------------------*/
