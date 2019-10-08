@@ -9,6 +9,8 @@ $(document).ready(function(){
     loadPart("textEditBar",".rut-item-text-editor-container");
     loadPart("newClassWindow","#rut-class-window");
     loadPart("editClassWindow","#rut-class-edit-window");
+    loadPart("addClassWindow","#rut-elem-classes-window");
+    
     
     
     changeTool($("#rut-tool-pointer")); // set Pointer tool as default
@@ -17,9 +19,9 @@ $(document).ready(function(){
     loadFonts();
     
     getClassList("#rut-class-list");
+    updateCSS();
     
-    getAllCSSProperties("#rut-new-class-props-list");
-    getAllCSSProperties("#rut-edit-class-props-list");
+    getAllCSSProperties(".rut-class-props-list");
     
     $(".rut-workspace-width").val($(".rut-workspace-container").width()); // getting default workspace width
     
@@ -188,11 +190,8 @@ $(document).ready(function(){
         window.temponaryClass.name = $(this).val();
     });
     
-    $("#rut-new-class-add-prop").on("click",function(){
-        getPropertyFromList("#rut-new-class-props-list option:selected","#rut-new-class-properties-container");
-    });
-    $("#rut-edit-class-add-prop").on("click",function(){
-        getPropertyFromList("#rut-edit-class-props-list option:selected","#rut-edit-class-properties-container");
+    $(".rut-class-add-prop").on("click",function(){
+        getPropertyFromList(".rut-class-props-list option:selected",".rut-class-properties-container");
     });
     
     $("#rut-new-class-save").click(function(){
@@ -228,6 +227,7 @@ $(document).ready(function(){
     $(".rut-class-window-close").click(function(){
         $(".rut-window-wrapper").fadeOut(150);
         $(".rut-status").text("");
+        $(".rut-class-properties-container").html("");
     });
     
     $(document).on("click",".rut-class-list-item-delete",function(){
@@ -245,8 +245,27 @@ $(document).ready(function(){
     $("#rut-edit-class-save").click(function(){
         if(saveNewCSSClass()){
             $("#rut-edit-class-status").text("Класс обновлен");
+        }else{
+            $("#rut-edit-class-status").text("Не удалось обновить класс");
         }
     });
     
+    $("#rut-elem-class").click(function(){
+        $(".rut-class-list").html("");
+        $(".rut-window-wrapper").fadeOut();
+        getClassListForElements(".rut-class-list");
+        $("#rut-elem-classes-window").fadeIn(150);
+        showElementClassesList(GetElementCSSClasses(window.toolList.tool_pointer.selected));
+    });
+    
+    $("#rut-add-class-to-el").click(function(){
+        $(window.toolList.tool_pointer.selected).addClass($(".rut-class-list").val());
+        showElementClassesList(GetElementCSSClasses(window.toolList.tool_pointer.selected));
+    });
+    
+    $(document).on("click",".rut-element-class-delete",function(){
+        $(window.toolList.tool_pointer.selected).removeClass($(this).data("class"));
+        showElementClassesList(GetElementCSSClasses(window.toolList.tool_pointer.selected));
+    });
 });
 

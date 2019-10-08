@@ -380,8 +380,13 @@ body.rut{
     font-size:14px;
     display: inline-block;
 }
-button.rut-inner-controls, .rut-controls-button-like{
+[type='button'].rut-inner-controls{
     cursor: pointer;
+    text-align: center;
+}
+.rut-controls-button-like{
+    cursor: pointer;
+    text-align: center;
 }
 .rut-input-short{
     width:80px;
@@ -399,6 +404,7 @@ button.rut-inner-controls, .rut-controls-button-like{
     height:auto;
     background: rgba(60, 66, 75, .8);
     display: none;
+    z-index: 999;
 }
 .rut-item-opertaions-container>ul{
     display: flex;
@@ -556,7 +562,7 @@ a.rut-dynamic{
     }
 }
 
-.rut-class-list-item{
+.rut-class-list-item,.rut-element-class-list-container{
     list-style-type: none;
     color:#fff;
     font-size:14px;
@@ -566,12 +572,21 @@ a.rut-dynamic{
     width:100%;
     position: relative;
 }
+.rut-element-class-list-container{
+    padding:10px 0px;
+    margin-top:7px;
+}
 .rut-class-list-item-operation-container{
     position: absolute;
     right:10px;
     top:13px;
     cursor: pointer;
 }
+.rut-element-class-delete{
+    cursor: pointer;
+}
+
+
 
 
 

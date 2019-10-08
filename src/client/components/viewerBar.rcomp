@@ -11,7 +11,6 @@
         <ul id="rut-class-list">
             
         </ul>
-        <br>
-        <input class="rut-inner-controls rut-input-val-small rut-create-class-trigger" type="button" value=" + " style="margin-left:12px;cursor: pointer" title="Создать класс">
+        <input class="rut-inner-controls rut-input-val-small rut-create-class-trigger" type="button" value=" + " style="margin-left:12px;margin-top:12px;cursor: pointer" title="Создать класс">
     </div>
 </div>

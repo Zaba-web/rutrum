@@ -96,9 +96,9 @@ function getPropertyFromList(from,where){
 }
 
 function getPropertyFromClass(){
-    $("#rut-edit-class-properties-container").html("");
+    $(".rut-class-properties-container").html("");
     for(key in window.temponaryClass.properties){
-        $("#rut-edit-class-properties-container").append("<div class='rut-class-window-item' style='width:35%;' data-prop-name='"+key+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+key+"'>[x]</span> "+window.propertiesCollection[key].name+":</h4></div><div class='rut-class-window-item' style='width:65%' data-prop-name='"+key+"'><input data-prop='"+key+"' value = '"+window.temponaryClass.properties[key]+"' placeholder='"+window.propertiesCollection[key].hint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
+        $(".rut-class-properties-container").append("<div class='rut-class-window-item' style='width:35%;' data-prop-name='"+key+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+key+"'>[x]</span> "+window.propertiesCollection[key].name+":</h4></div><div class='rut-class-window-item' style='width:65%' data-prop-name='"+key+"'><input data-prop='"+key+"' value = '"+window.temponaryClass.properties[key]+"' placeholder='"+window.propertiesCollection[key].hint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
     }
 }
 
@@ -112,7 +112,8 @@ function getAllCSSProperties(target){
 
 function saveNewCSSClass(){
     window.temponaryClass.name += $("#rut-new-class-pseudo").val();
-    window.mediaContainer.styles.classes[window.temponaryClass.name] = window.temponaryClass;
+    window.mediaContainer.styles.classes[window.temponaryClass.name] = jQuery.extend(true, {}, window.temponaryClass);
+
     updateCSS();
     return true;
 }
@@ -153,6 +154,11 @@ function getClassList(target){
     }
 }
 
+function getClassListForElements(target){
+    for(key in window.mediaContainer.styles.classes)
+    $(target).append("<option value='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"</option>");
+}
+
 function removeCSSClass(data){
     delete window.mediaContainer.styles.classes[data];
     $("#"+data).remove();
@@ -161,6 +167,27 @@ function removeCSSClass(data){
 function clearTempClass(){
     window.temponaryClass.name = "";
     window.temponaryClass.properties =  "";
+}
+
+function GetElementCSSClasses(el){
+    var classList = $(el).attr("class").split(" ");
+    
+    for(i = 0;i < classList.length;i++){
+        if(classList[i].includes("rut-")){
+            classList.splice(i,1);
+            i--;
+        }
+        console.log(classList[i]);
+    }
+    
+    return classList;
+}
+
+function showElementClassesList(array){
+    $(".rut-element-class-list-container").html("");
+    array.forEach(function(item){
+        $(".rut-element-class-list-container").append("<li><span class='rut-element-class-delete' data-class='"+item+"'>[x] </span>"+item+"</li>");
+    });
 }
 
 /*-------------------*/

@@ -11,13 +11,13 @@
     <div class="rut-class-window-item">
         <h4 class="rut-h4">Свойства:</h4>
     </div>
-    <div class="rut-class-window-item-container rut-new-class-prop" id="rut-edit-class-properties-container">
+    <div class="rut-class-window-item-container rut-new-class-prop rut-class-properties-container">
 
     </div>
-    <select id="rut-edit-class-props-list" class="rut-inner-controls rut-input-short" style="margin-left:12px;">
+    <select class="rut-class-props-list rut-inner-controls rut-input-short" style="margin-left:12px;">
         
     </select>
-    <input class="rut-inner-controls rut-input-val-small" type="button" value=" + " style="margin-left:12px;cursor: pointer" title="Добавить свойство" id="rut-edit-class-add-prop">
+    <input class="rut-inner-controls rut-input-val-small rut-class-add-prop" type="button" value=" + " style="margin-left:12px;cursor: pointer" title="Добавить свойство" i>
     
     <br>
     
