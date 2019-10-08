@@ -327,13 +327,13 @@ body.rut{
     padding-bottom: 20px;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 97%);
 }
-.rut-dockers-item-inner-container::-webkit-scrollbar{
+.rut-dockers-item-inner-container::-webkit-scrollbar, .rut-class-window-container::-webkit-scrollbar{
     display: block;
     width:8px;
     overflow: auto;
     background: #313641;
 }
-.rut-dockers-item-inner-container::-webkit-scrollbar-thumb{
+.rut-dockers-item-inner-container::-webkit-scrollbar-thumb, .rut-class-window-container::-webkit-scrollbar-thumb{
     background: #272A30;
 }
 .rut-dockets-properties-split{
