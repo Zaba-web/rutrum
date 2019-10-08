@@ -57,7 +57,7 @@
     
     <br>
     
-    <input class="rut-inner-controls" type="button" style="margin-top:20px;margin-right:10px;cursor: pointer" title="Добавить свойство" id="rut-new-class-save" value="Сохранить класс">
+    <input class="rut-inner-controls" type="button" style="margin-top:20px;margin-right:10px;cursor: pointer" title="Сохранить класс" id="rut-new-class-save" value="Сохранить класс">
     <span class="rut-status" id="rut-new-class-status"></span>
     
     <div class="rut-class-window-close">
