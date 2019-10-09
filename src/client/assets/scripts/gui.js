@@ -21,7 +21,8 @@ $(document).ready(function(){
     getClassList("#rut-class-list");
     updateCSS();
     
-    getAllCSSProperties(".rut-class-props-list");
+    getAllCSSProperties("#rut-edit-class-props");
+    getAllCSSProperties("#rut-add-class-list");
     
     $(".rut-workspace-width").val($(".rut-workspace-container").width()); // getting default workspace width
     
@@ -189,9 +190,13 @@ $(document).ready(function(){
     $("#rut-new-class-name").change(function(){
         window.temponaryClass.name = $(this).val();
     });
+
+    $("#rut-edit-class-add-prop").on("click",function(){
+        getPropertyFromList("#rut-edit-class-props option:selected",".rut-class-properties-container");
+    });
     
-    $(".rut-class-add-prop").on("click",function(){
-        getPropertyFromList(".rut-class-props-list option:selected",".rut-class-properties-container");
+    $("#rut-new-class-add-prop").on("click",function(){
+        getPropertyFromList("#rut-add-class-list option:selected",".rut-class-properties-container");
     });
     
     $("#rut-new-class-save").click(function(){

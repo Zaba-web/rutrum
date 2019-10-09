@@ -98,7 +98,14 @@ function getPropertyFromList(from,where){
 function getPropertyFromClass(){
     $(".rut-class-properties-container").html("");
     for(key in window.temponaryClass.properties){
-        $(".rut-class-properties-container").append("<div class='rut-class-window-item' style='width:35%;' data-prop-name='"+key+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+key+"'>[x]</span> "+window.propertiesCollection[key].name+":</h4></div><div class='rut-class-window-item' style='width:65%' data-prop-name='"+key+"'><input data-prop='"+key+"' value = '"+window.temponaryClass.properties[key]+"' placeholder='"+window.propertiesCollection[key].hint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
+        if(key.includes("-")){
+            key = key.split("-");
+            key = key.join("_");
+        }
+
+        
+        $(".rut-class-properties-container").append("<div class='rut-class-window-item' style='width:35%;' data-prop-name='"+window.propertiesCollection[key].value+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+window.propertiesCollection[key].value+"'>[x]</span> "+window.propertiesCollection[key].name+":</h4></div><div class='rut-class-window-item' style='width:65%' data-prop-name='"+window.propertiesCollection[key].value+"'><input data-prop='"+window.propertiesCollection[key].value+"' value = '"+window.temponaryClass.properties[window.propertiesCollection[key].value]+"' placeholder='"+window.propertiesCollection[key].hint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
+        
     }
 }
 

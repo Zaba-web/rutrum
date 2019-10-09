@@ -50,10 +50,10 @@
     <div class="rut-class-window-item-container rut-new-class-prop rut-class-properties-container">
 
     </div>
-    <select class="rut-class-props-list rut-inner-controls rut-input-short" style="margin-left:12px;">
+    <select class="rut-inner-controls rut-input-short" style="margin-left:12px;" id="rut-add-class-list">
         
     </select>
-    <input class="rut-inner-controls rut-input-val-small rut-class-add-prop" type="button" value=" + " style="margin-left:12px;cursor: pointer" title="Добавить свойство" >
+    <input class="rut-inner-controls rut-input-val-small" type="button" value=" + " style="margin-left:12px;cursor: pointer" title="Добавить свойство" id="rut-new-class-add-prop">
     
     <br>
     
