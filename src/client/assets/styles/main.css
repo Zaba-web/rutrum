@@ -327,13 +327,13 @@ body.rut{
     padding-bottom: 20px;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 97%);
 }
-.rut-dockers-item-inner-container::-webkit-scrollbar, .rut-class-window-container::-webkit-scrollbar{
+.rut-dockers-item-inner-container::-webkit-scrollbar, .rut-class-window-container::-webkit-scrollbar, .rut-class-properties-container::-webkit-scrollbar{
     display: block;
     width:8px;
     overflow: auto;
     background: #313641;
 }
-.rut-dockers-item-inner-container::-webkit-scrollbar-thumb, .rut-class-window-container::-webkit-scrollbar-thumb{
+.rut-dockers-item-inner-container::-webkit-scrollbar-thumb, .rut-class-window-container::-webkit-scrollbar-thumb, .rut-class-properties-container::-webkit-scrollbar-thumb{
     background: #272A30;
 }
 .rut-dockets-properties-split{
@@ -510,13 +510,10 @@ a.rut-dynamic{
     align-items: center;
 }
 .rut-class-window-container{
-    width:350px;
-    min-height:100px;
-    max-height: 300px;
-    overflow: auto;
+    width:550px;
+    max-height: 500px;
     background: rgba(46, 51, 63, .8);
-    clip-path: polygon(5% 0, 100% 0, 100% 90%, 95% 100%, 0 100%, 0 10%);
-    padding:15px;
+    padding:25px;
     position: relative;
 }
 .rut-class-window-item-container{
@@ -528,6 +525,7 @@ a.rut-dynamic{
 .rut-class-window-item{
     height: 100%;
     margin-top:12px;
+    width:50%;
 }
 .rut-new-class-prop{
     margin-left:12px;
@@ -585,7 +583,10 @@ a.rut-dynamic{
 .rut-element-class-delete{
     cursor: pointer;
 }
-
+.rut-class-properties-container{
+    overflow-y: scroll;
+    max-height: 220px;
+}
 
 
 
