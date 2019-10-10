@@ -14,7 +14,7 @@
     <div class="rut-class-window-item-container rut-new-class-prop rut-class-properties-container">
 
     </div>
-    <select class="rut-inner-controls rut-input-short" style="margin-left:12px;" id='rut-edit-class-props'>
+    <select class="rut-inner-controls rut-select" style="margin-left:12px;" id='rut-edit-class-props'>
         
     </select>
     <input class="rut-inner-controls rut-input-val-small" id='rut-edit-class-add-prop' type="button" data-select-id='1' value=" + " style="margin-left:12px;cursor: pointer" title="Добавить свойство" >

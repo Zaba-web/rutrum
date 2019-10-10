@@ -24,6 +24,8 @@ $(document).ready(function(){
     getAllCSSProperties("#rut-edit-class-props");
     getAllCSSProperties("#rut-add-class-list");
     
+    $(".rut-select").chosen();
+    
     $(".rut-workspace-width").val($(".rut-workspace-container").width()); // getting default workspace width
     
     $(".rut-workspace-width").change(function(){ // updating workspace width
