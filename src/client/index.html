@@ -47,11 +47,11 @@
     
     <div class="rut-project-pannel-container">
     	<span>
-    	    Страницы: <span>1</span> • Скрипты: <span>1</span> • Стили: <span>1</span> • Инструмент: <span id='rut-tool-name' data-tool-name></span>
+    	    Страницы: <span class="rut-page-count"></span> • Скрипты: <span class="rut-scripts-count"></span> • Классы: <span class="rut-class-count"></span> • Инструмент: <span id='rut-tool-name' data-tool-name></span>
     	</span>
     	<span>
     	    <ul>
-    	        <li title="Новая страница">
+    	        <li title="Новая страница" class="rut-create-page-trigger">
                     <img src="assets/images/newPageIcon.svg">
     	        </li>
     	        <li title="Новый класс" class="rut-create-class-trigger">
@@ -63,7 +63,7 @@
     	        <li title="Посмотреть код">
     	            <img src="assets/images/showCodeIcon.svg">
     	        </li>
-    	        <li title="Скрыть интерфейс">
+    	        <li title="Скрыть интерфейс" class="rut-gui-switch">
     	            <img src="assets/images/hideInterfaceIcon.svg">
     	        </li>
     	    </ul>
@@ -220,6 +220,9 @@
             <li class="rut-item-operation" data-op="clearStyle"> 
                 <img src="assets/images/operationClearForm.svg" title="Очистить оформление">
             </li>
+            <li class="rut-elem-class"> 
+                <img src="assets/images/operationAddClass.svg" title="Классы элемента">
+            </li>
         </ul>
     </div>
     <div class="rut-item-text-editor-container">
@@ -237,5 +240,16 @@
     <div class="rut-window-wrapper" id="rut-elem-classes-window">
         
     </div>
+    <div class="rut-window-wrapper" id="rut-page-add-window">
+        
+    </div>
+    <div class="rut-window-wrapper" id="rut-page-edit-window">
+        
+    </div>
+    <aside class="rut-preview-wrapper">
+        <div class="rut-preview">
+            
+        </div>
+    </aside>
 </body>
 </html>
