@@ -115,6 +115,7 @@ body.rut{
     margin-top:27px;
     margin-bottom:27px;
     display: flex;
+    z-index: 1002;
 }
 .rut-display-mode{
     width:50%;
@@ -124,6 +125,9 @@ body.rut{
     transition: .2s;
     text-align: center;
     padding:5px;
+}
+.rut-display-mode-inv{
+    opacity: .4;
 }
 .rut-display-mode:hover{
     background: #313641;
@@ -190,6 +194,7 @@ body.rut{
     overflow: auto;
     transform: scale(1);
     padding:3px;
+    cursor: alias;
 }
 .rut-dockers-container{
     background:rgba(58, 63, 72, .8);
@@ -300,17 +305,17 @@ body.rut{
 .rut-toolbar-item-active{
     background: #2D3038;
 }
-.rut-insertable:hover{
-    border: 1px solid #5A3D5C;
-    cursor: alias;
-}
-.rut-display{
+.rut-workspace-container .rut-display{
     box-sizing: border-box;
+    border:1px dashed #c2c2c2;
     padding:3px;
-    border:1px dashed #4F3051;
+    outline-offset: 1px;
 }
-.rut-element-selected{
-    border: 1px solid #AC44B4;
+.rut-workspace-container .rut-display:hover{
+    outline: 1px solid #3b97e3;
+}
+.rut-workspace-container .rut-element-selected{
+    outline: 2px solid #3b97e3;
 }
 .rut-dockers-item-inner-container{
     position: absolute;
@@ -430,7 +435,7 @@ body.rut{
 .rut-item-opertaions-container>ul>li:hover{
     background: #313641;
 }
-a.rut-dynamic{
+.rut-workspace-container a.rut-dynamic{
     display: inline-block;
 }
 .rut-table-row-temp{
@@ -547,17 +552,16 @@ a.rut-dynamic{
 .rut-item-operation{
     transition: .4s;
 }
-
-@keyframes rut-op-active{
-    0%{
-        transform: scale(1);
-    }
-    50%{
-        transform: scale(1.1);
-    }
-    100%{
-        transform: scale(1);
-    }
+.rut-preview-wrapper{
+    position: absolute;
+    width:100%;
+    top:28px;
+    height: auto;
+    z-index: 1001;
+    display: none;
+}
+.rut-preview{
+    background: #fff;
 }
 
 .rut-class-list-item,.rut-element-class-list-container{
@@ -587,8 +591,23 @@ a.rut-dynamic{
     overflow-y: scroll;
     max-height: 220px;
 }
+.rut-select-page{
+    cursor: pointer;
+}
 
 
+
+@keyframes rut-op-active{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
 
 
 
