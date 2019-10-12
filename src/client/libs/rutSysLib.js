@@ -19,6 +19,7 @@ function clearAllProp(){
 }
 
 function setProp(el){
+    saveActivePage();
     var value = $(el).val();
     var prop = Property.getInstance(el, getPurePropName($(el).attr("id")));
     var activeTool = window.toolList.tool_pointer.selected;
@@ -60,6 +61,7 @@ function updateAllProps(el){
 }
 
 function doElementOperation(el,opCode){
+    saveActivePage();
     window.operationsList[opCode](el);
 }
 
@@ -199,9 +201,79 @@ function showElementClassesList(array){
 
 /*-------------------*/
 
+function selectActivePage(name){
+    window.activePage = name;
+    $(".rut-workspace-container").html(window.mediaContainer.pages[name].value);
+}
+
+function saveActivePage(){
+    window.mediaContainer.pages[window.activePage].value = $(".rut-workspace-container").html();
+}
+
+function getPageList(target){
+    $(target).html("");
+    for(key in window.mediaContainer.pages){
+        $(target).append("<li class='rut-class-list-item' id='"+key+"'><span data-page-name='"+key+"' class='rut-select-page'>"+key+"</span><div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить страницу' data-page-name='"+key+"' class='rut-page-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' title='Изменить страницу' data-page-name='"+key+"' class='rut-page-list-item-edit'></div></li>");
+    }
+}
+
+function removePage(id){
+    delete window.mediaContainer.pages[id];
+    $("[data-page-name='"+id+"']").parent().parent().remove();
+}
+
+function saveNewPage(){
+    var newPage = {
+        name:$("#rut-new-page-name").val(),
+        title:$("#rut-new-page-title").val(),
+        value:null
+    }
+    if(window.mediaContainer.pages[newPage.name] = jQuery.extend(true, {}, newPage)){
+        getPageList("#rut-page-list");
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function getPageToEdit(el){
+    $("#rut-edit-page-name").val(window.mediaContainer.pages[el].name);
+    $("#rut-edit-page-title").val(window.mediaContainer.pages[el].title);
+    $("#rut-page-edit-name").val(el);
+}
+
+function savePageChanges(page){
+    var newPage = {
+        name:$("#rut-edit-page-name").val(),
+        title:$("#rut-edit-page-title").val(),
+        value:window.mediaContainer.pages[page].value
+    }
+    if(window.mediaContainer.pages[page] = jQuery.extend(true, {}, newPage)){
+        getPageList("#rut-page-list");
+        return true;
+    }else{
+        return false;
+    }
+}
+/*-------------------*/
+
 function pulseEffect(selector){
     $(selector).css("animation","0.3s rut-op-active");
     setTimeout(function(){
         $(selector).css("animation","");
     },300);
+}
+
+function calcPreviewHeight(){
+    $(".rut-preview").css("height",window.innerHeight-28);
+}
+
+function getCount(obj){
+    return Object.keys(obj).length;
+}
+
+function updateCountDataInfo(){
+    $(".rut-page-count").text(getCount(window.mediaContainer.pages));
+    $(".rut-scripts-count").text(getCount(window.mediaContainer.scripts));
+    $(".rut-class-count").text(getCount(window.mediaContainer.styles.classes));
 }
