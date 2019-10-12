@@ -7,6 +7,7 @@ function selectTool(el){
 }
 
 function useTool(el,currentTool){
+    saveActivePage();
     currentTool = handleToolName(currentTool);
     console.log("You used tool - "+currentTool);
     toolList[currentTool].execute(el);
@@ -41,7 +42,7 @@ function getItemOperations(target){
 function getItemTextEditor(target){
     $(".rut-item-text-editor-container").show();
     var position = $(target).offset();
-    $(".rut-item-text-editor-container").css({"left":position.left,"top":position.top-$(".rut-item-text-editor-container").height()*1.2});
+    $(".rut-item-text-editor-container").css({"left":position.left,"top":position.top-$(".rut-item-text-editor-container").height()*1.4});
 }
 
 function changeTool(el){
