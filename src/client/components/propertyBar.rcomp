@@ -39,7 +39,7 @@
                                     <h4 class="rut-h4">Классы:</h4>
                                 </div>
                                 <div class="rut-docker-prop-item-input">
-                                   <button id="rut-elem-class" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="button">Обзор</button>
+                                   <button class="rut-inner-controls rut-elem-prop-change rut-input-short rut-elem-class" type="button">Обзор</button>
                                 </div>
                             </div>
                         </div>

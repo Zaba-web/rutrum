@@ -5,14 +5,14 @@
             <h4 class="rut-h4" style="margin-right:20px;">Название класса:</h4>
         </div>
         <div class="rut-class-window-item">
-            <input id="rut-new-class-name" class="rut-inner-controls rut-input-short" type="text">
+            <input id="rut-new-class-name" class="rut-inner-controls" type="text">
         </div>
         <br>
         <div class="rut-class-window-item">
             <h4 class="rut-h4" style="margin-right:46px;">Псевдокласс:</h4>
         </div>
         <div class="rut-class-window-item">
-            <select class='rut-inner-controls rut-input-short' id="rut-new-class-pseudo">
+            <select class='rut-inner-controls' id="rut-new-class-pseudo">
                 <option value="" selected>Нет</option>
                 <option value=":active">active</option>
                 <option value=":any">any</option>
