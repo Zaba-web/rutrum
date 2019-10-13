@@ -1,0 +1,31 @@
+<div class="rut-class-window-container">
+    <h4 class="rut-h4 rut-h4-tools-group-title">Создать новый проект</h4>
+    <div class="rut-class-window-item-container">
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:20px;">Название проекта:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input type="text" class="rut-inner-controls" value="MyProject" id="rut-new-project-name-input">
+        </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:20px;">Расположение проекта:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input type="file" nwdirectory style='display:none' id="rut-new-project-input">
+            <label class="rut-inner-controls rut-button-like" for="rut-new-project-input">
+                Выбрать...
+            </label>
+        </div><br>
+        <span style="color:#fff;font-family:Raleway-Light;font-size:12px;">
+            <span id="rut-new-project-path-displayer">C:\Users\Default\Documents\</span><span id="rut-new-project-name-displayer">MyProject</span>
+        </span>
+    </div>
+    
+    <input class="rut-inner-controls" type="button" style="margin-top:20px;margin-right:10px;cursor: pointer" title="Создать проект" id="rut-project-create" value="Создать проект">
+    <span class="rut-status" id="rut-project-create-status"></span>
+    
+    <div class="rut-class-window-close">
+        <img src="assets/images/closeIcon.svg">
+    </div>
+    
+</div>
