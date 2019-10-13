@@ -12,7 +12,7 @@ $(document).ready(function(){
     loadPart("addClassWindow","#rut-elem-classes-window");
     loadPart("addPageWindow","#rut-page-add-window");
     loadPart("editPageWindow","#rut-page-edit-window");
-    
+    loadPart("createNewProject","#rut-create-new-project");
     
     changeTool($("#rut-tool-pointer")); // set Pointer tool as default
     
@@ -21,7 +21,7 @@ $(document).ready(function(){
     
     getClassList("#rut-class-list");
     getPageList("#rut-page-list");
-    selectActivePage("index");
+    //selectActivePage("index");
     
     updateCSS();
     
@@ -42,16 +42,16 @@ $(document).ready(function(){
     
     // window controls
     
-	$("#rut-app-minimaze").click(function(){
+	$(".rut-app-minimaze").click(function(){
 		win.minimize();
 	});
 
-	$("#rut-app-change-mode").click(function(){
+	$(".rut-app-change-mode").click(function(){
 		screen.width > win.width ? win.maximize() : win.unmaximize();
         calcPreviewHeight();
 	});
 
-	$("#rut-app-close").click(function(){
+	$(".rut-app-close").click(function(){
 		nw.App.quit();
 	});
 	
@@ -98,11 +98,9 @@ $(document).ready(function(){
         var openFileDialog = document.getElementById('rut-add-image');
         var files = openFileDialog.files;
         
-        if(!window.mediaContainer.images.includes(files[0].path)){
-            window.mediaContainer.images.push(files[0].path);
-        }
+        var copyResult = copyFile(files,"img");
         
-        $("#rut-elem-prop-background-image").val(files[0].path);
+        $("#rut-elem-prop-background-image").val(copyResult);
         
         var target = $("#rut-elem-prop-background-image");
         
@@ -129,11 +127,9 @@ $(document).ready(function(){
         var openFileDialog = document.getElementById('rut-elem-prop-attr-src-selector');
         var files = openFileDialog.files;
         
-        if(!window.mediaContainer.images.includes(files[0].path)){
-           window.mediaContainer.images.push(files[0].path);
-        }
+        var copyResult = copyFile(files,"img");
         
-        $("#rut-elem-prop-attr-src").val(files[0].path);
+        $("#rut-elem-prop-attr-src").val(copyResult);
 
         var target = $("#rut-elem-prop-attr-src");
 
@@ -304,7 +300,7 @@ $(document).ready(function(){
     
     $("#rut-new-page-save").click(function(){
         if($("#rut-new-page-name").val() != ""){
-            if(saveNewPage()){
+            if(saveNewPage($("#rut-new-page-name").val(),$("#rut-new-page-title").val())){
                 $("#rut-new-page-status").text("Страница созданна");
                 updateCountDataInfo();
             }else{
@@ -344,6 +340,7 @@ $(document).ready(function(){
     });
     
     $(document).on("click",".rut-select-page",function(){
+        saveActivePage();
         selectActivePage($(this).data("page-name"));
     });
     
@@ -370,7 +367,43 @@ $(document).ready(function(){
         window.workStatus = "editing";
     });
     
+    $("#rut-menu-new-project").click(function(){
+         $(".rut-window-wrapper").fadeOut();
+         $("#rut-create-new-project").fadeIn(150);
+    });
     
+    $("#rut-new-project-name-input").change(function(){
+        $("#rut-new-project-name-displayer").text($(this).val());
+    });
+
+    $("#rut-new-project-input").change(function(){
+        $("#rut-new-project-path-displayer").text($(this).val()+"\\");
+    });
+    
+    $("#rut-project-create").click(function(){
+        if(createProject($("#rut-new-project-path-displayer").text(),$("#rut-new-project-name-displayer").text())){
+            $("#rut-project-create-status").text("Проект создан");
+        }else{
+            $("#rut-project-create-status").text("Не удалось создать проект");
+        }
+    });
+    
+    $(".rut-sub-menu>li").click(function(){
+        pulseEffect(this);
+    });
+    
+    $("#rut-menu-save-project").click(function(){
+        saveProject();
+    });
+    
+    $("#rut-open-project-input").change(function(){
+        openProject($(this).val());
+    });
+    
+    $("#rut-menu-close-project").click(function(){
+        clearProjectData();
+        $(".rut-workspace-container").fadeOut(150);
+    });
     
 });
 

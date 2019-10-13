@@ -222,10 +222,10 @@ function removePage(id){
     $("[data-page-name='"+id+"']").parent().parent().remove();
 }
 
-function saveNewPage(){
+function saveNewPage(pName,pTitle){
     var newPage = {
-        name:$("#rut-new-page-name").val(),
-        title:$("#rut-new-page-title").val(),
+        name:pName,
+        title:pTitle,
         value:null
     }
     if(window.mediaContainer.pages[newPage.name] = jQuery.extend(true, {}, newPage)){
@@ -257,6 +257,87 @@ function savePageChanges(page){
 }
 /*-------------------*/
 
+function enableWorkspace(){
+    $(".rut-workspace-container").fadeIn(150);
+}
+
+function createProject(path,name){
+    clearProjectData();
+    fs = require('fs');
+    var dir = path+name;
+    
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        fs.mkdirSync(dir+"\\img");
+        fs.mkdirSync(dir+"\\fonts");
+    }
+    
+    fs.writeFileSync(dir+"\\pages.json", '{}');
+    fs.writeFileSync(dir+"\\styles.json", '{}');
+    fs.writeFileSync(dir+"\\scripts.json", '{}');
+    fs.writeFileSync(dir+"\\fonts.json", '{}');
+    
+    window.projectDir = dir.replace(/\\/g,"/");
+    
+    enableWorkspace();
+    updateCountDataInfo();
+    
+    saveNewPage("index","Главная страница");
+    selectActivePage("index");
+    
+    return true;
+}
+
+function saveProject(){
+    saveActivePage();
+    fs = require('fs');
+    
+    fs.writeFileSync(window.projectDir+"\\pages.json", JSON.stringify(window.mediaContainer.pages));
+    
+    fs.writeFileSync(window.projectDir+"\\styles.json", JSON.stringify(window.mediaContainer.styles));
+    
+    fs.writeFileSync(window.projectDir+"\\scripts.json", JSON.stringify(window.mediaContainer.scripts));
+    
+    fs.writeFileSync(window.projectDir+"\\fonts.json", JSON.stringify(window.mediaContainer.fonts));
+}
+
+function openProject(path){
+    fs = require('fs');
+    window.mediaContainer.pages = JSON.parse(fs.readFileSync(path+"/pages.json"));
+    window.mediaContainer.styles = JSON.parse(fs.readFileSync(path+"/styles.json"));
+    window.mediaContainer.scripts = JSON.parse(fs.readFileSync(path+"/scripts.json"));
+    window.mediaContainer.fonts = JSON.parse(fs.readFileSync(path+"/fonts.json"));
+    
+    window.projectDir = path.replace(/\\/g,"/");
+    
+    enableWorkspace();
+    updateCountDataInfo();
+    
+    loadFonts();
+    
+    getClassList("#rut-class-list");
+    getPageList("#rut-page-list");
+    
+    selectActivePage(window.mediaContainer.pages[Object.keys(window.mediaContainer.pages)[0]].name);
+    
+    $("#rut-open-project-input").val("");
+}
+
+function clearProjectData(){
+    
+    window.mediaContainer.pages = {};
+    window.mediaContainer.scripts = {};
+    window.mediaContainer.styles.classes = {};
+    window.mediaContainer.styles.media.classes = {};
+    window.mediaContainer.fonts = {};
+    window.projectDir = null;
+    
+    getClassList("#rut-class-list");
+    getPageList("#rut-page-list");
+    updateCountDataInfo();
+}
+
+/*------------------*/
 function pulseEffect(selector){
     $(selector).css("animation","0.3s rut-op-active");
     setTimeout(function(){
@@ -269,11 +350,40 @@ function calcPreviewHeight(){
 }
 
 function getCount(obj){
-    return Object.keys(obj).length;
+    if(obj != undefined){
+        return Object.keys(obj).length;
+    }
 }
 
 function updateCountDataInfo(){
     $(".rut-page-count").text(getCount(window.mediaContainer.pages));
     $(".rut-scripts-count").text(getCount(window.mediaContainer.scripts));
     $(".rut-class-count").text(getCount(window.mediaContainer.styles.classes));
+    
+    if(window.projectDir != undefined){
+        var projectName = window.projectDir.split("/");
+        $(".rut-project-name").text(projectName[projectName.length-1]);
+    }else{
+        $(".rut-project-name").text("");
+    }
+}
+
+function copyFile(files,dest){
+    var fileName = files[0].path.split("\\");
+    fileName = fileName[fileName.length-1];
+        
+    fs.copyFile(files[0].path, window.projectDir+"\\"+dest+"\\"+fileName, (err) => {
+        if (err) throw err;
+    });
+    
+    return window.projectDir+"\\"+dest+"\\"+fileName;
+}
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
+function clearPathes(string){
+    return string.replaceAll(window.projectDir,"");
 }
