@@ -376,7 +376,9 @@ function copyFile(files,dest){
         if (err) throw err;
     });
     
-    return window.projectDir+"\\"+dest+"\\"+fileName;
+    fileName = window.projectDir+"\\"+dest+"\\"+fileName;
+    
+    return fileName.replace(/\\/g,"/");
 }
 
 String.prototype.replaceAll = function(search, replacement) {
