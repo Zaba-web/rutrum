@@ -54,7 +54,7 @@ body.rut{
 	-webkit-app-region: no-drag;
 }
 
-.rut-main-top-container nav>ul li{
+.rut-main-top-container nav>ul>li{
 	display: inline-block;
 	color:#fff;
 	margin-left:12px;
@@ -65,12 +65,37 @@ body.rut{
 	padding:3px 5px;
 	transition: .2s;
 	border-radius: 5px;
+    position: relative;
 }
-
-.rut-main-top-container nav>ul li:hover{
+.rut-sub-menu{
+    position: absolute;
+    top:20px;
+    background: rgba(49, 54, 65, 1);
+    padding: 10px;
+    display: block;
+    min-width:180px;
+    width:auto;
+    z-index: 1002;
+    transition: .4s;
+    transform: scaleY(0);
+    transform-origin: top;
+}
+.rut-sub-menu>li{
+    list-style-type: none;
+    display: block;
+    padding:8px;
+    transition: .2s;
+    border-radius: 5px;
+}
+.rut-sub-menu>li:hover{
+    background:#272A30;
+}
+.rut-main-top-container nav>ul>li:hover{
 	background:#272A30;
 }
-
+.rut-main-top-container nav>ul>li:hover>.rut-sub-menu{
+    transform: scale(1);
+}
 .rut-main-top-container nav>ul li:first-child{
 	margin-left:0px;
 }
@@ -195,6 +220,7 @@ body.rut{
     transform: scale(1);
     padding:3px;
     cursor: alias;
+    display: none;
 }
 .rut-dockers-container{
     background:rgba(58, 63, 72, .8);
