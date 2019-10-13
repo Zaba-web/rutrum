@@ -25,21 +25,63 @@
     	<nav>
     		<div class="rut-logo"></div>
     		<ul>
-    			<li>Файл</li>
-    			<li>Редактирование</li>
-    			<li>Окно</li>
-    			<li>Хранилище</li>
+    			<li>
+    			    Файл
+    			    <ul class="rut-sub-menu">
+    			        <li id="rut-menu-new-project">Создать проект</li>
+    			        
+    			        <li id="rut-menu-open-project">
+    			            <label for="rut-open-project-input" style="cursor: pointer">Открыть проект</label>
+    			            <input type="file" nwdirectory style='display:none' id="rut-open-project-input">
+    			        </li>
+    			        
+    			        <li id="rut-menu-save-project">Сохранить проект</li>
+    			        
+    			        <li id="rut-menu-close-project">Закрыть проект</li>
+    			    </ul>
+    			</li>
+    			<li>
+    			    Редактирование
+    			     <ul class="rut-sub-menu">
+                       
+                        <li class="rut-item-operation" data-op="delete">Удалить элемент</li>
+                        
+                        <li class="rut-item-operation" data-op="edit">Редактировать текст</li>
+                        
+    			        <li class="rut-item-operation" data-op="copyEl">Копировать элемент</li>
+    			        
+    			        <li class="rut-item-operation" data-op="pasteEl">Вставить элемент</li>
+    			        
+    			        <li class='rut-item-operation' data-op="copyStyle">Копировать оформление</li>
+    			        
+    			        <li class='rut-item-operation' ata-op="pasteStyle">Вставить оформление</li>
+    			        
+    			        <li class='rut-item-operation' data-op="clearStyle">Очистить оформление</li>
+    			        
+    			        <li class="rut-elem-class">Классы элемента</li>
+    			    </ul>
+    			</li>
+    			<li>
+                   Окно
+    			    <ul class="rut-sub-menu">
+    			        <li class="rut-app-minimaze">Свернуть окно</li>
+    			        
+    			        <li class="rut-app-change-mode">На весь экран</li>
+    			        
+    			        <li class='rut-gui-switch'>Скрыть интерфейс</li>
+    			    </ul>
+    			</li>
     			<li>Справка</li>
     		</ul>
     	</nav>
     	<div class="rut-window-controlls">
-    		<div id="rut-app-minimaze">
+    		<div class="rut-app-minimaze">
                 <img src="assets/images/minimizeIcon.svg">
     		</div>
-    		<div id="rut-app-change-mode">
+    		<div class="rut-app-change-mode">
                 <img src="assets/images/maximizeIcon.svg">
     		</div>
-    		<div id="rut-app-close">
+    		<div class="rut-app-close">
                 <img src="assets/images/closeIcon.svg">
     		</div>
     	</div>
@@ -47,7 +89,7 @@
     
     <div class="rut-project-pannel-container">
     	<span>
-    	    Страницы: <span class="rut-page-count"></span> • Скрипты: <span class="rut-scripts-count"></span> • Классы: <span class="rut-class-count"></span> • Инструмент: <span id='rut-tool-name' data-tool-name></span>
+    	    Проект: <span class="rut-project-name"></span> • Страницы: <span class="rut-page-count"></span> • Скрипты: <span class="rut-scripts-count"></span> • Классы: <span class="rut-class-count"></span> • Инструмент: <span id='rut-tool-name' data-tool-name></span>
     	</span>
     	<span>
     	    <ul>
@@ -244,6 +286,9 @@
         
     </div>
     <div class="rut-window-wrapper" id="rut-page-edit-window">
+        
+    </div>
+    <div class="rut-window-wrapper" id="rut-create-new-project">
         
     </div>
     <aside class="rut-preview-wrapper">
