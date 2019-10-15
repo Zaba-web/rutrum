@@ -1,0 +1,29 @@
+<div class="rut-class-window-container">
+    <h4 class="rut-h4 rut-h4-tools-group-title">Добавить шрифт к проекту</h4>
+    <div class="rut-class-window-item-container">
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:20px;">Название шрифта:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-add-font-name" class="rut-inner-controls" type="text">
+        </div>
+        <br>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:20px;">Выберите файл:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <label for="rut-select-font" class="rut-controls-button-like" style="cursor: pointer">Обзор...</label>
+            <input type="file" style='display:none' id="rut-select-font" accept=".ttf .otf .fon .fnt">
+        </div>
+    </div>
+    
+    <br>
+    
+    <input class="rut-inner-controls" type="button" style="margin-top:20px;margin-right:10px;cursor: pointer" title="Добавить шрифт" id="rut-add-font" value="Добавить шрифт">
+    <span class="rut-status" id="rut-new-font-status"></span>
+    
+    <div class="rut-class-window-close">
+        <img src="assets/images/closeIcon.svg">
+    </div>
+    
+</div>
