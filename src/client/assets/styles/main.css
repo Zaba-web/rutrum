@@ -334,7 +334,7 @@ body.rut{
 .rut-workspace-container .rut-display{
     box-sizing: border-box;
     border:1px dashed #c2c2c2;
-    padding:3px;
+    padding:1px;
     outline-offset: 1px;
 }
 .rut-workspace-container .rut-display:hover{
