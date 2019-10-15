@@ -26,3 +26,15 @@
         <input class="rut-inner-controls rut-input-val-small rut-create-page-trigger" type="button" value=" + " style="margin-left:12px;margin-top:12px;cursor: pointer" title="Создать страницу">
     </div>
 </div>
+<div class="rut-docker-prop-group">
+    <div class="rut-docker-prop-group-header">
+        <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-fonts'>
+        <h4 class="rut-h4 rut-h4-tools-group-title">Шрифты</h4>
+    </div>
+    <div class="rut-docker-prop-group-body" id="rut-group-fonts">
+        <ul id="rut-font-list">
+            
+        </ul>
+        <input class="rut-inner-controls rut-input-val-small rut-add-font-trigger" type="button" value=" + " style="margin-left:12px;margin-top:12px;cursor: pointer" title="Добавить шрифт">
+    </div>
+</div>

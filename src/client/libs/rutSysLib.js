@@ -66,6 +66,9 @@ function doElementOperation(el,opCode){
 }
 
 function loadFonts(){
+    $("#rut-elem-prop-font-family").html("");
+    $("#rut-input-font-family-link").html("");
+    
     for(i = 0; i<window.fontList.length;i++){
         $("#rut-elem-prop-font-family").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
         
@@ -120,6 +123,15 @@ function getAllCSSProperties(target){
 }
 
 function saveNewCSSClass(){
+    for(key in window.temponaryClass.properties){
+        if (window.temponaryClass.properties[key].includes("url")){
+            if(!window.temponaryClass.properties[key].includes(window.projectDir)){
+                var tmp = window.temponaryClass.properties[key].split("(");
+                tmp[1] = window.projectDir+"/img/"+tmp[1];
+                window.temponaryClass.properties[key] = tmp.join("(");
+            }
+        }
+    }
     window.temponaryClass.name += $("#rut-new-class-pseudo").val();
     window.mediaContainer.styles.classes[window.temponaryClass.name] = jQuery.extend(true, {}, window.temponaryClass);
 
@@ -146,9 +158,22 @@ function renderCSS(){
     return style;
 }
 
+function includeFonts(){
+    var fontStyle = "";
+    for(key in mediaContainer.fonts){
+        fontStyle += "@font-face{font-family:"+key+";src:url("+mediaContainer.fonts[key].path+")}";
+        if(window.fontList.indexOf(key) === -1){
+            window.fontList.push(key);
+        }
+    }
+    return fontStyle;
+}
+
 function updateCSS(){
-    $("style").html(renderCSS());
+    var css = renderCSS() + "\n" + includeFonts();
+    $("style").html(css);
     getClassList("#rut-class-list");
+    loadFonts();
 }
 
 function propertyRemove(propName){
@@ -214,6 +239,13 @@ function getPageList(target){
     $(target).html("");
     for(key in window.mediaContainer.pages){
         $(target).append("<li class='rut-class-list-item' id='"+key+"'><span data-page-name='"+key+"' class='rut-select-page'>"+key+"</span><div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить страницу' data-page-name='"+key+"' class='rut-page-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' title='Изменить страницу' data-page-name='"+key+"' class='rut-page-list-item-edit'></div></li>");
+    }
+}
+
+function getFontList(target){
+    $(target).html("");
+    for(key in window.mediaContainer.fonts){
+        $(target).append("<li class='rut-class-list-item' id='"+key+"'><span data-page-name='"+key+"' class='rut-select-page'>"+key+"</span><div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить шрифт' data-font-name='"+key+"' class='rut-font-list-item-delete' style='margin-right:10px'></div></li>");
     }
 }
 
@@ -313,10 +345,12 @@ function openProject(path){
     enableWorkspace();
     updateCountDataInfo();
     
+    updateCSS();
     loadFonts();
     
     getClassList("#rut-class-list");
     getPageList("#rut-page-list");
+    getFontList("#rut-font-list");
     
     selectActivePage(window.mediaContainer.pages[Object.keys(window.mediaContainer.pages)[0]].name);
     
@@ -334,6 +368,7 @@ function clearProjectData(){
     
     getClassList("#rut-class-list");
     getPageList("#rut-page-list");
+    getFontList("#rut-font-list");
     updateCountDataInfo();
 }
 
@@ -369,6 +404,7 @@ function updateCountDataInfo(){
 }
 
 function copyFile(files,dest){
+    fs = require('fs');
     var fileName = files[0].path.split("\\");
     fileName = fileName[fileName.length-1];
         
@@ -388,4 +424,23 @@ String.prototype.replaceAll = function(search, replacement) {
 
 function clearPathes(string){
     return string.replaceAll(window.projectDir,"");
+}
+
+function addFont(files,name){
+    var path = copyFile(files,"fonts");
+    window.mediaContainer.fonts[name] = {};
+    window.mediaContainer.fonts[name].name = name;
+    window.mediaContainer.fonts[name].path = path;
+    
+    getFontList("#rut-font-list");
+    updateCSS();
+    
+    return true;
+}
+
+function deleteFont(font){
+    delete window.mediaContainer.fonts[font];
+    window.fontList.splice(window.fontList.indexOf(font),1);
+    getFontList("#rut-font-list");
+    updateCSS();
 }

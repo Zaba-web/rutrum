@@ -13,6 +13,9 @@ $(document).ready(function(){
     loadPart("addPageWindow","#rut-page-add-window");
     loadPart("editPageWindow","#rut-page-edit-window");
     loadPart("createNewProject","#rut-create-new-project");
+    loadPart("addNewFont","#rut-add-font-window");
+    
+    
     
     changeTool($("#rut-tool-pointer")); // set Pointer tool as default
     
@@ -21,7 +24,7 @@ $(document).ready(function(){
     
     getClassList("#rut-class-list");
     getPageList("#rut-page-list");
-    //selectActivePage("index");
+    getFontList("#rut-font-list");
     
     updateCSS();
     
@@ -339,6 +342,10 @@ $(document).ready(function(){
         showElementClassesList(GetElementCSSClasses(window.toolList.tool_pointer.selected));
     });
     
+    $(document).on("click",".rut-font-list-item-delete",function(){
+        deleteFont($(this).data("font-name"));
+    });
+    
     $(document).on("click",".rut-select-page",function(){
         saveActivePage();
         selectActivePage($(this).data("page-name"));
@@ -403,6 +410,24 @@ $(document).ready(function(){
     $("#rut-menu-close-project").click(function(){
         clearProjectData();
         $(".rut-workspace-container").fadeOut(150);
+    });
+    
+    $(".rut-add-font-trigger").click(function(){
+        $(".rut-window-wrapper").fadeOut();
+        $("#rut-add-font-window").fadeIn(150);
+    });
+    
+    $("#rut-add-font").click(function(){
+        if($("#rut-add-font-name").val().length > 0){
+            var fontFile = document.getElementById("rut-select-font");
+            if(addFont(fontFile.files,$("#rut-add-font-name").val())){
+                $("#rut-new-font-status").text("Шрифт добавлен");
+            }else{
+                $("#rut-new-font-status").text("Не удалось добавить шрифт");
+            }
+        }else{
+            $("#rut-new-font-status").text("Введите имя шрифта");
+        }
     });
     
 });
