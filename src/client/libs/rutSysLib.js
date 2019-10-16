@@ -5,202 +5,324 @@ var specialClasses = { // used to change the bootstrap elements values
     halign:["justify-content-start","justify-content-center","justify-content-end","justify-content-around","justify-content-between"]
 }
 
-function getAllProp(el){
-    for(i = 0; i < propList.length; i++ ){
-        var prop = Property.getInstance(el,propList[i]);
-        prop.get(el,propList[i]);
-    }
-}
-
-function clearAllProp(){
-    $(".rut-elem-prop-change").val("");
-    $(".rut-elem-prop-change").removeAttr("readonly");
-    $("#rut-elem-prop-col-spec").html("");
-}
-
-function setProp(el){
-    saveActivePage();
-    var value = $(el).val();
-    var prop = Property.getInstance(el, getPurePropName($(el).attr("id")));
-    var activeTool = window.toolList.tool_pointer.selected;
-    prop.set(activeTool,getPurePropName($(el).attr("id")),value);
-    updateAllProps(window.toolList.tool_pointer.selected);
-}
-
-function changeProp(el,db){
-    var oldData = $(el).val();
-    var newData = $(el).text();
-    
-    window.specialClasses[db].forEach(function(item){
-        $(window.toolList.tool_pointer.selected).removeClass(item);
-    });
-    
-    $(window.toolList.tool_pointer.selected).addClass(newData);
-    console.log("Old value: "+oldData +"; New value: "+ newData);
-    
-    updateAllProps(window.toolList.tool_pointer.selected);
-}
-
-function getPurePropName(string){
-    return string.slice(14);
-}
-
-function findSpecialClass(el,cols){
-    var presentClass = false;
-    window.specialClasses[cols].forEach(function(cssClass){
-        if($(el).hasClass(cssClass)){
-            presentClass = cssClass;   
+var logger = {
+    debug: true,
+    log:function(data){
+        if(this.debug){
+            console.log(data);
         }
-    });
-    return presentClass;
-}
-
-function updateAllProps(el){
-    clearAllProp();
-    getAllProp(el);
-}
-
-function doElementOperation(el,opCode){
-    saveActivePage();
-    window.operationsList[opCode](el);
-}
-
-function loadFonts(){
-    $("#rut-elem-prop-font-family").html("");
-    $("#rut-input-font-family-link").html("");
-    
-    for(i = 0; i<window.fontList.length;i++){
-        $("#rut-elem-prop-font-family").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
-        
-        $("#rut-input-font-family-link").append("<option value='"+window.fontList[i]+"'>"+window.fontList[i]+"</option>");
-        
     }
+}
+
+/*props*/
+
+class PropertyController {
+    constructor(el){
+        this.element = el;
+        this.metaDataLenght = 14;
+        this.propertyList = window.propList;
+    }
+    
+    changeElement(el){
+        this.element = el;
+    }
+    
+    getAllProperties(element = this.element){
+        for(let i = 0; i < this.propertyList.length; i++ ){
+            let property = Property.getInstance(element,this.propertyList[i]);
+            property.get(element,this.propertyList[i]);
+        }
+    }
+    
+    clearAllProperties(){
+        $(".rut-elem-prop-change").val("");
+        $(".rut-elem-prop-change").removeAttr("readonly");
+        $("#rut-elem-prop-col-spec").html("");
+    }
+    
+    setProp(callback){
+        let value = $(this.element).val();
+        let property = Property.getInstance(this.element, this.getPurePropName($(this.element).attr("id")));
+        let activeTool = window.toolList.tool_pointer.selected;
+        
+        property.set(activeTool,this.getPurePropName($(this.element).attr("id")),value);
+        
+        this.updateAllProps();
+        
+        callback();
+    }
+    
+    changeProp(classListRow){
+        let oldData = $(this.element).val();
+        let newData = $(this.element).text();
+        
+        window.specialClasses[classListRow].forEach(function(item){
+            $(window.toolList.tool_pointer.selected).removeClass(item);
+        });
+        
+        $(window.toolList.tool_pointer.selected).addClass(newData);
+        
+        this.updateAllProps();
+        
+        logger.log("Old value: "+oldData +"; New value: "+ newData);
+    }
+    
+    getPurePropName(fullName){
+        return fullName.slice(this.metaDataLenght);
+    }
+    
+    updateAllProps(){
+        this.clearAllProperties();
+        this.getAllProperties(window.toolList.tool_pointer.selected);
+    }
+}
+
+class SpecialClassesFinder{
+    
+    static findSpecialClass(element,specialClass){
+        let presentClass = false;
+        window.specialClasses[specialClass].forEach(function(cssClass){
+            if($(element).hasClass(cssClass)){
+                presentClass = cssClass;   
+            }
+        });
+        return presentClass;
+    }
+    
+}
+
+/*---*/
+
+class FontController{
+    
+    static loadFonts(){
+        $(".rut-font-container").html("");
+        
+        let optionWriter = new OptionListWriter(".rut-font-container");
+        optionWriter.write(window.fontList,window.fontList.length);
+
+    }
+    
+    static includeFonts(){
+        var fontStyle = "";
+        for(let key in mediaContainer.fonts){
+            fontStyle += "@font-face{font-family:"+key+";src:url("+mediaContainer.fonts[key].path+")}";
+            if(window.fontList.indexOf(key) === -1){
+                window.fontList.push(key);
+            }
+        }
+        return fontStyle;
+    }
+    
 }
 
 /*--------*/
 
-function addTempClassProp(el){
-    var propValue = $(el).val();
-    var propName = $(el).data("prop");
-    var endl = "";
+class TemponaryClassController{
     
-    if(!propValue.includes(";")){
-        endl = ";";
-    }
-    
-    window.temponaryClass.properties[propName] = propValue + endl;
-    console.log(window.temponaryClass);
-}
+    static addTempClassProp(el){
+        
+        let propValue = $(el).val();
+        let propName = $(el).data("prop");
+        let endl = "";
 
-function getPropertyFromList(from,where){
-    var propTitle = $(from).data("name");
-    var propName = $(from).data("val");
-    var propHint = $(from).data("hint");
-    
-    $(where).append("<div class='rut-class-window-item' style='width:60%;' data-prop-name='"+propName+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+propName+"'>[x]</span> "+propTitle+":</h4></div><div class='rut-class-window-item' style='width:40%' data-prop-name='"+propName+"'><input data-prop='"+propName+"' placeholder='"+propHint+"' title='"+propHint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
-}
-
-function getPropertyFromClass(){
-    $(".rut-class-properties-container").html("");
-    for(key in window.temponaryClass.properties){
-        if(key.includes("-")){
-            key = key.split("-");
-            key = key.join("_");
+        if(!propValue.includes(";")){
+            endl = ";";
         }
 
-        
-        $(".rut-class-properties-container").append("<div class='rut-class-window-item' style='width:60%;' data-prop-name='"+window.propertiesCollection[key].value+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+window.propertiesCollection[key].value+"'>[x]</span> "+window.propertiesCollection[key].name+":</h4></div><div class='rut-class-window-item' style='width:40%' data-prop-name='"+window.propertiesCollection[key].value+"'><input data-prop='"+window.propertiesCollection[key].value+"' value = '"+window.temponaryClass.properties[window.propertiesCollection[key].value]+"' placeholder='"+window.propertiesCollection[key].hint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
+        window.temponaryClass.properties[propName] = propValue + endl;
+        logger.log(window.temponaryClass);
         
     }
-}
-
-function getAllCSSProperties(target){
-    for(i = 0; i < Object.keys(window.propertiesCollection).length; i++){
-      var currentItem = window.propertiesCollection[Object.keys(window.propertiesCollection)[i]];
+    
+    static clearTempClass(){
         
-      $(target).append("<option data-hint = '"+currentItem.hint+"' data-val='"+currentItem.value+"' data-name='"+currentItem.name+"' title='"+currentItem.value+"'>"+currentItem.name+"</option>");
-    } 
+        window.temponaryClass.name = "";
+        window.temponaryClass.properties =  "";
+        
+    }
+    
+    static propertyRemove(propName){
+        delete window.temponaryClass.properties[propName];
+    }
+    
 }
 
-function saveNewCSSClass(){
-    for(key in window.temponaryClass.properties){
-        if (window.temponaryClass.properties[key].includes("url")){
-            if(!window.temponaryClass.properties[key].includes(window.projectDir)){
-                var tmp = window.temponaryClass.properties[key].split("(");
-                tmp[1] = window.projectDir+"/img/"+tmp[1];
-                window.temponaryClass.properties[key] = tmp.join("(");
+class CSSClassesManager{
+    
+    addClass(){
+        
+        this.scanURLProps();
+        
+        window.temponaryClass.name += $("#rut-new-class-pseudo").val();
+        window.mediaContainer.styles.classes[window.temponaryClass.name] = jQuery.extend(true, {}, window.temponaryClass);
+
+        CSSClassesManager.updateCSS();
+        return true;
+        
+    }
+    
+    scanURLProps(){
+        
+        for(let key in window.temponaryClass.properties){
+            if (window.temponaryClass.properties[key].includes("url")){
+                if(!window.temponaryClass.properties[key].includes(window.projectDir)){
+                    let tmp = window.temponaryClass.properties[key].split("(");
+                    tmp[1] = window.projectDir+"/img/"+tmp[1];
+                    window.temponaryClass.properties[key] = tmp.join("(");
+                }
             }
         }
-    }
-    window.temponaryClass.name += $("#rut-new-class-pseudo").val();
-    window.mediaContainer.styles.classes[window.temponaryClass.name] = jQuery.extend(true, {}, window.temponaryClass);
-
-    updateCSS();
-    return true;
-}
-
-function renderCSS(){
-    var style = " ";
-    var count = Object.keys(window.mediaContainer.styles.classes).length;
-    for(var i = 0; i<count; i++){
-        var currentItemName = Object.keys(window.mediaContainer.styles.classes)[i];
-        var currentItemPropCount = Object.keys(window.mediaContainer.styles.classes[currentItemName].properties).length;
-        style += "."+currentItemName+"{";
-        for(var j = 0; j<currentItemPropCount; j++){
-            var currentPropertyName = Object.keys(window.mediaContainer.styles.classes[currentItemName].properties)[j];
-            var currentPropertyValue = window.mediaContainer.styles.classes[currentItemName].properties[currentPropertyName];
-            style += currentPropertyName + ":" + currentPropertyValue;
-        }
-        style += "}";
         
     }
-    console.log(style);
-    return style;
+    
+    static updateCSS(){
+        
+        let CSSPrep = new CSSPreprocessor();
+        let css = CSSPrep.render() + "\n" + FontController.includeFonts();
+        $("style").html(css);
+        getClassList("#rut-class-list");
+        FontController.loadFonts();
+        
+    }
+    
+    static removeCSSClass(data){
+        
+        delete window.mediaContainer.styles.classes[data];
+        $("#"+data).remove();
+        
+    }
+
 }
 
-function includeFonts(){
-    var fontStyle = "";
-    for(key in mediaContainer.fonts){
-        fontStyle += "@font-face{font-family:"+key+";src:url("+mediaContainer.fonts[key].path+")}";
-        if(window.fontList.indexOf(key) === -1){
-            window.fontList.push(key);
+class WindowContentWriter{
+    constructor(){
+        
+    }
+    write(){
+        
+    }
+}
+
+class PropertyListContentWriter extends WindowContentWriter{
+    
+    constructor(from){
+        super();
+        this.propTitle = $(from).data("name");
+        this.propName = $(from).data("val");
+        this.propHint = $(from).data("hint");
+    }
+    
+    write(from,where){
+        $(where).append("<div class='rut-class-window-item' style='width:60%;' data-prop-name='"+this.propName+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+this.propName+"'>[x]</span> "+this.propTitle+":</h4></div><div class='rut-class-window-item' style='width:40%' data-prop-name='"+this.propName+"'><input data-prop='"+this.propName+"' placeholder='"+this.propHint+"' title='"+this.propHint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
+    }
+    
+}
+
+class PropertyClassContentWriter extends WindowContentWriter{
+    
+    constructor(){
+        super();
+    }
+    
+    write(){
+        $(".rut-class-properties-container").html("");
+        for(key in window.temponaryClass.properties){
+            
+            if(key.includes("-")){
+                key = key.split("-");
+                key = key.join("_");
+            }
+
+            $(".rut-class-properties-container").append("<div class='rut-class-window-item' style='width:60%;' data-prop-name='"+window.propertiesCollection[key].value+"'><h4 class='rut-h4'><span class='rut-class-remove-prop' data-target='"+window.propertiesCollection[key].value+"'>[x]</span> "+window.propertiesCollection[key].name+":</h4></div><div class='rut-class-window-item' style='width:40%' data-prop-name='"+window.propertiesCollection[key].value+"'><input data-prop='"+window.propertiesCollection[key].value+"' value = '"+window.temponaryClass.properties[window.propertiesCollection[key].value]+"' placeholder='"+window.propertiesCollection[key].hint+"' class='rut-inner-controls rut-new-class-prop-change' type='text'></div>");
+
         }
     }
-    return fontStyle;
 }
 
-function updateCSS(){
-    var css = renderCSS() + "\n" + includeFonts();
-    $("style").html(css);
-    getClassList("#rut-class-list");
-    loadFonts();
+class OptionListWriter{
+    
+    constructor(target){
+        this.target = target;
+    }
+    
+    write(obj,count){
+        for(let i = 0; i<count; i++){
+            $(this.target).append("<option value='"+obj[i]+"'>"+obj[i]+"</option>");
+        }
+    }
 }
 
-function propertyRemove(propName){
-    console.log(propName);
-    delete window.temponaryClass.properties[propName];
+class AllCSSPropertiesWriter extends OptionListWriter{
+    
+    constructor(target){
+        super(target);
+        this.count = Object.keys(window.propertiesCollection).length;
+    }
+    
+    write(){
+        for(let i = 0; i <this.count ; i++){
+            let currentItem = window.propertiesCollection[Object.keys(window.propertiesCollection)[i]];
+        
+            $(this.target).append("<option data-hint = '"+currentItem.hint+"' data-val='"+currentItem.value+"' data-name='"+currentItem.name+"' title='"+currentItem.value+"'>"+currentItem.name+"</option>");
+        } 
+    }
 }
+
+class ClassListWriter extends OptionListWriter{
+    constructor(target){
+        super(target);
+    }
+    
+    write(){
+        for(key in window.mediaContainer.styles.classes){
+            $(this.target).append("<option value='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"</option>");
+        }
+    }
+}
+
+class CSSPreprocessor{
+    
+    constructor(){
+        this.style = " ";
+        this.count  = Object.keys(window.mediaContainer.styles.classes).length;
+    }
+    
+    render(){
+        
+        for(let i = 0; i<this.count; i++){
+            
+            let currentItemName = Object.keys(window.mediaContainer.styles.classes)[i];
+            let currentItemPropCount = Object.keys(window.mediaContainer.styles.classes[currentItemName].properties).length;
+            
+            this.style += "."+currentItemName+"{";
+            
+            for(let j = 0; j<currentItemPropCount; j++){
+                
+                let currentPropertyName = Object.keys(window.mediaContainer.styles.classes[currentItemName].properties)[j];
+                
+                let currentPropertyValue = window.mediaContainer.styles.classes[currentItemName].properties[currentPropertyName];
+                
+                this.style += currentPropertyName + ":" + currentPropertyValue;
+                
+            }
+            this.style += "}";
+        }
+        
+        logger.log(this.style);
+        return this.style;
+    }
+}
+
+
+/*-------*/
+
 
 function getClassList(target){
     $(target).html("");
     for(key in window.mediaContainer.styles.classes){
         $(target).append("<li class='rut-class-list-item' id='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"<div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить класс' data-class-name='"+window.mediaContainer.styles.classes[key].name+"' class='rut-class-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' title='Изменить класс' data-class-name='"+window.mediaContainer.styles.classes[key].name+"' class='rut-class-list-item-edit'></div></li>");
     }
-}
-
-function getClassListForElements(target){
-    for(key in window.mediaContainer.styles.classes)
-    $(target).append("<option value='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"</option>");
-}
-
-function removeCSSClass(data){
-    delete window.mediaContainer.styles.classes[data];
-    $("#"+data).remove();
-}
-
-function clearTempClass(){
-    window.temponaryClass.name = "";
-    window.temponaryClass.properties =  "";
 }
 
 function GetElementCSSClasses(el){
@@ -345,8 +467,8 @@ function openProject(path){
     enableWorkspace();
     updateCountDataInfo();
     
-    updateCSS();
-    loadFonts();
+    CSSClassesManager.updateCSS();
+    FontController.loadFonts();
     
     getClassList("#rut-class-list");
     getPageList("#rut-page-list");
@@ -433,7 +555,7 @@ function addFont(files,name){
     window.mediaContainer.fonts[name].path = path;
     
     getFontList("#rut-font-list");
-    updateCSS();
+    CSSClassesManager.updateCSS();
     
     return true;
 }
@@ -442,5 +564,5 @@ function deleteFont(font){
     delete window.mediaContainer.fonts[font];
     window.fontList.splice(window.fontList.indexOf(font),1);
     getFontList("#rut-font-list");
-    updateCSS();
+    CSSClassesManager.updateCSS();
 }

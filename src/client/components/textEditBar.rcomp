@@ -1,4 +1,4 @@
-        <select class="rut-inner-controls rut-input-short rut-control-link" data-control-target='rut-elem-prop-font-family' id="rut-input-font-family-link"></select>
+        <select class="rut-inner-controls rut-input-short rut-control-link rut-font-container" data-control-target='rut-elem-prop-font-family' id="rut-input-font-family-link"></select>
         <select class="rut-inner-controls rut-input-small rut-control-link" data-control-target='rut-elem-prop-font-size'>
             <option value="8px">8</option>
             <option value="9px">9</option>

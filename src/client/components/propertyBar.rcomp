@@ -419,7 +419,7 @@
                                     <h4 class="rut-h4">Шрифт:</h4>
                                 </div>
                                 <div class="rut-docker-prop-item-input">
-                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short" id="rut-elem-prop-font-family">
+                                    <select class="rut-inner-controls rut-elem-prop-change rut-input-short rut-font-container" id="rut-elem-prop-font-family">
                                 
                                     </select>
                                 </div>

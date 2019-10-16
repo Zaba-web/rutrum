@@ -20,16 +20,18 @@ $(document).ready(function(){
     changeTool($("#rut-tool-pointer")); // set Pointer tool as default
     
     // loading default fonts
-    loadFonts();
+    FontController.loadFonts();
     
     getClassList("#rut-class-list");
     getPageList("#rut-page-list");
     getFontList("#rut-font-list");
     
-    updateCSS();
+    CSSClassesManager.updateCSS();
     
-    getAllCSSProperties("#rut-edit-class-props");
-    getAllCSSProperties("#rut-add-class-list");
+    let editCssWriter = new AllCSSPropertiesWriter("#rut-edit-class-props");
+    editCssWriter.write();
+    let addCssWriter = new AllCSSPropertiesWriter("#rut-add-class-list");
+    addCssWriter.write();
     
     $(".rut-select").chosen();
     
@@ -90,11 +92,14 @@ $(document).ready(function(){
     });
     
     $(".rut-elem-prop-change").on("change",function(){
-        setProp(this);
+        PropController = new PropertyController(this);
+        PropController.setProp(saveActivePage);
     });
     
     $(".rut-elem-prop-spec-change").on("change",function(){
-        changeProp($(this).children("option:selected"),$(this).data("list"));
+        PropController = new PropertyController($(this).children("option:selected"));
+        PropController.changeProp($(this).data("list"));
+        //changeProp(,$(this).data("list"));
     });
     
     $("#rut-add-image").on("change",function(){
@@ -206,7 +211,7 @@ $(document).ready(function(){
     });
     
     $(document).on("change",".rut-new-class-prop-change",function(e){
-        addTempClassProp(this);
+        TemponaryClassController.addTempClassProp(this);
     });
     
     $("#rut-new-class-name").change(function(){
@@ -214,22 +219,26 @@ $(document).ready(function(){
     });
 
     $("#rut-edit-class-add-prop").on("click",function(){
-        getPropertyFromList("#rut-edit-class-props option:selected",".rut-class-properties-container");
+        let writer = new PropertyListContentWriter("#rut-edit-class-props option:selected");
+        writer.write("#rut-edit-class-props option:selected",".rut-class-properties-container");
     });
     
     $("#rut-new-class-add-prop").on("click",function(){
-        getPropertyFromList("#rut-add-class-list option:selected",".rut-class-properties-container");
+        let writer = new PropertyListContentWriter("#rut-add-class-list option:selected");
+        writer.write("#rut-add-class-list option:selected",".rut-class-properties-container");
+       
     });
     
     $("#rut-new-class-save").click(function(){
         if($("#rut-new-class-name").val().length != 0){
             if(!$("#rut-new-class-name").val().includes("rut-")){
-                if(saveNewCSSClass()){
+                let classManager = new CSSClassesManager();
+                if(classManager.addClass()){
                     $("#rut-new-class-name").val("");
                     $("#rut-new-class-pseudo").val("");
                     $("[data-prop-name]").remove();
                     $("#rut-new-class-status").text("Класс создан");
-                    clearTempClass();
+                    TemponaryClassController.clearTempClass();
                     updateCountDataInfo();
                 }else{
                     $("#rut-new-class-status").text("Не удалось создать класс");
@@ -243,7 +252,7 @@ $(document).ready(function(){
     });
     
     $(document).on("click",".rut-class-remove-prop",function(){
-        propertyRemove($(this).data("target"));
+        TemponaryClassController.propertyRemove($(this).data("target"));
         $("[data-prop-name='"+$(this).data("target")+"']").remove();
         updateCountDataInfo();
     });
@@ -269,7 +278,7 @@ $(document).ready(function(){
     });
     
     $(document).on("click",".rut-class-list-item-delete",function(){
-        removeCSSClass($(this).data("class-name"));
+        CSSClassesManager.removeCSSClass($(this).data("class-name"));
         updateCountDataInfo();
     });
     
@@ -281,7 +290,10 @@ $(document).ready(function(){
     $(document).on("click",".rut-class-list-item-edit",function(){ 
         $(".rut-window-wrapper").fadeOut();
         window.temponaryClass = jQuery.extend(true, {}, window.mediaContainer.styles.classes[$(this).data("class-name")]);
-        getPropertyFromClass();
+        
+        let writer = new PropertyClassContentWriter();
+        writer.write();
+        
         $("#rut-edit-class-name").text($(this).data("class-name"));
         $("#rut-class-edit-window").fadeIn(150);
     });
@@ -293,7 +305,8 @@ $(document).ready(function(){
     });
     
     $("#rut-edit-class-save").click(function(){
-        if(saveNewCSSClass()){
+        let classManager = new CSSClassesManager();
+        if(classManager.addClass()){
             $("#rut-edit-class-status").text("Класс обновлен");
             updateCountDataInfo();
         }else{
@@ -327,7 +340,10 @@ $(document).ready(function(){
     $(".rut-elem-class").click(function(){
         $(".rut-class-list").html("");
         $(".rut-window-wrapper").fadeOut();
-        getClassListForElements(".rut-class-list");
+        
+        let classWirter = new ClassListWriter(".rut-class-list");
+        classWirter.write();
+        
         $("#rut-elem-classes-window").fadeIn(150);
         showElementClassesList(GetElementCSSClasses(window.toolList.tool_pointer.selected));
     });

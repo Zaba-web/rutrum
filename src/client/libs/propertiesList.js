@@ -3,8 +3,8 @@ var propList = ["width","height","margin","margin-top","margin-bottom","margin-l
 
 class Property{ // main class for inline styling
     static getInstance(el, name){
-
-        if($(el).hasClass(findSpecialClass(el,"cols")) && name == "width"){
+        
+        if($(el).hasClass(SpecialClassesFinder.findSpecialClass(el,"cols")) && name == "width"){
             return new ColWidth(); // bootstrap column uses different class for width
         }else if(name == "background-image"){
             return new BgImage(); // background-image also uses different class because it has specific syntaxis
@@ -34,7 +34,7 @@ class Property{ // main class for inline styling
 class ColWidth extends Property{
         get(el){
             $("#rut-elem-prop-width").val($(el).css("width"));
-            var specialClass = findSpecialClass(el,"cols");
+            var specialClass = SpecialClassesFinder.findSpecialClass(el,"cols");
             if(specialClass !== false){
                 $("#rut-elem-prop-width").prop("readonly",true); // col can't be resized using width property
                 $("#rut-elem-prop-col-spec").fadeIn(200);
