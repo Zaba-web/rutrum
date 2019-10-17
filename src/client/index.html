@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <title>Rutrum</title>
     <script src="libs/jquery.js"></script>
+    <script src="libs/rutSysLib.js"></script>
+    <script src="libs/functions.js"></script>
     <script src="libs/propertiesList.js"></script>
     <script src="libs/toolList.js"></script>
-    <script src="libs/rutSysLib.js"></script>
     <script src="libs/opertaionsList.js"></script>
     <script src="assets/scripts/init.js"></script>
     <script src="assets/scripts/composer.js"></script>
     <script src="assets/scripts/toolHandler.js"></script>
     <script src="assets/scripts/styleConstructor.js"></script>
     <script src="assets/scripts/vendor/chosen.jquery.js"></script>
-    <script src="assets/scripts/gui.js"></script>
+    <script src="assets/scripts/gui/guiPreload.js"></script>
+    <script src="assets/scripts/gui/guiTools.js"></script>
+    <script src="assets/scripts/gui/guiProps.js"></script>
+    <script src="assets/scripts/gui/guiDockers.js"></script>
+    <script src="assets/scripts/gui/guiWindowsTriggers.js"></script>
+    <script src="assets/scripts/gui/mainGui.js"></script>
     <link rel="stylesheet" href="assets/styles/main.css">
     <link rel="stylesheet" href="assets/styles/fonts.css">
     <link rel="stylesheet" href="assets/styles/vendor/chosen.css">
@@ -31,7 +37,7 @@
     			        <li id="rut-menu-new-project">Создать проект</li>
     			        
     			        <li id="rut-menu-open-project">
-    			            <label for="rut-open-project-input" style="cursor: pointer">Открыть проект</label>
+    			            <label for="rut-open-project-input" style="cursor: pointer" style='height:100%;'>Открыть проект</label>
     			            <input type="file" nwdirectory style='display:none' id="rut-open-project-input">
     			        </li>
     			        

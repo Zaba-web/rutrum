@@ -8,9 +8,13 @@ var toolList = {
               $(this.selected).attr("contenteditable","false");
           }
           
+          let propertyControler = new PropertyController(el);
+          
           $(".rut-element-selected").removeClass("rut-element-selected");
           this.selected = null;
-          clearAllProp();
+          
+          propertyControler.clearAllProperties();
+          
           $(".rut-default-hidden").fadeOut(200);
           $(".rut-item-opertaions-container").hide();
           $(".rut-item-text-editor-container").hide();
@@ -25,7 +29,9 @@ var toolList = {
             this.selected = el;
             $(el).addClass("rut-element-selected");
             console.log("Result of pointer tool: "+this.selected);
-            getAllProp(el);
+              
+            propertyControler.getAllProperties();
+
             getItemOperations(this.selected);
           }
           
