@@ -1,5 +1,5 @@
 function doElementOperation(el,opCode){
-    saveActivePage();
+    PageController.saveActivePage();
     window.operationsList[opCode](el);
 }
 

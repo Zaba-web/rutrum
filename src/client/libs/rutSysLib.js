@@ -67,6 +67,32 @@ class PropertyController {
         logger.log("Old value: "+oldData +"; New value: "+ newData);
     }
     
+    static getClassList(el){
+        
+        let classList = $(el).attr("class").split(" ");
+    
+        for(let i = 0;i < classList.length;i++){
+            if(classList[i].includes("rut-")){
+                classList.splice(i,1);
+                i--;
+            }
+            logger.log(classList[i]);
+        }
+    
+        return classList;
+    }
+    
+    static showElementClassesList(el){
+        
+        let array = PropertyController.getClassList(el);
+        
+        $(".rut-element-class-list-container").html("");
+        array.forEach(function(item){
+            $(".rut-element-class-list-container").append("<li><span class='rut-element-class-delete' data-class='"+item+"'>[x] </span>"+item+"</li>");
+        });
+        
+    }
+    
     getPurePropName(fullName){
         return fullName.slice(this.metaDataLenght);
     }
@@ -114,6 +140,34 @@ class FontController{
         return fontStyle;
     }
     
+    static addFont(files,name){
+        
+        let path = File.copy(files,"fonts");
+        window.mediaContainer.fonts[name] = {};
+        window.mediaContainer.fonts[name].name = name;
+        window.mediaContainer.fonts[name].path = path;
+
+        let fontList = new ViewerListWriter("#rut-font-list",window.mediaContainer.fonts,"шрифт",false,"font");
+
+        fontList.write();
+
+        CSSClassesManager.updateCSS();
+
+        return true;
+        
+    }
+    
+    static deleteFont(font){
+        delete window.mediaContainer.fonts[font];
+        window.fontList.splice(window.fontList.indexOf(font),1);
+
+        let fontList = new ViewerListWriter("#rut-font-list",window.mediaContainer.fonts,"шрифт",false,"font");
+
+        fontList.write();
+
+        CSSClassesManager.updateCSS();
+    }
+    
 }
 
 /*--------*/
@@ -138,7 +192,7 @@ class TemponaryClassController{
     static clearTempClass(){
         
         window.temponaryClass.name = "";
-        window.temponaryClass.properties =  "";
+        window.temponaryClass.properties =  {};
         
     }
     
@@ -157,6 +211,8 @@ class CSSClassesManager{
         window.temponaryClass.name += $("#rut-new-class-pseudo").val();
         window.mediaContainer.styles.classes[window.temponaryClass.name] = jQuery.extend(true, {}, window.temponaryClass);
 
+        TemponaryClassController.clearTempClass();
+        
         CSSClassesManager.updateCSS();
         return true;
         
@@ -181,7 +237,11 @@ class CSSClassesManager{
         let CSSPrep = new CSSPreprocessor();
         let css = CSSPrep.render() + "\n" + FontController.includeFonts();
         $("style").html(css);
-        getClassList("#rut-class-list");
+        
+        let classList = new ViewerListWriter("#rut-class-list",window.mediaContainer.styles.classes,"класс",true,"class");
+        
+        classList.write();
+
         FontController.loadFonts();
         
     }
@@ -227,7 +287,7 @@ class PropertyClassContentWriter extends WindowContentWriter{
     
     write(){
         $(".rut-class-properties-container").html("");
-        for(key in window.temponaryClass.properties){
+        for(let key in window.temponaryClass.properties){
             
             if(key.includes("-")){
                 key = key.split("-");
@@ -275,7 +335,7 @@ class ClassListWriter extends OptionListWriter{
     }
     
     write(){
-        for(key in window.mediaContainer.styles.classes){
+        for(let key in window.mediaContainer.styles.classes){
             $(this.target).append("<option value='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"</option>");
         }
     }
@@ -314,255 +374,255 @@ class CSSPreprocessor{
     }
 }
 
-
-/*-------*/
-
-
-function getClassList(target){
-    $(target).html("");
-    for(key in window.mediaContainer.styles.classes){
-        $(target).append("<li class='rut-class-list-item' id='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"<div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить класс' data-class-name='"+window.mediaContainer.styles.classes[key].name+"' class='rut-class-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' title='Изменить класс' data-class-name='"+window.mediaContainer.styles.classes[key].name+"' class='rut-class-list-item-edit'></div></li>");
-    }
-}
-
-function GetElementCSSClasses(el){
-    var classList = $(el).attr("class").split(" ");
+class ViewerListWriter{
     
-    for(i = 0;i < classList.length;i++){
-        if(classList[i].includes("rut-")){
-            classList.splice(i,1);
-            i--;
-        }
-        console.log(classList[i]);
-    }
-    
-    return classList;
-}
-
-function showElementClassesList(array){
-    $(".rut-element-class-list-container").html("");
-    array.forEach(function(item){
-        $(".rut-element-class-list-container").append("<li><span class='rut-element-class-delete' data-class='"+item+"'>[x] </span>"+item+"</li>");
-    });
-}
-
-/*-------------------*/
-
-function selectActivePage(name){
-    window.activePage = name;
-    $(".rut-workspace-container").html(window.mediaContainer.pages[name].value);
-}
-
-function saveActivePage(){
-    window.mediaContainer.pages[window.activePage].value = $(".rut-workspace-container").html();
-}
-
-function getPageList(target){
-    $(target).html("");
-    for(key in window.mediaContainer.pages){
-        $(target).append("<li class='rut-class-list-item' id='"+key+"'><span data-page-name='"+key+"' class='rut-select-page'>"+key+"</span><div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить страницу' data-page-name='"+key+"' class='rut-page-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' title='Изменить страницу' data-page-name='"+key+"' class='rut-page-list-item-edit'></div></li>");
-    }
-}
-
-function getFontList(target){
-    $(target).html("");
-    for(key in window.mediaContainer.fonts){
-        $(target).append("<li class='rut-class-list-item' id='"+key+"'><span data-page-name='"+key+"' class='rut-select-page'>"+key+"</span><div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить шрифт' data-font-name='"+key+"' class='rut-font-list-item-delete' style='margin-right:10px'></div></li>");
-    }
-}
-
-function removePage(id){
-    delete window.mediaContainer.pages[id];
-    $("[data-page-name='"+id+"']").parent().parent().remove();
-}
-
-function saveNewPage(pName,pTitle){
-    var newPage = {
-        name:pName,
-        title:pTitle,
-        value:null
-    }
-    if(window.mediaContainer.pages[newPage.name] = jQuery.extend(true, {}, newPage)){
-        getPageList("#rut-page-list");
-        return true;
-    }else{
-        return false;
-    }
-}
-
-function getPageToEdit(el){
-    $("#rut-edit-page-name").val(window.mediaContainer.pages[el].name);
-    $("#rut-edit-page-title").val(window.mediaContainer.pages[el].title);
-    $("#rut-page-edit-name").val(el);
-}
-
-function savePageChanges(page){
-    var newPage = {
-        name:$("#rut-edit-page-name").val(),
-        title:$("#rut-edit-page-title").val(),
-        value:window.mediaContainer.pages[page].value
-    }
-    if(window.mediaContainer.pages[page] = jQuery.extend(true, {}, newPage)){
-        getPageList("#rut-page-list");
-        return true;
-    }else{
-        return false;
-    }
-}
-/*-------------------*/
-
-function enableWorkspace(){
-    $(".rut-workspace-container").fadeIn(150);
-}
-
-function createProject(path,name){
-    clearProjectData();
-    fs = require('fs');
-    var dir = path+name;
-    
-    if (!fs.existsSync(dir)){
-        fs.mkdirSync(dir);
-        fs.mkdirSync(dir+"\\img");
-        fs.mkdirSync(dir+"\\fonts");
-    }
-    
-    fs.writeFileSync(dir+"\\pages.json", '{}');
-    fs.writeFileSync(dir+"\\styles.json", '{}');
-    fs.writeFileSync(dir+"\\scripts.json", '{}');
-    fs.writeFileSync(dir+"\\fonts.json", '{}');
-    
-    window.projectDir = dir.replace(/\\/g,"/");
-    
-    enableWorkspace();
-    updateCountDataInfo();
-    
-    saveNewPage("index","Главная страница");
-    selectActivePage("index");
-    
-    return true;
-}
-
-function saveProject(){
-    saveActivePage();
-    fs = require('fs');
-    
-    fs.writeFileSync(window.projectDir+"\\pages.json", JSON.stringify(window.mediaContainer.pages));
-    
-    fs.writeFileSync(window.projectDir+"\\styles.json", JSON.stringify(window.mediaContainer.styles));
-    
-    fs.writeFileSync(window.projectDir+"\\scripts.json", JSON.stringify(window.mediaContainer.scripts));
-    
-    fs.writeFileSync(window.projectDir+"\\fonts.json", JSON.stringify(window.mediaContainer.fonts));
-}
-
-function openProject(path){
-    fs = require('fs');
-    window.mediaContainer.pages = JSON.parse(fs.readFileSync(path+"/pages.json"));
-    window.mediaContainer.styles = JSON.parse(fs.readFileSync(path+"/styles.json"));
-    window.mediaContainer.scripts = JSON.parse(fs.readFileSync(path+"/scripts.json"));
-    window.mediaContainer.fonts = JSON.parse(fs.readFileSync(path+"/fonts.json"));
-    
-    window.projectDir = path.replace(/\\/g,"/");
-    
-    enableWorkspace();
-    updateCountDataInfo();
-    
-    CSSClassesManager.updateCSS();
-    FontController.loadFonts();
-    
-    getClassList("#rut-class-list");
-    getPageList("#rut-page-list");
-    getFontList("#rut-font-list");
-    
-    selectActivePage(window.mediaContainer.pages[Object.keys(window.mediaContainer.pages)[0]].name);
-    
-    $("#rut-open-project-input").val("");
-}
-
-function clearProjectData(){
-    
-    window.mediaContainer.pages = {};
-    window.mediaContainer.scripts = {};
-    window.mediaContainer.styles.classes = {};
-    window.mediaContainer.styles.media.classes = {};
-    window.mediaContainer.fonts = {};
-    window.projectDir = null;
-    
-    getClassList("#rut-class-list");
-    getPageList("#rut-page-list");
-    getFontList("#rut-font-list");
-    updateCountDataInfo();
-}
-
-/*------------------*/
-function pulseEffect(selector){
-    $(selector).css("animation","0.3s rut-op-active");
-    setTimeout(function(){
-        $(selector).css("animation","");
-    },300);
-}
-
-function calcPreviewHeight(){
-    $(".rut-preview").css("height",window.innerHeight-28);
-}
-
-function getCount(obj){
-    if(obj != undefined){
-        return Object.keys(obj).length;
-    }
-}
-
-function updateCountDataInfo(){
-    $(".rut-page-count").text(getCount(window.mediaContainer.pages));
-    $(".rut-scripts-count").text(getCount(window.mediaContainer.scripts));
-    $(".rut-class-count").text(getCount(window.mediaContainer.styles.classes));
-    
-    if(window.projectDir != undefined){
-        var projectName = window.projectDir.split("/");
-        $(".rut-project-name").text(projectName[projectName.length-1]);
-    }else{
-        $(".rut-project-name").text("");
-    }
-}
-
-function copyFile(files,dest){
-    fs = require('fs');
-    var fileName = files[0].path.split("\\");
-    fileName = fileName[fileName.length-1];
+    constructor(target,object,titleName,editable,type,classes = null){
         
-    fs.copyFile(files[0].path, window.projectDir+"\\"+dest+"\\"+fileName, (err) => {
-        if (err) throw err;
-    });
+        this.target = target;
+        this.name = titleName;
+        this.object = object;
+        this.type = type;
+        this.classes = classes;
+        
+        if(!editable){
+            this.editable = "style='display:none'";
+        }
+        
+    }
     
-    fileName = window.projectDir+"\\"+dest+"\\"+fileName;
-    
-    return fileName.replace(/\\/g,"/");
+    write(){
+        
+        $(this.target).html("");
+        
+        for(let key in this.object){
+            
+            $(this.target).append("<li class='rut-class-list-item' id='"+key+"'><span class='"+this.classes+"'>"+key+"</span><div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить "+this.name+"' data-"+this.type+"-name='"+key+"' class='rut-"+this.type+"-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' "+this.editable+" title='Изменить "+this.name+"' data-"+this.type+"-name='"+key+"' class='rut-"+this.type+"-list-item-edit'></div></li>");
+        
+        }
+        
+    }
 }
 
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
-};
-
-function clearPathes(string){
-    return string.replaceAll(window.projectDir,"");
-}
-
-function addFont(files,name){
-    var path = copyFile(files,"fonts");
-    window.mediaContainer.fonts[name] = {};
-    window.mediaContainer.fonts[name].name = name;
-    window.mediaContainer.fonts[name].path = path;
+class PageController{
     
-    getFontList("#rut-font-list");
-    CSSClassesManager.updateCSS();
+    static saveNewPage(pName,pTitle){
+        
+        let newPage = {
+            name:pName,
+            title:pTitle,
+            value:null
+        }
+        
+        if(window.mediaContainer.pages[newPage.name] = jQuery.extend(true, {}, newPage)){
+            
+            let pageList = new ViewerListWriter("#rut-page-list",window.mediaContainer.pages,"страницу",true,"page","rut-select-page");
+            
+            pageList.write();
+
+            return true;
+            
+        }else{
+            return false;
+        }
+        
+    }
     
-    return true;
+    static selectActivePage(name){
+        window.activePage = name;
+        $(".rut-workspace-container").html(window.mediaContainer.pages[name].value);
+    }
+    
+    static saveActivePage(){
+        window.mediaContainer.pages[window.activePage].value = $(".rut-workspace-container").html();
+    }
+    
+    static removePage(id){
+        delete window.mediaContainer.pages[id];
+        $("[data-page-name='"+id+"']").parent().parent().remove();
+    }
+    
+    static getPageToEdit(el){
+        $("#rut-edit-page-name").val(window.mediaContainer.pages[el].name);
+        $("#rut-edit-page-title").val(window.mediaContainer.pages[el].title);
+        $("#rut-page-edit-name").val(el);
+    }
+
+    static savePageChanges(page){
+        
+        var newPage = {
+            name:$("#rut-edit-page-name").val(),
+            title:$("#rut-edit-page-title").val(),
+            value:window.mediaContainer.pages[page].value
+        }
+        
+        if(window.mediaContainer.pages[page] = jQuery.extend(true, {}, newPage)){
+
+            let pageList = new ViewerListWriter("#rut-page-list",window.mediaContainer.pages,"страницу",true,"page","rut-select-page");
+
+            pageList.write();
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
 }
 
-function deleteFont(font){
-    delete window.mediaContainer.fonts[font];
-    window.fontList.splice(window.fontList.indexOf(font),1);
-    getFontList("#rut-font-list");
-    CSSClassesManager.updateCSS();
+class Workspace{
+    
+    static enable(){
+        $(".rut-workspace-container").fadeIn(150);
+    }
+    
 }
+
+/*-------------------*/
+
+class ProjectCreator{
+    
+    createProject(path,name){
+        
+        ProjectClose.close();
+        let dir = path+name;
+        
+        this.createTree(dir);
+        
+        window.projectDir = dir.replace(/\\/g,"/");
+    
+        Workspace.enable();
+        updateCountDataInfo();
+
+        PageController.saveNewPage("index","Главная страница");
+        PageController.selectActivePage("index");
+
+        return true;
+        
+    }
+    
+    createTree(dir){
+        
+        let fs = require('fs');
+        
+        if (!fs.existsSync(dir)){
+            
+            fs.mkdirSync(dir);
+            fs.mkdirSync(dir+"\\img");
+            fs.mkdirSync(dir+"\\fonts");
+
+
+            fs.writeFileSync(dir+"\\pages.json", '{}');
+            fs.writeFileSync(dir+"\\styles.json", '{}');
+            fs.writeFileSync(dir+"\\scripts.json", '{}');
+            fs.writeFileSync(dir+"\\fonts.json", '{}');
+        
+        }
+    }
+    
+}
+
+class ProjectSaver{
+    
+    static save(){
+        
+        PageController.saveActivePage();
+        let fs = require('fs');
+
+        fs.writeFileSync(window.projectDir+"\\pages.json", JSON.stringify(window.mediaContainer.pages));
+
+        fs.writeFileSync(window.projectDir+"\\styles.json", JSON.stringify(window.mediaContainer.styles));
+
+        fs.writeFileSync(window.projectDir+"\\scripts.json", JSON.stringify(window.mediaContainer.scripts));
+
+        fs.writeFileSync(window.projectDir+"\\fonts.json", JSON.stringify(window.mediaContainer.fonts));
+        
+    }
+    
+}
+
+class ProjectLoader{
+    
+    open(path){
+        
+        this.readData(path);
+        window.projectDir = path.replace(/\\/g,"/");
+    
+        Workspace.enable();
+        updateCountDataInfo();
+
+        CSSClassesManager.updateCSS();
+        FontController.loadFonts();
+
+        let classList = new ViewerListWriter("#rut-class-list",window.mediaContainer.styles.classes,"класс",true,"class");
+        
+        let pageList = new ViewerListWriter("#rut-page-list",window.mediaContainer.pages,"страницу",true,"page","rut-select-page");
+
+        let fontList = new ViewerListWriter("#rut-font-list",window.mediaContainer.fonts,"шрифт",false,"font");
+        
+        classList.write();
+        pageList.write();
+        fontList.write();
+
+        PageController.selectActivePage(window.mediaContainer.pages[Object.keys(window.mediaContainer.pages)[0]].name);
+    
+        $("#rut-open-project-input").val("");
+    }
+    
+    readData(path){
+        let fs = require('fs');
+        window.mediaContainer.pages = JSON.parse(fs.readFileSync(path+"/pages.json"));
+        window.mediaContainer.styles = JSON.parse(fs.readFileSync(path+"/styles.json"));
+        window.mediaContainer.scripts = JSON.parse(fs.readFileSync(path+"/scripts.json"));
+        window.mediaContainer.fonts = JSON.parse(fs.readFileSync(path+"/fonts.json"));
+    }
+    
+}
+
+class ProjectClose{
+    
+    static close(){
+        window.mediaContainer.pages = {};
+        window.mediaContainer.scripts = {};
+        window.mediaContainer.styles.classes = {};
+        window.mediaContainer.styles.media.classes = {};
+        window.mediaContainer.fonts = {};
+        window.projectDir = null;
+
+        let classList = new ViewerListWriter("#rut-class-list",window.mediaContainer.styles.classes,"класс",true,"class");
+
+        let pageList = new ViewerListWriter("#rut-page-list",window.mediaContainer.pages,"страницу",true,"page","rut-select-page");
+
+        let fontList = new ViewerListWriter("#rut-font-list",window.mediaContainer.fonts,"шрифт",false,"font");
+        
+        classList.write();
+        pageList.write();
+        fontList.write();
+
+        updateCountDataInfo();
+    }
+    
+}
+
+class File{
+    
+    static copy(files,dest){
+        
+        let fs = require('fs');
+        let fileName = files[0].path.split("\\");
+        
+        fileName = fileName[fileName.length-1];
+
+        fs.copyFile(files[0].path, window.projectDir+"\\"+dest+"\\"+fileName, (err) => {
+            if (err) throw err;
+        });
+
+        fileName = window.projectDir+"\\"+dest+"\\"+fileName;
+
+        return fileName.replace(/\\/g,"/");
+        
+    }
+    
+}
+
+
+

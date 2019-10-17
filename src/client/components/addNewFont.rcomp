@@ -13,7 +13,7 @@
         </div>
         <div class="rut-class-window-item">
             <label for="rut-select-font" class="rut-controls-button-like" style="cursor: pointer">Обзор...</label>
-            <input type="file" style='display:none' id="rut-select-font" accept=".ttf .otf .fon .fnt">
+            <input type="file" style='display:none' id="rut-select-font">
         </div>
     </div>
     
