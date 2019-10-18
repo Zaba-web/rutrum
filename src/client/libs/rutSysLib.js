@@ -206,7 +206,7 @@ class CSSClassesManager{
     
     addClass(){
         
-        this.scanURLProps();
+        CSSClassesManager.scanURLProps();
         
         window.temponaryClass.name += $("#rut-new-class-pseudo").val();
         window.mediaContainer.styles.classes[window.temponaryClass.name] = jQuery.extend(true, {}, window.temponaryClass);
@@ -218,7 +218,7 @@ class CSSClassesManager{
         
     }
     
-    scanURLProps(){
+    static scanURLProps(){
         
         for(let key in window.temponaryClass.properties){
             if (window.temponaryClass.properties[key].includes("url")){
@@ -234,8 +234,9 @@ class CSSClassesManager{
     
     static updateCSS(){
         
-        let CSSPrep = new CSSPreprocessor();
-        let css = CSSPrep.render() + "\n" + FontController.includeFonts();
+        let CSSPrep = new CSSPreprocessor(window.mediaContainer.styles.classes);
+        let css = CSSPrep.render() + "\n" + FontController.includeFonts() + "\n" + MediaQuery.renderMediaCode();
+        
         $("style").html(css);
         
         let classList = new ViewerListWriter("#rut-class-list",window.mediaContainer.styles.classes,"класс",true,"class");
@@ -304,13 +305,34 @@ class OptionListWriter{
     
     constructor(target){
         this.target = target;
+        $(this.target).html("");
     }
     
-    write(obj,count){
+    write(obj,count,nullObj=false){
+        if(nullObj){
+            $(this.target).append("<option value='none'>Нет</option>");
+        }
         for(let i = 0; i<count; i++){
             $(this.target).append("<option value='"+obj[i]+"'>"+obj[i]+"</option>");
         }
     }
+}
+
+class OptionListKeyWriter extends OptionListWriter{
+    
+    constructor(target){
+        super(target);
+    }
+    
+    write(obj,nullObj=false){
+        if(nullObj){
+            $(this.target).append("<option value='none'>Нет</option>");
+        }
+        for(let key in obj){
+            $(this.target).append("<option value='"+obj[key]+"'>"+obj[key]+"</option>");
+        }
+    }
+    
 }
 
 class AllCSSPropertiesWriter extends OptionListWriter{
@@ -338,30 +360,33 @@ class ClassListWriter extends OptionListWriter{
         for(let key in window.mediaContainer.styles.classes){
             $(this.target).append("<option value='"+window.mediaContainer.styles.classes[key].name+"'>"+window.mediaContainer.styles.classes[key].name+"</option>");
         }
+        $(this.target).append("<option disabled>---------</option><option disabled>Классы Bootstrap: </option><option disabled>---------</option>");
     }
+    
 }
 
 class CSSPreprocessor{
     
-    constructor(){
+    constructor(object){
         this.style = " ";
-        this.count  = Object.keys(window.mediaContainer.styles.classes).length;
+        this.object = object;
+        this.count  = Object.keys(object).length;
     }
     
     render(){
         
         for(let i = 0; i<this.count; i++){
             
-            let currentItemName = Object.keys(window.mediaContainer.styles.classes)[i];
-            let currentItemPropCount = Object.keys(window.mediaContainer.styles.classes[currentItemName].properties).length;
+            let currentItemName = Object.keys(this.object)[i];
+            let currentItemPropCount = Object.keys(this.object[currentItemName].properties).length;
             
             this.style += "."+currentItemName+"{";
             
             for(let j = 0; j<currentItemPropCount; j++){
                 
-                let currentPropertyName = Object.keys(window.mediaContainer.styles.classes[currentItemName].properties)[j];
+                let currentPropertyName = Object.keys(this.object[currentItemName].properties)[j];
                 
-                let currentPropertyValue = window.mediaContainer.styles.classes[currentItemName].properties[currentPropertyName];
+                let currentPropertyValue = this.object[currentItemName].properties[currentPropertyName];
                 
                 this.style += currentPropertyName + ":" + currentPropertyValue;
                 
@@ -390,17 +415,45 @@ class ViewerListWriter{
         
     }
     
+    write(parent = null){
+        
+        $(this.target).html("");
+        
+        for(let key in this.object){
+            
+            $(this.target).append("<li class='rut-class-list-item' id='"+key+"'><span class='"+this.classes+"'>"+key+"</span><div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить "+this.name+"' data-parent='"+parent+"' data-"+this.type+"-name='"+key+"' class='rut-"+this.type+"-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' "+this.editable+" title='Изменить "+this.name+"' data-parent='"+parent+"' data-"+this.type+"-name='"+key+"' class='rut-"+this.type+"-list-item-edit'></div></li>");
+        
+        }
+        
+    }
+}
+
+class ViewerListWriterMedia extends ViewerListWriter{
+    
+    constructor(target,object,titleName,editable,type,classes = null){
+        
+        super(target,object,titleName,editable,type,classes = null);
+        
+    }
+    
     write(){
         
         $(this.target).html("");
         
         for(let key in this.object){
             
-            $(this.target).append("<li class='rut-class-list-item' id='"+key+"'><span class='"+this.classes+"'>"+key+"</span><div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить "+this.name+"' data-"+this.type+"-name='"+key+"' class='rut-"+this.type+"-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' "+this.editable+" title='Изменить "+this.name+"' data-"+this.type+"-name='"+key+"' class='rut-"+this.type+"-list-item-edit'></div></li>");
-        
+            $(this.target).append("<li class='rut-class-list-item' id='"+key+"'><span class='"+this.classes+"'>"+key+"</span><div class='rut-class-list-item-operation-container'><img src='assets/images/classDelete.svg' title='Удалить "+this.name+"' data-"+this.type+"-name='"+key+"' class='rut-"+this.type+"-list-item-delete' style='margin-right:10px'><img src='assets/images/classEdit.svg' "+this.editable+" title='Изменить "+this.name+"' data-"+this.type+"-name='"+key+"' class='rut-"+this.type+"-list-item-edit'></div><ul id='rut-sublist-"+key+"'></ul></li>");
+            
+            let mediaClassListWriter = new ViewerListWriter("#rut-sublist-"+key,this.object[key].classes, "класс", true, "media-class");
+            
+            logger.log(this.object[key].classes);
+            
+            mediaClassListWriter.write(key);
+            
         }
         
     }
+    
 }
 
 class PageController{
@@ -509,12 +562,14 @@ class ProjectCreator{
             fs.mkdirSync(dir);
             fs.mkdirSync(dir+"\\img");
             fs.mkdirSync(dir+"\\fonts");
+            fs.mkdirSync(dir+"\\scripts");
 
 
             fs.writeFileSync(dir+"\\pages.json", '{}');
             fs.writeFileSync(dir+"\\styles.json", '{}');
             fs.writeFileSync(dir+"\\scripts.json", '{}');
             fs.writeFileSync(dir+"\\fonts.json", '{}');
+            fs.writeFileSync(dir+"\\maintenance.json", '{}');
         
         }
     }
@@ -536,6 +591,8 @@ class ProjectSaver{
 
         fs.writeFileSync(window.projectDir+"\\fonts.json", JSON.stringify(window.mediaContainer.fonts));
         
+        fs.writeFileSync(window.projectDir+"\\maintenance.json",'{"prefs":{"path":"'+window.projectDir+'"}}');
+        
     }
     
 }
@@ -546,22 +603,17 @@ class ProjectLoader{
         
         this.readData(path);
         window.projectDir = path.replace(/\\/g,"/");
-    
+        
+        if(window.projectDir != window.projectMaintenance.prefs.path){
+            this.fixProjectPath();
+        }
+        
         Workspace.enable();
-        updateCountDataInfo();
 
         CSSClassesManager.updateCSS();
         FontController.loadFonts();
 
-        let classList = new ViewerListWriter("#rut-class-list",window.mediaContainer.styles.classes,"класс",true,"class");
-        
-        let pageList = new ViewerListWriter("#rut-page-list",window.mediaContainer.pages,"страницу",true,"page","rut-select-page");
-
-        let fontList = new ViewerListWriter("#rut-font-list",window.mediaContainer.fonts,"шрифт",false,"font");
-        
-        classList.write();
-        pageList.write();
-        fontList.write();
+        Updater.updateAllProjectData();
 
         PageController.selectActivePage(window.mediaContainer.pages[Object.keys(window.mediaContainer.pages)[0]].name);
     
@@ -569,11 +621,48 @@ class ProjectLoader{
     }
     
     readData(path){
+        
         let fs = require('fs');
         window.mediaContainer.pages = JSON.parse(fs.readFileSync(path+"/pages.json"));
+        
         window.mediaContainer.styles = JSON.parse(fs.readFileSync(path+"/styles.json"));
+        
         window.mediaContainer.scripts = JSON.parse(fs.readFileSync(path+"/scripts.json"));
+        
         window.mediaContainer.fonts = JSON.parse(fs.readFileSync(path+"/fonts.json"));
+        window.projectMaintenance = JSON.parse(fs.readFileSync(path+"/maintenance.json"));
+        
+    }
+    
+    fixProjectPath(){ // changes old project path to the new one if project directory has been moved
+        
+        let oldPath = window.projectMaintenance.prefs.path;
+        let newPath = window.projectDir;
+        
+        for(let key in window.mediaContainer.pages){
+            
+            window.mediaContainer.pages[key].value = window.mediaContainer.pages[key].value.replaceAll(oldPath,newPath);
+            
+        }
+        
+        for(let key in window.mediaContainer.fonts){
+            
+            window.mediaContainer.fonts[key].path = window.mediaContainer.fonts[key].path.replaceAll(oldPath,newPath);
+            
+        }
+        
+        for(let classKey in window.mediaContainer.styles.classes){
+            
+            let propList = window.mediaContainer.styles.classes[classKey].properties;
+            
+            for(let propKey in propList){
+                
+                propList[propKey] = propList[propKey].replaceAll(oldPath,newPath);
+                
+            }
+            
+        }
+        
     }
     
 }
@@ -584,21 +673,12 @@ class ProjectClose{
         window.mediaContainer.pages = {};
         window.mediaContainer.scripts = {};
         window.mediaContainer.styles.classes = {};
-        window.mediaContainer.styles.media.classes = {};
+        window.mediaContainer.styles.media = {};
         window.mediaContainer.fonts = {};
         window.projectDir = null;
 
-        let classList = new ViewerListWriter("#rut-class-list",window.mediaContainer.styles.classes,"класс",true,"class");
+        Updater.updateAllProjectData();
 
-        let pageList = new ViewerListWriter("#rut-page-list",window.mediaContainer.pages,"страницу",true,"page","rut-select-page");
-
-        let fontList = new ViewerListWriter("#rut-font-list",window.mediaContainer.fonts,"шрифт",false,"font");
-        
-        classList.write();
-        pageList.write();
-        fontList.write();
-
-        updateCountDataInfo();
     }
     
 }
@@ -624,5 +704,114 @@ class File{
     
 }
 
+class ScriptLoader{
+    
+    constructor(id,name){
+        this.openFileDialog = document.getElementById(id);
+        this.scriptName = name;
+    }
+    
+    load(){
+        
+        let files = this.openFileDialog.files;
+            
+        let filePath = File.copy(files,"scripts");
+        let fileName = filePath.split("/");
+        fileName = fileName[fileName.length-1];
+            
+        window.mediaContainer.scripts[this.scriptName] = {};
+        window.mediaContainer.scripts[this.scriptName].name = this.scriptName;
+        window.mediaContainer.scripts[this.scriptName].realName = fileName;
+        
+        updateCountDataInfo();
+        
+        return true;
+    }
+    
+    static delete(name){
+        delete window.mediaContainer.scripts[name];
+    }
+    
+}
 
+class Updater{
+    
+    static updateAllProjectData(){
+        
+        updateCountDataInfo();
+        
+        let classList = new ViewerListWriter("#rut-class-list",window.mediaContainer.styles.classes,"класс",true,"class");
+        
+        let pageList = new ViewerListWriter("#rut-page-list",window.mediaContainer.pages,"страницу",true,"page","rut-select-page");
+        
+        let fontList = new ViewerListWriter("#rut-font-list",window.mediaContainer.fonts,"шрифт",false,"font");
+        
+        let scriptList = new ViewerListWriter("#rut-script-list",window.mediaContainer.scripts,"скрипт",false,"script");
+        
+        let mediaList = new ViewerListWriterMedia("#rut-media-list",window.mediaContainer.styles.media,"скрипт",true,"media");
+        
+        
+        classList.write();
+        pageList.write();
+        fontList.write();
+        scriptList.write();
+        mediaList.write();
+        
+    }
+    
+    static updateMetaData(){
+        CSSClassesManager.updateCSS();
+    }
+}
 
+class MediaQuery{
+    
+    static add(name,statement){
+        
+        window.mediaContainer.styles.media[name] = {};
+        window.mediaContainer.styles.media[name].statement = statement;
+        window.mediaContainer.styles.media[name].classes = {};
+        
+        Updater.updateAllProjectData();
+        
+        return true;
+    }
+    
+    static delete(name){
+        delete window.mediaContainer.styles.media[name];
+    }
+    
+    static addClass(name){
+        
+        CSSClassesManager.scanURLProps();
+        
+        window.temponaryClass.name += $("#rut-new-class-pseudo").val();
+        window.mediaContainer.styles.media[name].classes[window.temponaryClass.name] = jQuery.extend(true, {}, window.temponaryClass);
+
+        TemponaryClassController.clearTempClass();
+        
+        Updater.updateAllProjectData();
+        
+        CSSClassesManager.updateCSS();
+        return true;
+    }
+    
+    static renderMediaCode(){
+        
+        let result = "";
+        
+        for(let key in window.mediaContainer.styles.media){
+            
+            result += "@media("+window.mediaContainer.styles.media[key].statement+"){";
+            
+            let cssPrep = new CSSPreprocessor(window.mediaContainer.styles.media[key].classes);
+            
+            result += cssPrep.render();
+            result += "}";
+            
+        }
+        return result;
+        
+    }
+    
+}
