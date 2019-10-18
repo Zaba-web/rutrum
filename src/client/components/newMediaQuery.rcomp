@@ -1,0 +1,28 @@
+<div class="rut-class-window-container">
+    <h4 class="rut-h4 rut-h4-tools-group-title">Медиа-запрос</h4>
+    <div class="rut-class-window-item-container">
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:20px;">Имя запроса:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-add-media-name" class="rut-inner-controls" type="text">
+        </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:20px;">Условие запроса:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-add-media-statement" class="rut-inner-controls" type="text">
+        </div>
+    </div>
+    
+    <br>
+    
+    <input class="rut-inner-controls" type="button" style="margin-top:20px;margin-right:10px;cursor: pointer" title="Сохранить запрос" id="rut-add-media-submit" value="Сохранить запрос">
+    
+    <span class="rut-status" id="rut-new-media-status"></span>
+    
+    <div class="rut-class-window-close">
+        <img src="assets/images/closeIcon.svg">
+    </div>
+    
+</div>

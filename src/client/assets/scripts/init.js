@@ -9,6 +9,8 @@ var activePage;
 var workStatus = "editing";
 var projectDir;
 
+var projectMaintenance = {};
+
 var mediaContainer = {
     scripts:{
         
@@ -24,7 +26,7 @@ var mediaContainer = {
 
         },
         media   : {
-            classes : {},
+            
         }
     }
 };

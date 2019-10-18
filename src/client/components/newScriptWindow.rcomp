@@ -1,0 +1,33 @@
+<div class="rut-class-window-container">
+    <h4 class="rut-h4 rut-h4-tools-group-title">Подключить скрипт к проекту</h4>
+    <div class="rut-class-window-item-container">
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:20px;">Название скрипта:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-add-script-name" class="rut-inner-controls" type="text">
+        </div>
+        <br>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:20px;">Выберите файл:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <label for="rut-select-script" class="rut-controls-button-like" style="cursor: pointer">Обзор...</label>
+            <input type="file" style='display:none' id="rut-select-script">
+        </div>
+        <br>
+        <span style="color:#fff;font-family:Raleway-Light;font-size:12px;" class="rut-script-path">
+            
+        </span>
+    </div>
+    
+    <br>
+    
+    <input class="rut-inner-controls" type="button" style="margin-top:20px;margin-right:10px;cursor: pointer" title="Добавить скрипт" id="rut-add-script" value="Добавить скрипт">
+    <span class="rut-status" id="rut-new-script-status"></span>
+    
+    <div class="rut-class-window-close">
+        <img src="assets/images/closeIcon.svg">
+    </div>
+    
+</div>

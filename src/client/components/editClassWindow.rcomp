@@ -22,6 +22,9 @@
     <br>
     
     <input class="rut-inner-controls" type="button" style="margin-top:20px;margin-right:10px;cursor: pointer" title="Сохранить класс" id="rut-edit-class-save" value="Сохранить класс">
+    
+    <input class="rut-inner-controls" type="button" style="margin-top:20px;margin-right:10px;cursor: pointer;display:none" title="Сохранить класс" id="rut-edit-media-class-save" value="Сохранить класс" data-parent>
+    
     <span class="rut-status" id="rut-edit-class-status"></span>
     
     <div class="rut-class-window-close">

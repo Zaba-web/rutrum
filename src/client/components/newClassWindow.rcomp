@@ -44,6 +44,14 @@
                 <option value="::selection">selection</option>
             </select>
         </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4" style="margin-right:46px;">Медиазапрос:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <select class='rut-inner-controls' id="rut-new-class-media">
+                
+            </select>
+        </div>
     </div>
     <div class="rut-class-window-item">
         <h4 class="rut-h4">Свойства:</h4>

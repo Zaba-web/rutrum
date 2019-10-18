@@ -9,7 +9,7 @@ function selectTool(el){
 function useTool(el,currentTool){
     PageController.saveActivePage();
     currentTool = handleToolName(currentTool);
-    console.log("You used tool - "+currentTool);
+    logger.log("You used tool - "+currentTool);
     toolList[currentTool].execute(el);
 }
 

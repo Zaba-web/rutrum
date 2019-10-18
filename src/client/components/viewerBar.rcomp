@@ -38,3 +38,27 @@
         <input class="rut-inner-controls rut-input-val-small rut-add-font-trigger" type="button" value=" + " style="margin-left:12px;margin-top:12px;cursor: pointer" title="Добавить шрифт">
     </div>
 </div>
+<div class="rut-docker-prop-group">
+    <div class="rut-docker-prop-group-header">
+        <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-scripts'>
+        <h4 class="rut-h4 rut-h4-tools-group-title">Скрипты</h4>
+    </div>
+    <div class="rut-docker-prop-group-body" id="rut-group-scripts">
+        <ul id="rut-script-list">
+            
+        </ul>
+        <input class="rut-inner-controls rut-input-val-small rut-add-new-script-trigger" type="button" value=" + " style="margin-left:12px;margin-top:12px;cursor: pointer" title="Добавить скрипт">
+    </div>
+</div>
+<div class="rut-docker-prop-group">
+    <div class="rut-docker-prop-group-header">
+        <img src="assets/images/showGroupIcon.svg" alt="" class="rut-prop-group-expander" data-group-id='rut-group-media'>
+        <h4 class="rut-h4 rut-h4-tools-group-title">Медиа запросы</h4>
+    </div>
+    <div class="rut-docker-prop-group-body" id="rut-group-media">
+        <ul id="rut-media-list">
+            
+        </ul>
+        <input class="rut-inner-controls rut-input-val-small rut-add-media-trigger" type="button" value=" + " style="margin-left:12px;margin-top:12px;cursor: pointer" title="Добавить медиа запрос">
+    </div>
+</div>

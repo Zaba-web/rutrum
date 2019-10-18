@@ -140,7 +140,10 @@ body.rut{
     margin-top:27px;
     margin-bottom:27px;
     display: flex;
-    z-index: 1002;
+    transition: .4s;
+    position: relative;
+    z-index: 1005;
+    bottom:0;
 }
 .rut-display-mode{
     width:50%;
@@ -152,7 +155,9 @@ body.rut{
     padding:5px;
 }
 .rut-display-mode-inv{
-    opacity: .4;
+    opacity: .2;
+    bottom:55px;
+    transform: scale(.8);
 }
 .rut-display-mode:hover{
     background: #313641;
@@ -333,7 +338,7 @@ body.rut{
 }
 .rut-workspace-container .rut-display{
     box-sizing: border-box;
-    border:1px dashed #c2c2c2;
+    outline:1px dashed #c2c2c2;
     padding:1px;
     outline-offset: 1px;
 }
@@ -588,6 +593,7 @@ body.rut{
 }
 .rut-preview{
     background: #fff;
+    overflow: auto;
 }
 
 .rut-class-list-item,.rut-element-class-list-container{

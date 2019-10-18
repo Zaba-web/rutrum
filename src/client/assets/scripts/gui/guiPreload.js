@@ -14,6 +14,9 @@ $(document).ready(function(){
     loadPart("editPageWindow","#rut-page-edit-window");
     loadPart("createNewProject","#rut-create-new-project");
     loadPart("addNewFont","#rut-add-font-window");
+    loadPart("newScriptWindow","#rut-add-script-window");
+    loadPart("newMediaQuery","#rut-add-media-window");
+    
     
     
     
@@ -23,15 +26,7 @@ $(document).ready(function(){
     FontController.loadFonts();
     
     // loading all viewer lists
-    let classList = new ViewerListWriter("#rut-class-list",window.mediaContainer.styles.classes,"класс",true,"class");
-    
-    let pageList = new ViewerListWriter("#rut-page-list",window.mediaContainer.pages,"страницу",true,"page","rut-select-page");
-    
-    let fontList = new ViewerListWriter("#rut-font-list",window.mediaContainer.fonts,"шрифт",false,"font");
-    
-    classList.write();
-    pageList.write();
-    fontList.write();
+    Updater.updateAllProjectData();
 
     // rendering css code
     CSSClassesManager.updateCSS();
