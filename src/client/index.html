@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Rutrum</title>
     <script src="libs/jquery.js"></script>
+    <script src="libs/jquery-ui.js"></script>
     <script src="libs/rutSysLib.js"></script>
     <script src="libs/functions.js"></script>
     <script src="libs/propertiesList.js"></script>
@@ -24,6 +25,7 @@
     <link rel="stylesheet" href="assets/styles/fonts.css">
     <link rel="stylesheet" href="assets/styles/vendor/chosen.css">
     <link rel="stylesheet" href="assets/styles/vendor/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/styles/vendor/jquery-ui.css">
 </head>
 <body class="rut">
     <style></style>
@@ -93,6 +95,13 @@
     	</div>
     </div>
     
+    <div class="rut-notification-container">
+        <div class="rut-notification">
+            <p class="rut-notification-text"></p>
+            <div class="rut-notification-progress"></div>
+        </div>
+    </div>
+    
     <div class="rut-project-pannel-container">
     	<span>
     	    Проект: <span class="rut-project-name"></span> • Страницы: <span class="rut-page-count"></span> • Скрипты: <span class="rut-scripts-count"></span> • Классы: <span class="rut-class-count"></span> • Инструмент: <span id='rut-tool-name' data-tool-name></span>
@@ -119,6 +128,9 @@
     	        </li>
     	    </ul>
     	</span>
+    	<div class="rut-rut-project-pannel-line">
+    	    
+    	</div>
     </div>
     
     <div class="rut-display-mode-container">
