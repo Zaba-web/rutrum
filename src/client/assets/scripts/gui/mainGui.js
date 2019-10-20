@@ -54,12 +54,12 @@ $(document).ready(function(){
                         $("#rut-new-class-name").val("");
                         $("#rut-new-class-pseudo").val("");
                         $("[data-prop-name]").remove();
-                        $("#rut-new-class-status").text("Класс создан");
+                        notify("Класс создан");
 
                         updateCountDataInfo();
 
                     }else{
-                        $("#rut-new-class-status").text("Не удалось создать класс");
+                        notify("Не удалось создать класс");
                     }
                 }else{
                     if(MediaQuery.addClass($("#rut-new-class-media").val())){ // create new class
@@ -67,19 +67,19 @@ $(document).ready(function(){
                         $("#rut-new-class-name").val("");
                         $("#rut-new-class-pseudo").val("");
                         $("[data-prop-name]").remove();
-                        $("#rut-new-class-status").text("Класс создан");
+                        notify("Класс создан");
 
                         updateCountDataInfo();
 
                     }else{
-                        $("#rut-new-class-status").text("Не удалось создать класс");
+                        notify("Не удалось создать класс");
                     }
                 }
             }else{
-                $("#rut-new-class-status").text("Вы не можете использовать системный префикс rut-");
+                notify("Вы не можете использовать системный префикс rut-");
             }
         }else{
-            $("#rut-new-class-status").text("Укажите имя класса");
+            notify("Укажите имя класса");
         }
     });
     
@@ -136,42 +136,42 @@ $(document).ready(function(){
     $("#rut-edit-class-save").click(function(){
         let classManager = new CSSClassesManager();
         if(classManager.addClass()){
-            $("#rut-edit-class-status").text("Класс обновлен");
+            notify("Класс обновлен");
             Updater.updateAllProjectData();
         }else{
-            $("#rut-edit-class-status").text("Не удалось обновить класс");
+            notify("Не удалось обновить класс");
         }
     });
     
     $("#rut-edit-media-class-save").click(function(){
         if(MediaQuery.addClass($(this).data("parent"))){
-            $("#rut-edit-class-status").text("Класс обновлен");
+            notify("Класс обновлен");
             Updater.updateAllProjectData();
         }else{
-            $("#rut-edit-class-status").text("Не удалось обновить класс");
+            notify("Не удалось обновить класс");
         }
     });
     
     $("#rut-new-page-save").click(function(){
         if($("#rut-new-page-name").val() != ""){
             if(PageController.saveNewPage($("#rut-new-page-name").val(),$("#rut-new-page-title").val())){
-                $("#rut-new-page-status").text("Страница созданна");
+                notify("Страница созданна");
                 updateCountDataInfo();
             }else{
-                $("#rut-new-page-status").text("Не удалось создать страницу");
+                notify("Не удалось создать страницу");
             }
         }else{
-            $("#rut-new-page-status").text("Введите название страницы");
+            notify("Введите название страницы");
         }
         
     });
     
     $("#rut-edit-page-save").click(function(){
         if(PageController.savePageChanges($("#rut-page-edit-name").val())){
-            $("#rut-edit-page-status").text("Страница сохранена");
+            notify("Страница сохранена");
             updateCountDataInfo();
         }else{
-            $("#rut-edit-page-status").text("Не удалось сохранить страницу");
+            notify("Не удалось сохранить страницу");
         }
     });
     
@@ -234,9 +234,10 @@ $(document).ready(function(){
     $("#rut-project-create").click(function(){
         let projCreator = new ProjectCreator();
         if(projCreator.createProject($("#rut-new-project-path-displayer").text(),$("#rut-new-project-name-displayer").text())){
-            $("#rut-project-create-status").text("Проект создан");
+            notify("Проект создан");
+            $(".rut-window-wrapper").fadeOut(50);
         }else{
-            $("#rut-project-create-status").text("Не удалось создать проект");
+            notify("Не удалось создать проект");
         }
     });
     
@@ -246,6 +247,7 @@ $(document).ready(function(){
     
     $("#rut-menu-save-project").click(function(){
         ProjectSaver.save();
+        notify("Проект сохранен");
     });
     
     $("#rut-open-project-input").change(function(){
@@ -264,16 +266,16 @@ $(document).ready(function(){
             var fontFile = document.getElementById("rut-select-font");
             if(FontController.addFont(fontFile.files,$("#rut-add-font-name").val())){
                 
-                $("#rut-new-font-status").text("Шрифт добавлен");
+                notify("Шрифт добавлен");
                 
                 $("#rut-add-font-name").val("");
                 $("#rut-select-font").val("");
                 
             }else{
-                $("#rut-new-font-status").text("Не удалось добавить шрифт");
+                notify("Не удалось добавить шрифт");
             }
         }else{
-            $("#rut-new-font-status").text("Введите имя шрифта");
+            notify("Введите имя шрифта");
         }
     });    
     
@@ -292,7 +294,7 @@ $(document).ready(function(){
             let sl = new ScriptLoader("rut-select-script",$("#rut-add-script-name").val());
             
             if(sl.load()){
-                $("#rut-new-script-status").text("Скрипт подключен");
+                notify("Скрипт подключен");
             }
             
             $("#rut-add-script-name").val("");
@@ -300,7 +302,7 @@ $(document).ready(function(){
             $(".rut-script-path").text("");
             
         }else{
-            $("#rut-new-script-status").text("Введите имя скрипта");
+            notify("Введите имя скрипта");
         }
     });
     
@@ -311,14 +313,14 @@ $(document).ready(function(){
         
         if(queryName.length>0){
             if(MediaQuery.add(queryName,queryStatement)){
-                $("#rut-new-media-status").text("Медиа запрос сохранен");
+                notify("Медиа запрос сохранен");
                 $("#rut-add-media-statement").val("");
                 $("#rut-add-media-name").val("");
             }else{
-                $("#rut-new-media-status").text("Не удалось сохранить медиа запрос");
+                notify("Не удалось сохранить медиа запрос");
             }
         }else{
-            $("#rut-new-media-status").text("Введите имя запроса");
+            notify("Введите имя запроса");
         }
         
     });
