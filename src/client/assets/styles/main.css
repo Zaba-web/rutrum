@@ -20,13 +20,14 @@
 body.rut{
     display: flex;
     flex-direction: column;
-    background: #272A30;
+    background: #232323;
+    overflow: hidden;
 }
 
 .rut-main-top-container{
     width:100%;
     height:28px;
-    background: #2E333F;
+    background: #19191A;
     -webkit-app-region: drag;
     display: flex;
     box-sizing: border-box;
@@ -70,7 +71,7 @@ body.rut{
 .rut-sub-menu{
     position: absolute;
     top:20px;
-    background: rgba(49, 54, 65, 1);
+    background: #19191A;
     padding: 10px;
     display: block;
     min-width:180px;
@@ -88,10 +89,10 @@ body.rut{
     border-radius: 5px;
 }
 .rut-sub-menu>li:hover{
-    background:#272A30;
+    background:rgba(44, 44, 45, .8);
 }
 .rut-main-top-container nav>ul>li:hover{
-	background:#272A30;
+	background:rgba(44, 44, 45, .8);
 }
 .rut-main-top-container nav>ul>li:hover>.rut-sub-menu{
     transform: scale(1);
@@ -115,23 +116,31 @@ body.rut{
 	border-radius: 5px;
 }
 .rut-window-controlls div:hover{
-	background:#272A30;
+	background:rgba(44, 44, 45, .8);
 }
 .rut-project-pannel-container{
 	width:1100px;
 	margin:0 auto;
 	height:32px;
-	background: #313641;
+	background: #19191A;
 	clip-path: polygon(0 0, 100% 0, 100% 62%, 99% 100%, 1% 100%, 0% 62%);
     display: flex;
     padding:0px 15px;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+}
+.rut-rut-project-pannel-line{
+    width:20%;
+    left:40%;
+    top:-1px;
+    position: absolute;
+    border:1px solid #454647;
 }
 .rut-project-pannel-container span{
     color:#fff;
     font-family:Raleway-Light;
-    font-size: 12px;
+    font-size: 11px;
 }
 .rut-display-mode-container{
     min-width:250px;
@@ -148,7 +157,7 @@ body.rut{
 .rut-display-mode{
     width:50%;
     height:100%;
-    background: #2D3038;
+    background: #19191A;
     cursor: pointer;
     transition: .2s;
     text-align: center;
@@ -160,10 +169,10 @@ body.rut{
     transform: scale(.8);
 }
 .rut-display-mode:hover{
-    background: #313641;
+    background: #71AAEB;
 }
 .rut-display-mode-active{
-    background: #313641;
+    background: #71AAEB;
 }
 .rut-display-mode-editing{
     clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0% 38%);
@@ -204,14 +213,14 @@ body.rut{
     top:0;
     z-index: 1;
     position: absolute;
-    background: rgba(60, 66, 75, .8);
+    background: rgba(25, 25, 26, .8);
     clip-path: polygon(50% 0%, 80% 0, 100% 5%, 100% 95%, 80% 100%, 50% 100%, 0 100%, 0% 70%, 0% 35%, 0 0);
 }
 .rut-workspace-wrapper{
     height:100%;
     min-width:1140px;
     width:80%;
-    background: #2D3038;
+    background: #5d5f61;
     margin:0 auto;
     overflow: auto;
 }
@@ -228,7 +237,7 @@ body.rut{
     display: none;
 }
 .rut-dockers-container{
-    background:rgba(58, 63, 72, .8);
+    background:rgba(25, 25, 26, .8);
     position: relative;
     z-index: 999;
 }
@@ -243,10 +252,10 @@ body.rut{
     position: relative;
 }
 .rut-dockets-item-active{
-    background:rgba(49, 54, 65, .8)
+    background:#71AAEB;
 }
 .rut-dockers-item:hover{
-    background:rgba(49, 54, 65, .8)
+    background:#71AAEB;
 }
 .rut-toolbar-container>ul{
     display: block;
@@ -267,7 +276,7 @@ body.rut{
     border-radius: 5px;
 }
 .rut-toolbar-container>ul>li:hover{
-    background: #2D3038;
+    background: #71AAEB;
 }
 .rut-toolbar-container>ul>li:hover .rut-toolbar-item-hint{
     transform: scale(1);
@@ -288,7 +297,7 @@ body.rut{
 }
 .rut-toolbar-item-hint{
     position: absolute;
-    background: rgba(49, 54, 65, .8);
+    background: rgba(25, 25, 26, .8);
     width:230px;
     padding:8px;
     left:60px;
@@ -308,14 +317,14 @@ body.rut{
     box-sizing: border-box;
 }
 .rut-project-pannel-container span ul li:hover{
-    background: #272A30;
+    background: rgba(44, 44, 45, .8);
     border-radius: 5px;
 }
 .rut-sub-toolbar-submenu{
     position: absolute;
     left:50px;
     top:0;
-    background:rgba(49, 54, 65, .8);
+    background:rgba(25, 25, 26, .8);
     display: none;
     width:auto;
 }
@@ -328,13 +337,13 @@ body.rut{
     width:120px;
 }
 .rut-sub-toolbar-submenu li:hover{
-    background:rgba(49, 54, 65, 1);
+    background:#71AAEB;
 }
 .rut-sub-toolbar-submenu:hover+.rut-toolbar-item-hint{
     display: none;
 }
 .rut-toolbar-item-active{
-    background: #2D3038;
+    background: #71AAEB;
 }
 .rut-workspace-container .rut-display{
     box-sizing: border-box;
@@ -357,7 +366,7 @@ body.rut{
     right:32px;
     box-sizing: border-box;
     padding-bottom:20px;
-    background:rgba(49, 54, 65, .8);
+    background:rgba(25, 25, 26, .8);
     top:0;
     writing-mode:horizontal-tb;
     padding-bottom: 20px;
@@ -404,7 +413,7 @@ body.rut{
     padding:0px 0px 10px 0px;
 }
 .rut-inner-controls, .rut-controls-button-like{
-    background: #272A30;
+    background: #5d5f61;
     padding: 4px;
     box-sizing: border-box;
     color:#fff;
@@ -415,10 +424,23 @@ body.rut{
     margin-top:4px;
     font-size:14px;
     display: inline-block;
+    transition: .3s;
+    box-sizing: border-box;
+}
+.rut-specified-select{
+    min-width:160px;
+    width:auto;
 }
 [type='button'].rut-inner-controls{
     cursor: pointer;
     text-align: center;
+    padding:6px;
+}
+[type='button'].rut-inner-controls:hover,.rut-controls-button-like:hover{
+    background:#71AAEB;
+}
+.rut-inner-controls:focus{
+    border:1px solid #71AAEB;
 }
 .rut-controls-button-like{
     cursor: pointer;
@@ -438,7 +460,7 @@ body.rut{
     position: absolute;
     width:30px;
     height:auto;
-    background: rgba(60, 66, 75, .8);
+    background: rgba(25, 25, 26, .8);
     display: none;
     z-index: 999;
 }
@@ -464,7 +486,7 @@ body.rut{
     border-radius: 5px;
 }
 .rut-item-opertaions-container>ul>li:hover{
-    background: #313641;
+    background: rgba(25, 25, 26, 1);
 }
 .rut-workspace-container a.rut-dynamic{
     display: inline-block;
@@ -476,7 +498,7 @@ body.rut{
     position: absolute;
     min-height:30px;
     width:auto;
-    background: rgba(60, 66, 75, .8);
+    background: rgba(25, 25, 26, .8);
     display: none;
     box-sizing: border-box;
     padding:3px;
@@ -487,19 +509,19 @@ body.rut{
     margin-top:5px;
 }
 .rut-inner-controls-light{
-    background: rgba(60, 66, 75, 1);
+    background: #5d5f61;
 }
 .rut-docker-prop-group-header{
     width:100%;
     box-sizing: border-box;
-    background:#313641;
+    background:rgba(25, 25, 26, .8);
     padding:6px;
     display: flex;
     align-items: center;
 }
 .rut-docker-prop-group-body{
     width:100%;
-    border-left:6px solid #313641;
+    border-left:6px solid background:rgba(25, 25, 26, .8);
     padding-bottom: 10px;
     display: none;
 }
@@ -528,7 +550,7 @@ body.rut{
     box-sizing: border-box;
     padding:10px;
     position: relative;
-    background:#313641;
+    background:rgba(25, 25, 26, .8);
 }
 .rut-close-docker-pannel{
     position: absolute;
@@ -548,7 +570,7 @@ body.rut{
 .rut-class-window-container{
     width:550px;
     max-height: 500px;
-    background: rgba(46, 51, 63, .8);
+    background: rgba(25, 25, 26, .9);
     padding:25px;
     position: relative;
 }
@@ -626,9 +648,46 @@ body.rut{
 .rut-select-page{
     cursor: pointer;
 }
+.rut-notification-container{
+    position: absolute;
+    left:0px;
+    top:71px;
+    height:35px;
+    min-width:50px;
+    width:auto;
+    color:#fff;
+    font-family:Raleway-Light;
+    font-size:15px;
+    background: rgba(25, 25, 26, 1);
+    display: none;
+}
+.rut-notification-progress{
+    position: absolute;
+    bottom:0;
+    width:100%;
+    height:1px;
+    background: #71AAEB;
+    left:0;
+    animation:3.1s notification-progress linear;
+}
+.rut-notification{
+    position: relative;
+    width:100%;
+    height:100%;
+}
+.rut-notification-text{
+    padding:10px;
+}
 
 
-
+@keyframes notification-progress{
+    from{
+        width:100%;
+    }
+    to{
+        width:0;
+    }
+}
 @keyframes rut-op-active{
     0%{
         transform: scale(1);
