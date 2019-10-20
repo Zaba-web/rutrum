@@ -8,6 +8,8 @@ var toolList = {
               $(this.selected).attr("contenteditable","false");
           }
           
+          $(".ui-resizable").resizable('destroy');
+          
           let propertyControler = new PropertyController(el);
           
           $(".rut-element-selected").removeClass("rut-element-selected");
@@ -24,6 +26,8 @@ var toolList = {
             if($(el).data("text")){
                 $(el).attr("contenteditable","true");
                 getItemTextEditor(el);
+            }else{
+                $(el).resizable();
             }  
               
             this.selected = el;

@@ -61,3 +61,10 @@ function resizeWorkspace(event){
             
     $(".rut-workspace-container").css("transform","scale("+scale+")");
 }
+
+function notify(text){
+    
+    $(".rut-notification-text").text(text);
+    $(".rut-notification-container").fadeIn(100);
+    setTimeout(function(){$(".rut-notification-container").fadeOut(100);},3000)
+}
