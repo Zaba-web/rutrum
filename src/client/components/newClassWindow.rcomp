@@ -12,7 +12,7 @@
             <h4 class="rut-h4" style="margin-right:46px;">Псевдокласс:</h4>
         </div>
         <div class="rut-class-window-item">
-            <select class='rut-inner-controls' id="rut-new-class-pseudo">
+            <select class='rut-inner-controls rut-specified-select' id="rut-new-class-pseudo">
                 <option value="" selected>Нет</option>
                 <option value=":active">active</option>
                 <option value=":any">any</option>
@@ -48,7 +48,7 @@
             <h4 class="rut-h4" style="margin-right:46px;">Медиазапрос:</h4>
         </div>
         <div class="rut-class-window-item">
-            <select class='rut-inner-controls' id="rut-new-class-media">
+            <select class='rut-inner-controls rut-specified-select' id="rut-new-class-media">
                 
             </select>
         </div>
