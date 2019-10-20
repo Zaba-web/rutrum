@@ -27,10 +27,12 @@ function getToolTitle(currentTool){
 }
 
 function appendElement(targetElement,template){
-    var appendElementType = $(targetElement).css("display");
+    let appendElementType = $(targetElement).css("display");
     if(insertableTypes.indexOf(appendElementType) != -1){
-        $(targetElement).append(template);
+        let element = template;
+        $(targetElement).append(element);
     }
+    
 }
 
 function getItemOperations(target){
