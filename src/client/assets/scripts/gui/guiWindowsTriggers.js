@@ -86,7 +86,7 @@ $(document).ready(function(){
         $("#rut-add-font-window").fadeIn(150);
     });
 
-    $("#rut-menu-new-project").click(function(){
+    $(".rut-menu-new-project").click(function(){
          $(".rut-window-wrapper").fadeOut();
          $("#rut-create-new-project").fadeIn(150);
     });

@@ -260,6 +260,10 @@ $(document).ready(function(){
         $(".rut-workspace-container").fadeOut(150);
     });
     
+    $("#rut-menu-export-project").click(function(){
+        let exporter = new Exporter();
+        exporter.export();
+    });
     
     $("#rut-add-font").click(function(){
         if($("#rut-add-font-name").val().length > 0){
@@ -324,6 +328,18 @@ $(document).ready(function(){
         }
         
     });
+    
+    $('a[target=_blank]').on('click', function(){
+       require('nw.gui').Shell.openExternal( this.href );
+       return false;
+    });
+
+
+    
+    
+    
+    
+    
     
 });
 

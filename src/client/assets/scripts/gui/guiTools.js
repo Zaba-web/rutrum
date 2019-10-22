@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // tools description
     $(".rut-toolbar-item-expandable").on("click",function(){
+        $(".rut-sub-toolbar-submenu").hide();
         $(this).children(".rut-sub-toolbar-submenu").fadeToggle(100);
         $(".rut-toolbar-item-hint").hide();
     });

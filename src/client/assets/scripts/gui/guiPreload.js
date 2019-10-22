@@ -69,4 +69,5 @@ $(document).ready(function(){
     });
     
     $(".rut-window-wrapper").hide(); // hidding all dialog windows
+    $(".rut-item-opertaions-container").hide(); // hidding the operation pannel
 });

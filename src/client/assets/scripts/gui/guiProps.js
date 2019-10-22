@@ -2,7 +2,8 @@ $(document).ready(function(){
     
     $(".rut-elem-prop-change").on("change",function(){
         PropController = new PropertyController(this);
-        PropController.setProp(PageController.saveActivePage);
+        PropController.setProp();
+        PageController.saveActivePage();
     });
     
     $(".rut-elem-prop-spec-change").on("change",function(){
@@ -24,6 +25,7 @@ $(document).ready(function(){
         PropController.setProp();
         
         $("#rut-add-image").val("");
+        PageController.saveActivePage();
     });
     
     $(".rut-control-link").change(function(){
@@ -52,7 +54,7 @@ $(document).ready(function(){
         
         PropController = new PropertyController(target);
         PropController.setProp();
-        
+        PageController.saveActivePage();
         $("#rut-elem-prop-attr-src-selector").val("");
     });
     
