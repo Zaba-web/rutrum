@@ -40,5 +40,34 @@ var operationsList = {
     clearStyle: function(el){
         $(el).attr("style","");
         pulseEffect("[data-op='clearStyle']");
+    },
+    domElementDown: function(el){
+        
+        let nextElement = $(el).next();
+        
+        if(nextElement.length == 0){
+            
+            if(!$(el).parent().hasClass("rut-workspace-container")){
+                nextElement = $(el).parent();
+            }
+            
+        }
+        
+        $(nextElement).after(el);
+    },
+    domElementUp: function(el){
+        
+        let nextElement = $(el).prev();
+        
+        if(nextElement.length == 0){
+            
+            if(!$(el).parent().hasClass("rut-workspace-container")){
+                nextElement = $(el).parent();
+            }
+            
+        }
+        
+        $(nextElement).before(el);
+        
     }
 }
