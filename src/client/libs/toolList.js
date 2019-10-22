@@ -27,7 +27,9 @@ var toolList = {
                 $(el).attr("contenteditable","true");
                 getItemTextEditor(el);
             }else{
-                $(el).resizable();
+                if($(el).prop("tagName") != "IMG"){
+                    $(el).resizable();
+                }
             }  
               
             this.selected = el;
@@ -187,7 +189,7 @@ var toolList = {
     },
     tr:{
         title:"Строка таблицы",
-        template:"<tr class='rut-display rut-insertable rut-dynamic'></tr>",
+        template:"<tr class='rut-display rut-insertable rut-dynamic'><td class='rut-display rut-insertable rut-dynamic' data-text='true'></td></tr>",
         execute: function(el){
             appendElement(el,this.template);
         }
