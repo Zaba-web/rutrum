@@ -74,9 +74,9 @@ body.rut{
     background: #19191A;
     padding: 10px;
     display: block;
-    min-width:180px;
+    min-width:205px;
     width:auto;
-    z-index: 1002;
+    z-index: 1103;
     transition: .4s;
     transform: scaleY(0);
     transform-origin: top;
@@ -87,6 +87,13 @@ body.rut{
     padding:8px;
     transition: .2s;
     border-radius: 5px;
+    position: relative;
+}
+.rut-hotkey{
+    font-size:8px;
+    position: absolute;
+    right:5px;
+    color:#d5d5d5;
 }
 .rut-sub-menu>li:hover{
     background:rgba(44, 44, 45, .8);
@@ -218,7 +225,7 @@ body.rut{
 }
 .rut-workspace-wrapper{
     height:100%;
-    min-width:1140px;
+    min-width:1170px;
     width:80%;
     background: #5d5f61;
     margin:0 auto;
@@ -226,7 +233,7 @@ body.rut{
 }
 .rut-workspace-container{
     height:100%;
-    width:1140px;
+    width:1170px;
     margin:0 auto;
     box-sizing: border-box;
     background: #fff;
@@ -346,16 +353,24 @@ body.rut{
     background: #71AAEB;
 }
 .rut-workspace-container .rut-display{
-    box-sizing: border-box;
     outline:1px dashed #c2c2c2;
-    padding:1px;
-    outline-offset: 1px;
+    padding:3px 0;
+    min-height:1px;
 }
 .rut-workspace-container .rut-display:hover{
     outline: 1px solid #3b97e3;
 }
 .rut-workspace-container .rut-element-selected{
+    box-sizing: border-box;
     outline: 2px solid #3b97e3;
+}
+.rut-workspace-container table.rut-dynamic{
+    padding:3px;
+    border-collapse:separate; 
+    border-spacing: 0 1em;
+}
+.rut-workspace-container td.rut-dynamic{
+    padding:3px;
 }
 .rut-dockers-item-inner-container{
     position: absolute;
@@ -458,10 +473,10 @@ body.rut{
 }
 .rut-item-opertaions-container{
     position: absolute;
-    width:30px;
+    width:60px;
     height:auto;
     background: rgba(25, 25, 26, .8);
-    display: none;
+    display: flex;
     z-index: 999;
 }
 .rut-item-opertaions-container>ul{
@@ -471,6 +486,7 @@ body.rut{
     width:100%;
     height:100%;
     padding-bottom: 5px;
+    float:left;
 }
 .rut-item-opertaions-container>ul>li{
     text-align: center;
@@ -490,9 +506,6 @@ body.rut{
 }
 .rut-workspace-container a.rut-dynamic{
     display: inline-block;
-}
-.rut-table-row-temp{
-    padding:3px;
 }
 .rut-item-text-editor-container{
     position: absolute;
@@ -566,6 +579,7 @@ body.rut{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1101;
 }
 .rut-class-window-container{
     width:550px;
@@ -678,6 +692,97 @@ body.rut{
 .rut-notification-text{
     padding:10px;
 }
+.rut-move-pointer{
+    width:100%;
+    height:2px;
+    position: absolute;
+    background: #62c462;
+    z-index: 999;
+}
+.rut-start-window-wrapper{
+    position: fixed;
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:28px;
+    z-index: 1100;
+    background: rgba(25, 25, 26, 0.5);
+}
+.rut-start-window-container{
+    background: rgba(25, 25, 26, 0.8);
+    box-shadow:         5px 5px 19px 0px rgba(25, 25, 26, 0.68);
+    width:320px;
+    height:370px;
+    padding:15px;
+}
+.rut-start-window-logo{
+    width:64px;
+    margin:0 auto;
+}
+.rut-h1{
+    color:#fff;
+    font-weight:400;
+    font-family:Raleway-Light;
+    font-size:21px;
+    text-align: center;
+}
+.rut-start-window-menu{
+    display: block;
+    margin-top:35px;
+}
+.rut-start-window-menu>li{
+    color:#fff;
+    font-family:Raleway-Light;
+    font-size:14px;
+    list-style: none;
+    text-align: left;
+    padding-top:15px;
+    padding-left:20px;
+    cursor: pointer;
+    transition: .3s;
+}
+.rut-start-window-menu>li:hover{
+    color:#71AAEB;
+}
+.rut-start-window-credits{
+    color:#fff;
+    text-align:center;
+}
+.rut-start-window-credits{
+    padding-top:50px;
+}
+.rut-link{
+    text-decoration: none;
+    color:#fff;
+    font-family:Raleway;
+    font-size:13px;
+}
+.rut-loading{
+    position: fixed;
+    width:200px;
+    height:200px;
+    z-index: 2000;
+    background: url(../images/loader.svg) #19191A;
+    background-position: center;
+    background-size: 80%;
+    background-repeat: no-repeat;
+}
+
+
+
+*:not(.rut-woskrpace-container){
+     -webkit-user-select: none;
+}
+
+
+
+
+
+
+
 
 
 @keyframes notification-progress{
