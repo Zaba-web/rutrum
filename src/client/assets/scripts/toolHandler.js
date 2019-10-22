@@ -37,18 +37,26 @@ function appendElement(targetElement,template){
 
 function getItemOperations(target){
     $(".rut-item-opertaions-container").show();
-    var position = $(target).offset();
-    $(".rut-item-opertaions-container").css({"left":position.left-$(".rut-item-opertaions-container").width()-12,"top":position.top});
+    
+    let distance = $(window).height()-$(".rut-item-opertaions-container").position().top;
+    
+    let position = $(target).offset();
+     
+    if(distance<$(".rut-item-opertaions-container").height()){
+        position.top -= $(".rut-item-opertaions-container").height();
+    }
+    
+    $(".rut-item-opertaions-container").css({"left":position.left-$(".rut-item-opertaions-container").width()-7,"top":position.top});
 }
 
 function getItemTextEditor(target){
     $(".rut-item-text-editor-container").show();
-    var position = $(target).offset();
+    let position = $(target).offset();
     $(".rut-item-text-editor-container").css({"left":position.left,"top":position.top-$(".rut-item-text-editor-container").height()*1.4});
 }
 
 function changeTool(el){
-    var currentTool = selectTool(el);
+    let currentTool = selectTool(el);
     $("#rut-tool-name").data("tool-name",currentTool);
     $("#rut-tool-name").text(getToolTitle($("#rut-tool-name").data("tool-name")));
     $(".rut-toolbar-item-active").removeClass("rut-toolbar-item-active");
