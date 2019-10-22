@@ -1,9 +1,24 @@
 {
-  "name": "Rutrum",
-  "main": "index.html",
-  "window": {
-    "frame": false,
-    "toolbar": false,
-    "icon": "icon.png"
-  }
+    "app_name": "Rutrum",
+    "description": "Open source web page contrustor",
+    "main": "index.html",
+    "name": "rutrum",
+    "version": "Beta 1.0",
+    "webexe_settings": {
+        "download_dir": "",
+        "force_download": false,
+        "nw_compression_level": 0,
+        "nw_version": "0.41.2",
+        "sdk_build": false,
+        "uncompressed_folder": false,
+        "windows-x32": true
+    },
+    "webkit": {},
+    "window": {
+        "frame": false,
+        "icon": "icon.png",
+        "id": "client",
+        "title": "client",
+        "toolbar": false
+    }
 }
