@@ -49,7 +49,6 @@ class PropertyController {
         
         this.updateAllProps();
         
-        callback();
     }
     
     changeProp(classListRow){
@@ -548,6 +547,7 @@ class ProjectCreator{
 
         PageController.saveNewPage("index","Главная страница");
         PageController.selectActivePage("index");
+        $(".rut-start-window-wrapper").fadeOut(100);
 
         return true;
         
@@ -618,6 +618,7 @@ class ProjectLoader{
         PageController.selectActivePage(window.mediaContainer.pages[Object.keys(window.mediaContainer.pages)[0]].name);
     
         $("#rut-open-project-input").val("");
+        $(".rut-start-window-wrapper").fadeOut(100);
     }
     
     readData(path){
@@ -657,8 +658,24 @@ class ProjectLoader{
             
             for(let propKey in propList){
                 
-                propList[propKey] = propList[propKey].replaceAll(oldPath,newPath);
+                window.mediaContainer.styles.classes[classKey].properties[propKey] = window.mediaContainer.styles.classes[classKey].properties[propKey].replaceAll(oldPath,newPath);
                 
+            }
+            
+        }
+        
+        for(let mediaKey in window.mediaContainer.styles.media){
+            
+            for(let classKey in window.mediaContainer.styles.media[mediaKey].classes){
+            
+                let propList = window.mediaContainer.styles.media[mediaKey].classes[classKey].properties;
+            
+                for(let propKey in propList){
+                
+                    window.mediaContainer.styles.media[mediaKey].classes[classKey].properties[propKey] = window.mediaContainer.styles.media[mediaKey].classes[classKey].properties[propKey].replaceAll(oldPath,newPath);
+                
+                }
+            
             }
             
         }
@@ -677,6 +694,9 @@ class ProjectClose{
         window.mediaContainer.fonts = {};
         window.projectDir = null;
 
+        $("#rut-preview").html("");
+        $(".rut-workspace-container").html("");
+        
         Updater.updateAllProjectData();
 
     }
@@ -811,6 +831,108 @@ class MediaQuery{
             
         }
         return result;
+        
+    }
+    
+}
+
+class Exporter{
+    
+    constructor(){
+        this.fs = require("fs");
+        this.exportPath = window.projectDir+"\\"+"Website";
+    }
+    
+    export(){
+        this.createTree();
+        this.saveStyles();
+        
+        this.copyData();
+        
+        this.buildPages();
+        
+        let gui = require('nw.gui');
+        gui.Shell.openExternal(this.exportPath);
+    }
+    
+    createTree(){
+        if(!this.fs.existsSync(this.exportPath)){
+            this.fs.mkdirSync(this.exportPath);
+            this.fs.mkdirSync(this.exportPath+"/img");
+            this.fs.mkdirSync(this.exportPath+"/styles");
+            this.fs.mkdirSync(this.exportPath+"/scripts");
+            this.fs.mkdirSync(this.exportPath+"/fonts");
+            this.fs.mkdirSync(this.exportPath+"/pages");
+        }
+        
+    }
+    
+    saveStyles(){
+        
+        let CSSPrep = new CSSPreprocessor(window.mediaContainer.styles.classes);
+        
+        let css = CSSPrep.render();
+        let fonts = FontController.includeFonts();
+        let media = MediaQuery.renderMediaCode();
+        
+        css = css.replaceAll(window.projectDir,"..");
+        fonts = fonts.replaceAll(window.projectDir,"..");
+        media = media.replaceAll(window.projectDir,"..");
+        
+        this.fs.writeFileSync(this.exportPath+"/styles/main.css",css);
+        this.fs.writeFileSync(this.exportPath+"/styles/fonts.css",fonts);
+        this.fs.writeFileSync(this.exportPath+"/styles/media.css",media);
+        
+        this.fs.copyFileSync("assets/styles/vendor/bootstrap-grid.min.css", this.exportPath+"/styles/bootstrap-grid.min.css");
+    }
+    
+    copyData(){
+        
+        let dataList = {
+            img: this.fs.readdirSync(window.projectDir+"/img"),
+            fonts: this.fs.readdirSync(window.projectDir+"/fonts"),
+            scripts: this.fs.readdirSync(window.projectDir+"/scripts")
+        }
+        
+        console.log(dataList);
+        
+        for(let dataKey in dataList){
+            for(let i = 0; i < dataList[dataKey].length; i++){
+                let file = dataList[dataKey][i];
+                this.fs.copyFileSync(window.projectDir+"/"+dataKey+"/"+file, this.exportPath+"/"+dataKey+"/"+file);
+            }
+        }
+        
+    }
+    
+    buildPages(){
+        
+        let delimiter = "";
+        let path = "";
+        
+        for(let key in window.mediaContainer.pages){
+            
+            if(key == "index"){
+                delimiter = "";
+                path = "/";
+            }else{
+                delimiter = "../"
+                path = "/pages/";
+            }
+            
+            let scripts = "";
+            
+            for(let script in window.mediaContainer.scripts){
+                scripts+= "<script src='"+delimiter+"scripts/"+window.mediaContainer.scripts[script].realName+"'></script>";
+            }
+            
+            let pageContent = window.mediaContainer.pages[key].value.replaceAll(window.projectDir+"/",delimiter);
+            
+            let template = "<!DOCTYPE html> <html lang='en'> <head> <meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'> <title>"+window.mediaContainer.pages[key].title+"</title> <link rel='stylesheet' href='"+delimiter+"styles/bootstrap-grid.min.css'><link rel='stylesheet' href='"+delimiter+"styles/main.css'><link rel='stylesheet' href='"+delimiter+"styles/fonts.css'><link rel='stylesheet' href='"+delimiter+"styles/media.css'> "+scripts+" </head> <body>"+pageContent+"</body> </html>";
+            
+            this.fs.writeFileSync(this.exportPath+path+window.mediaContainer.pages[key].name+".html",template);
+            
+        }
         
     }
     
