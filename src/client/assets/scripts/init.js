@@ -1,7 +1,29 @@
-var win = nw.Window.get();
-win.setMinimumSize(1170, 512);
+function centerWindow(win){
+    setTimeout(function(){
+        win.setPosition("center");
+    },10);
+}
 
-win.resizeTo(1300,768);
+var win = nw.Window.get();
+win.resizeTo(200,200);
+
+win.setPosition("center");
+
+centerWindow(win);
+
+setTimeout(
+    function(){
+        $("body").fadeOut(100,function(){
+            win.setMinimumSize(1170, 512);
+            win.resizeTo(window.screen.width-1,window.screen.height);
+            $(".rut-loading").hide();
+            setTimeout(function(){
+                $("body").fadeIn(900);
+            },1)
+            
+        });
+
+    },2000)
 
 var elBuffer;
 var styleBuffer;
