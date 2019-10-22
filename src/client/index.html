@@ -21,6 +21,7 @@
     <script src="assets/scripts/gui/guiDockers.js"></script>
     <script src="assets/scripts/gui/guiWindowsTriggers.js"></script>
     <script src="assets/scripts/gui/mainGui.js"></script>
+    <script src="assets/scripts/hotkeys.js"></script>
     <link rel="stylesheet" href="assets/styles/main.css">
     <link rel="stylesheet" href="assets/styles/fonts.css">
     <link rel="stylesheet" href="assets/styles/vendor/chosen.css">
@@ -28,6 +29,8 @@
     <link rel="stylesheet" href="assets/styles/vendor/jquery-ui.css">
 </head>
 <body class="rut">
+    <div class="rut-loading">
+    </div>
     <style></style>
     <div class='rut-main-top-container'>
     	<nav>
@@ -36,37 +39,78 @@
     			<li>
     			    Файл
     			    <ul class="rut-sub-menu">
-    			        <li id="rut-menu-new-project">Создать проект</li>
+    			        <li class="rut-menu-new-project">
+    			            Создать проект 
+    			            <span class='rut-hotkey'>[CTRL+N]</span>
+    			        </li>
     			        
     			        <li id="rut-menu-open-project">
-    			            <label for="rut-open-project-input" style="cursor: pointer" style='height:100%;'>Открыть проект</label>
+    			            <label for="rut-open-project-input" style="cursor: pointer" style='height:100%;'>
+                                Открыть проект 
+                                <span class='rut-hotkey'>[CTRL+O]</span>
+    			            </label>
     			            <input type="file" nwdirectory style='display:none' id="rut-open-project-input">
     			        </li>
     			        
-    			        <li id="rut-menu-save-project">Сохранить проект</li>
+    			        <li id="rut-menu-save-project">
+                            Сохранить проект 
+                            <span class='rut-hotkey'>[CTRL+S]</span>
+    			        </li>
     			        
-    			        <li id="rut-menu-close-project">Закрыть проект</li>
+    			        <li id="rut-menu-close-project">
+                            Закрыть проект 
+                            <span class='rut-hotkey'>[CTRL+W]</span>
+    			        </li>
+    			        
+    			        <li id="rut-menu-export-project">
+                            Эскпорт 
+                            <span class='rut-hotkey'>[CTRL+SHIFT+E]</span>
+    			        </li>
     			    </ul>
     			</li>
     			<li>
     			    Редактирование
-    			     <ul class="rut-sub-menu">
+    			     <ul class="rut-sub-menu" style="width:260px">
                        
-                        <li class="rut-item-operation" data-op="delete">Удалить элемент</li>
+                        <li class="rut-item-operation" data-op="delete">
+                            Удалить элемент
+                            <span class='rut-hotkey'>[Del]</span>
+                        </li>
                         
-                        <li class="rut-item-operation" data-op="edit">Редактировать текст</li>
+                        <li class="rut-item-operation" data-op="edit">
+                            Редактировать текст
+                            <span class='rut-hotkey'>[CTRL+T]</span>
+                        </li>
                         
-    			        <li class="rut-item-operation" data-op="copyEl">Копировать элемент</li>
+    			        <li class="rut-item-operation" data-op="copyEl">
+    			            Копировать элемент
+    			            <span class='rut-hotkey'>[CTRL+ALT+C]</span>
+    			        </li>
     			        
-    			        <li class="rut-item-operation" data-op="pasteEl">Вставить элемент</li>
+    			        <li class="rut-item-operation" data-op="pasteEl">
+    			            Вставить элемент
+    			            <span class='rut-hotkey'>[CTRL+ALT+V]</span>
+    			        </li>
     			        
-    			        <li class='rut-item-operation' data-op="copyStyle">Копировать оформление</li>
+    			        <li class='rut-item-operation' data-op="copyStyle">
+    			            Копировать оформление
+    			            <span class='rut-hotkey'>[CTRL+SHIFT+C]</span>
+    			        </li>
     			        
-    			        <li class='rut-item-operation' ata-op="pasteStyle">Вставить оформление</li>
+    			        <li class='rut-item-operation' ata-op="pasteStyle">
+    			            Вставить оформление
+    			            <span class='rut-hotkey'>[CTRL+SHIFT+V]</span>
+    			        </li>
     			        
-    			        <li class='rut-item-operation' data-op="clearStyle">Очистить оформление</li>
+    			        <li class='rut-item-operation' data-op="clearStyle">
+    			            Очистить оформление
+    			            <span class='rut-hotkey'>[CTRL+SHIFT+ALT+C]</span>
+    			        </li>
     			        
-    			        <li class="rut-elem-class">Классы элемента</li>
+    			        <li class="rut-elem-class">
+    			            Классы элемента
+    			            <span class='rut-hotkey'>[CTRL+D]</span>
+    			        </li>
     			    </ul>
     			</li>
     			<li>
@@ -108,22 +152,22 @@
     	</span>
     	<span>
     	    <ul>
-    	        <li title="Новая страница" class="rut-create-page-trigger">
+    	        <li title="Новая страница [F1]" class="rut-create-page-trigger">
                     <img src="assets/images/newPageIcon.svg">
     	        </li>
-    	        <li title="Новый класс" class="rut-create-class-trigger">
+    	        <li title="Новый класс [F2]" class="rut-create-class-trigger">
                     <img src="assets/images/newStyleIcon.svg">
     	        </li>
-    	        <li title="Новый скрипт" class="rut-add-new-script-trigger">
+    	        <li title="Новый скрипт [F3]" class="rut-add-new-script-trigger">
                     <img src="assets/images/newScriptIcon.svg">
     	        </li>
-    	        <li title="Добавить шрифт" class="rut-add-font-trigger">
+    	        <li title="Добавить шрифт [F4]" class="rut-add-font-trigger">
                     <img src="assets/images/addFont.svg">
     	        </li>
-    	        <li title="Добавить медиа-запрос" class="rut-add-media-trigger">
+    	        <li title="Добавить медиа-запрос [F5]" class="rut-add-media-trigger">
                     <img src="assets/images/addMedia.svg">
     	        </li>
-    	        <li title="Скрыть интерфейс" class="rut-gui-switch">
+    	        <li title="Скрыть интерфейс [F6]" class="rut-gui-switch">
     	            <img src="assets/images/hideInterfaceIcon.svg">
     	        </li>
     	    </ul>
@@ -135,10 +179,10 @@
     
     <div class="rut-display-mode-container">
         <div class="rut-display-mode rut-display-mode-editing rut-display-mode-active">
-            <span>Редактирование</span>
+            <span title="[CTRL+E]">Редактирование</span>
         </div>
         <div class="rut-display-mode rut-display-mode-preview">
-            <span>Предпросмотр</span>
+            <span title="[CTRL+P]">Предпросмотр</span>
         </div>
     </div>
     
@@ -148,7 +192,7 @@
                 <li class="rut-tool" id="rut-tool-pointer" data-rut-tool-category="pointer">
                     <img src="assets/images/pointerIcon.svg">
                     <div class="rut-toolbar-item-hint" >
-                       <h4 class="rut-h4">Инструмент "Выделение"</h4>
+                       <h4 class="rut-h4">Инструмент "Выделение" [P]</h4>
                        <p class="rut-p">Позволяет выбирать элементы на странице</p>
                     </div>
                 </li>
@@ -162,7 +206,7 @@
                        <li id="rut-div" class="rut-tool" data-rut-tool-category="block">Простой блок</li>
                    </ul>
                     <div class="rut-toolbar-item-hint">
-                       <h4 class="rut-h4">Инструмент "Блок"</h4>
+                       <h4 class="rut-h4">Инструмент "Блок" [B]</h4>
                        <p class="rut-p">Позволяет создавать на странице элементы блочного типа</p>
                    </div>
                 </li>
@@ -180,21 +224,21 @@
                        <li id="rut-h5" class="rut-tool" data-rut-tool-category="text">Заголовок 5</li>      
                    </ul>
                    <div class="rut-toolbar-item-hint">
-                       <h4 class="rut-h4">Инструмент "Текст"</h4>
+                       <h4 class="rut-h4">Инструмент "Текст" [X]</h4>
                        <p class="rut-p">Позволяет создавать текстовые элементы на странице</p>
                    </div>
                 </li>
                 <li class='rut-tool' id="rut-tool-img" data-rut-tool-category="img">
                    <img src="assets/images/imageIcon.svg"> 
                    <div class="rut-toolbar-item-hint">
-                       <h4 class="rut-h4">Инструмент "Изображение"</h4>
+                       <h4 class="rut-h4">Инструмент "Изображение" [I]</h4>
                        <p class="rut-p">Позволяет загружать изображения на страницу</p>
                    </div>
                 </li>
                 <li class='rut-tool' data-rut-tool-category="a" id="rut-tool-a">
                     <img src="assets/images/linkIcon.svg"> 
                     <div class="rut-toolbar-item-hint">
-                       <h4 class="rut-h4">Инструмент "Ссылка"</h4>
+                       <h4 class="rut-h4">Инструмент "Ссылка" [A]</h4>
                        <p class="rut-p">Позволяет создавать ссылки</p>
                     </div>
                 </li>
@@ -206,7 +250,7 @@
                        <li id="rut-li" class="rut-tool" data-rut-tool-category="list">Элемент списка</li>
                     </ul>
                     <div class="rut-toolbar-item-hint">
-                       <h4 class="rut-h4">Инструмент "Список"</h4>
+                       <h4 class="rut-h4">Инструмент "Список" [L]</h4>
                        <p class="rut-p">Позволяет создавать списки</p>
                     </div>
                 </li>
@@ -219,7 +263,7 @@
                        <li id="rut-td" class="rut-tool" data-rut-tool-category="table">Ячейка</li>
                     </ul> 
                     <div class="rut-toolbar-item-hint">
-                       <h4 class="rut-h4">Инструмент "Таблица"</h4>
+                       <h4 class="rut-h4">Инструмент "Таблица" [T]</h4>
                        <p class="rut-p">Позволяет создавать таблицы</p>
                     </div>
                 </li>
@@ -231,7 +275,7 @@
                        <li id="rut-input" class="rut-tool" data-rut-tool-category="forms">Поле</li>
                     </ul> 
                     <div class="rut-toolbar-item-hint">
-                       <h4 class="rut-h4">Инструмент "Формы"</h4>
+                       <h4 class="rut-h4">Инструмент "Формы" [F]</h4>
                        <p class="rut-p">Позволяет создавать формы и их элементы</p>
                     </div>
                 </li>
@@ -260,28 +304,36 @@
     <div class="rut-item-opertaions-container">
         <ul>
             <li class="rut-item-operation" data-op="delete">
-                <img src="assets/images/operationDelete.svg" title="Удалить элемент">
+                <img src="assets/images/operationDelete.svg" title="Удалить элемент [Delete]">
             </li>
             <li class="rut-item-operation" data-op="edit"> 
-                <img src="assets/images/operationTextEdit.svg" title="Редактировать текст">
+                <img src="assets/images/operationTextEdit.svg" title="Редактировать текст [CTRL+T]">
             </li>
             <li class="rut-item-operation" data-op="copyEl"> 
-                <img src="assets/images/operationClone.svg" title="Скопировать элемент">
+                <img src="assets/images/operationClone.svg" title="Скопировать элемент [CTRL+ALT+C]">
             </li>
             <li class="rut-item-operation" data-op="pasteEl"> 
-                <img src="assets/images/operationPasteEl.svg" title="Вставить элемент">
+                <img src="assets/images/operationPasteEl.svg" title="Вставить элемент [CTRL+ALT+V]">
             </li>
             <li class="rut-item-operation" data-op="copyStyle"> 
-                <img src="assets/images/operationCopyStyle.svg" title="Копировать оформление">
+                <img src="assets/images/operationCopyStyle.svg" title="Копировать оформление [CTRL+SHIFT+V]">
             </li>
+        </ul>
+        <ul>
             <li class="rut-item-operation" data-op="pasteStyle"> 
-                <img src="assets/images/operationPasteStyle.svg" title="Вставить оформление">
+                <img src="assets/images/operationPasteStyle.svg" title="Вставить оформление [CTRL+SHIFT+C]">
             </li>
             <li class="rut-item-operation" data-op="clearStyle"> 
-                <img src="assets/images/operationClearForm.svg" title="Очистить оформление">
+                <img src="assets/images/operationClearForm.svg" title="Очистить оформление [CTRL+ALT+SHIFT+C]">
             </li>
             <li class="rut-elem-class"> 
-                <img src="assets/images/operationAddClass.svg" title="Классы элемента">
+                <img src="assets/images/operationAddClass.svg" title="Классы элемента [CTRL+D]" >
+            </li>
+            <li class="rut-item-operation" data-op="domElementDown"> 
+                <img src="assets/images/operationDomUp.svg" title="Опустить вниз по DOM дереву [↓]">
+            </li>
+            <li class="rut-item-operation" data-op="domElementUp"> 
+                <img src="assets/images/operationDomUp.svg" style="transform: rotate(180deg)" title="Поднять вверх по DOM дереву [↑]">
             </li>
         </ul>
     </div>
@@ -318,10 +370,33 @@
     <div class="rut-window-wrapper" id="rut-add-media-window">
         
     </div>
+    
+    <div class="rut-start-window-wrapper">
+        <div class="rut-start-window-container">
+            <div class="rut-start-window-logo">
+                <img src="assets/images/logo.svg" alt="" width="64">
+            </div>
+            
+            <h1 class="rut-h1">Rutrum Beta</h1>
+            
+            <ul class="rut-start-window-menu">
+                <li class="rut-menu-new-project">Создать новый проект</li>
+                <li>
+                    <label for="rut-open-project-input" style="cursor: pointer">Открыть существующий проект</label>
+                </li>
+                <li>Руководство пользователя</li>
+            </ul>
+            
+            <p class="rut-start-window-credits"><a href='#' target="_blank" class="rut-link">Сайт проекта</a> | <a href='https://github.com/Zaba-web/rutrum' target="_blank" class="rut-link">Github</a></p>
+            
+        </div>
+    </div>
+    
     <aside class="rut-preview-wrapper">
         <div class="rut-preview">
             
         </div>
     </aside>
+    
 </body>
 </html>
