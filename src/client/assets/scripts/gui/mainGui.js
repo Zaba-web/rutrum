@@ -263,6 +263,7 @@ $(document).ready(function(){
     $("#rut-menu-export-project").click(function(){
         let exporter = new Exporter();
         exporter.export();
+        notify("Проект экспортирован");
     });
     
     $("#rut-add-font").click(function(){
