@@ -5,11 +5,12 @@ function centerWindow(win){
 }
 
 var win = nw.Window.get();
+
 win.resizeTo(200,200);
 
-win.setPosition("center");
-
-centerWindow(win);
+setTimeout(function(){
+    centerWindow(win);
+},200);
 
 setTimeout(
     function(){
