@@ -354,7 +354,8 @@ body.rut{
 }
 .rut-workspace-container .rut-display{
     outline:1px dashed #c2c2c2;
-    padding:3px 0;
+    padding-top:3px;
+    padding-bottom:3px;
     min-height:1px;
 }
 .rut-workspace-container .rut-display:hover{
@@ -518,8 +519,10 @@ body.rut{
 }
 .rut-workspace-width-container{
     margin: 0 auto;
-    text-align: center;
+    width:80%;
+    text-align: left;
     margin-top:5px;
+    padding-left:10px;
 }
 .rut-inner-controls-light{
     background: #5d5f61;
