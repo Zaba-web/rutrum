@@ -71,7 +71,7 @@ class PropertyController {
         let classList = $(el).attr("class").split(" ");
     
         for(let i = 0;i < classList.length;i++){
-            if(classList[i].includes("rut-")){
+            if(classList[i].includes("rut-") || classList[i].includes("ui-resizable")){
                 classList.splice(i,1);
                 i--;
             }
@@ -880,7 +880,7 @@ class Exporter{
         
         let CSSPrep = new CSSPreprocessor(window.mediaContainer.styles.classes);
         
-        let css = CSSPrep.render();
+        let css = "*{margin:0;padding:0;}"+CSSPrep.render();
         let fonts = FontController.includeFonts();
         let media = MediaQuery.renderMediaCode();
         
