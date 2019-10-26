@@ -80,7 +80,7 @@ var toolList = {
     },
     tool_img:{
         title:"Изображение",
-        template:"<img class='rut-display rut-dynamic' data-image-id='newImage'>",
+        template:"<img class='rut-display rut-dynamic' data-image-id='newImage' alt=''>",
         execute: function(el){
             appendElement(el,this.template);
             var newImage = $(el).children("[data-image-id='newImage']");

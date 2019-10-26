@@ -18,6 +18,14 @@
                             </div>
                             <div class="rut-docker-prop-item-container">
                                 <div class="rut-docker-prop-item-title">
+                                    <h4 class="rut-h4">Альтер. текст:</h4>
+                                </div>
+                                <div class="rut-docker-prop-item-input">
+                                    <input id="rut-elem-prop-attr-alt" class="rut-inner-controls rut-elem-prop-change rut-input-short" type="text">
+                                </div>
+                            </div>
+                            <div class="rut-docker-prop-item-container">
+                                <div class="rut-docker-prop-item-title">
                                     <h4 class="rut-h4">Путь к файлу:</h4>
                                 </div>
                                 <div class="rut-docker-prop-item-input">
