@@ -10,8 +10,12 @@ $(document).ready(function(){
         $(".rut-toolbar-item-hint").show();
     });
     
-    $(".rut-tool").click(function(){
+    $(".rut-tool").click(function(e){
         changeTool(this);
+        if($(this).parent().hasClass("rut-sub-toolbar-submenu")){
+            e.stopPropagation();
+            $(this).parent().hide();
+        }
     });
     
     $("div").on("click",".rut-dynamic",function(e){
