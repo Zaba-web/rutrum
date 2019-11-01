@@ -229,10 +229,16 @@ class CSSClassesManager{
         
     }
     
-    static updateCSS(){
+    static updateCSS(full = false){
         
         let CSSPrep = new CSSPreprocessor(window.mediaContainer.styles.classes);
-        let css = CSSPrep.render() + "\n" + FontController.includeFonts() + "\n" + MediaQuery.renderMediaCode();
+        
+        let css;
+        if(full){
+            css = CSSPrep.render() + "\n" + FontController.includeFonts() + "\n" + MediaQuery.renderMediaCode();
+        }else{
+            css = CSSPrep.render() + "\n" + FontController.includeFonts();
+        }
         
         $("style").html(css);
         
@@ -492,7 +498,9 @@ class PageController{
     }
     
     static saveActivePage(){
+       
         window.mediaContainer.pages[window.activePage].value = $(".rut-workspace-container").html();
+        
     }
     
     static removePage(id){
@@ -587,6 +595,7 @@ class ProjectSaver{
     
     static save(){
         
+        $("[contenteditable='true']").attr("contenteditable","false");
         PageController.saveActivePage();
         let fs = require('fs');
 
@@ -849,6 +858,10 @@ class Exporter{
     }
     
     export(){
+        
+        $("[contenteditable='true']").attr("contenteditable","false");
+        ProjectSaver.save();
+        
         this.createTree();
         this.saveStyles();
         

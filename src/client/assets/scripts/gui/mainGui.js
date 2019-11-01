@@ -207,6 +207,7 @@ $(document).ready(function(){
     });
     
     $(".rut-display-mode-preview").click(function(){
+        CSSClassesManager.updateCSS(true);
         $(".rut-display-mode-editing").removeClass("rut-display-mode-active");
         $(".rut-display-mode-preview").addClass("rut-display-mode-active");
         $(".rut-preview").html($(".rut-workspace-container").html());
@@ -217,6 +218,7 @@ $(document).ready(function(){
     });
     
     $(".rut-display-mode-editing").click(function(){
+        CSSClassesManager.updateCSS();
         $(".rut-display-mode").removeClass("rut-display-mode-active");
         $(".rut-display-mode-editing").addClass("rut-display-mode-active");
         $(".rut-preview").html("");
@@ -338,7 +340,11 @@ $(document).ready(function(){
        return false;
     });
 
-
+    $(".rut-open-tutorial").click(function(){
+        let gui = require('nw.gui');
+        let path  = process.cwd();
+        gui.Shell.openItem(path+"/rutrum.chm");
+    });
     
     
     
