@@ -312,7 +312,7 @@ var propertiesCollection = {
         hint:"[solid | double | dotted | dashed | wavy]"
     },
     text_indent:{
-        name:"[TX] Оступ первой строки",
+        name:"[TX] Отступ первой строки",
         value:"text-indent",
         hint:"[размер]"
     },
@@ -402,7 +402,7 @@ var propertiesCollection = {
         hint:"[фильтр]"
     },
     float:{
-        name:"[D] Обекание элемента",
+        name:"[D] Обтекание элемента",
         value:"float",
         hint:"[left | right | none]"
     },
@@ -667,27 +667,27 @@ var propertiesCollection = {
       hint:"[ease | ease-in | ease-out | ease-in-out | linear | step-start | step-end | steps | cubic-bezier]"
     },
     margin:{
-        name:"[P] Оступ от края",
+        name:"[P] Отступ от края",
         value:"margin",
         hint:"[число][ед. измерения]"
     },
     margin_bottom:{
-        name:"[P] Оступ снизу от края",
+        name:"[P] Отступ снизу от края",
         value:"margin-bottom",
         hint:"[число][ед. измерения]"
     },
     margin_left:{
-        name:"[P] Оступ слева от края",
+        name:"[P] Отступ слева от края",
         value:"margin-left",
         hint:"[число][ед. измерения]"
     },
     margin_right:{
-        name:"[P] Оступ справа от края",
+        name:"[P] Отступ справа от края",
         value:"margin-right",
         hint:"[число][ед. измерения]"
     },
     margin_top:{
-        name:"[P] Оступ сверху от края",
+        name:"[P] Отступ сверху от края",
         value:"margin-top",
         hint:"[число][ед. измерения]"
     },

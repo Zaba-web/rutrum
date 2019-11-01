@@ -23,8 +23,26 @@ $(document).ready(function(){
             e.stopPropagation(); // disable DOM recursive select
             useTool(this,$("#rut-tool-name").data("tool-name"));
             logger.log(this);
-            return false; // disable default html element actions
+        }
+        return false; // disable default html element actions
+        if($(this).prop("tagName") == "A"){
+            alert("Вы не можете переходить по ссылкам при работе в Rutrum.");
         }
     });
+    
+    $("div").on("mouseover",".rut-dynamic",function(e){
+        if(window.workStatus == "editing"){
+            if(!$(this).hasClass("rut-workspace-container")){
+                e.stopPropagation();
+                getElementInfo(this);
+            }
+        }
+    });
+    
+    $("div").on("mouseleave",".rut-dynamic",function(e){
+        $(".rut-element-type-container").fadeOut(10);
+    });
+    
+    
     
 });

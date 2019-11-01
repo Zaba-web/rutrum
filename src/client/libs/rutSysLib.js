@@ -209,8 +209,6 @@ class CSSClassesManager{
         
         window.temponaryClass.name += $("#rut-new-class-pseudo").val();
         window.mediaContainer.styles.classes[window.temponaryClass.name] = jQuery.extend(true, {}, window.temponaryClass);
-
-        TemponaryClassController.clearTempClass();
         
         CSSClassesManager.updateCSS();
         return true;
@@ -816,8 +814,6 @@ class MediaQuery{
         
         window.temponaryClass.name += $("#rut-new-class-pseudo").val();
         window.mediaContainer.styles.media[name].classes[window.temponaryClass.name] = jQuery.extend(true, {}, window.temponaryClass);
-
-        TemponaryClassController.clearTempClass();
         
         Updater.updateAllProjectData();
         

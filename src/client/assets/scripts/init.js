@@ -15,8 +15,8 @@ setTimeout(function(){
 setTimeout(
     function(){
         $("body").fadeOut(100,function(){
-            win.setMinimumSize(1170, 512);
-            win.resizeTo(window.screen.width-1,window.screen.height);
+            win.setMinimumSize(1170, 720);
+            win.maximize();
             $(".rut-loading").hide();
             setTimeout(function(){
                 $("body").fadeIn(900);

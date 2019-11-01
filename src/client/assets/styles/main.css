@@ -357,20 +357,21 @@ body.rut{
     padding-top:6px;
     padding-bottom:6px;
     min-height:1px;
+    box-sizing: border-box;
 }
 .rut-workspace-container .rut-display:hover{
     outline: 1px solid #3b97e3;
 }
 .rut-workspace-container .rut-element-selected{
-    box-sizing: border-box;
     outline: 2px solid #3b97e3;
 }
 .rut-workspace-container table.rut-dynamic{
     padding:3px;
     border-collapse:separate; 
     border-spacing: 0 1em;
+    min-width:100px;
 }
-.rut-workspace-container td.rut-dynamic{
+.rut-workspace-container td.rut-dynamic, .rut-workspace-container th.rut-dynamic{
     padding:3px;
 }
 .rut-dockers-item-inner-container{
@@ -655,6 +656,10 @@ body.rut{
     top:13px;
     cursor: pointer;
 }
+.rut-class-list-item>span{
+    display: block;
+    width:90%;
+}
 .rut-element-class-delete{
     cursor: pointer;
 }
@@ -773,6 +778,17 @@ body.rut{
     background-size: 80%;
     background-repeat: no-repeat;
 }
+.rut-element-type-container{
+    background:#71AAEB;
+    padding:4px;
+    position: absolute;
+    color:#fff;
+    font-family: Raleway-Light;
+    font-size:12px;
+    display: none;
+}
+
+
 
 
 

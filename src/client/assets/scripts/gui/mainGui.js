@@ -57,7 +57,7 @@ $(document).ready(function(){
                         notify("Класс создан");
 
                         updateCountDataInfo();
-
+                        TemponaryClassController.clearTempClass();
                     }else{
                         notify("Не удалось создать класс");
                     }
@@ -70,7 +70,7 @@ $(document).ready(function(){
                         notify("Класс создан");
 
                         updateCountDataInfo();
-
+                        TemponaryClassController.clearTempClass();
                     }else{
                         notify("Не удалось создать класс");
                     }
@@ -147,6 +147,7 @@ $(document).ready(function(){
         if(MediaQuery.addClass($(this).data("parent"))){
             notify("Класс обновлен");
             Updater.updateAllProjectData();
+            
         }else{
             notify("Не удалось обновить класс");
         }
@@ -212,6 +213,7 @@ $(document).ready(function(){
         $(".rut-preview-wrapper").fadeIn(100);
         $(".rut-display-mode-container").addClass("rut-display-mode-inv");
         window.workStatus = "preview";
+        win.setMinimumSize(100, 100);
     });
     
     $(".rut-display-mode-editing").click(function(){
@@ -221,6 +223,7 @@ $(document).ready(function(){
         $(".rut-preview-wrapper").fadeOut(100);
         $(".rut-display-mode-container").removeClass("rut-display-mode-inv");
         window.workStatus = "editing";
+        win.setMinimumSize(1170, 512);
     });
     
     $("#rut-new-project-name-input").change(function(){

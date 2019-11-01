@@ -17,6 +17,7 @@ var operationsList = {
         pulseEffect("[data-op='delete']");
     },
     edit: function(el){
+        $(el).resizable('destroy');
         $(el).attr("contenteditable",true);
         getItemTextEditor(el);
         pulseEffect("[data-op='edit']");

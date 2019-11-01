@@ -55,6 +55,17 @@ function getItemTextEditor(target){
     $(".rut-item-text-editor-container").css({"left":position.left,"top":position.top-$(".rut-item-text-editor-container").height()*1.4}); // calculating correct position for text editor
 }
 
+function getElementInfo(target){
+    $(".rut-element-type-container").fadeIn(10);
+    let elType = $(target).data("el-name");
+    
+    $(".rut-element-type-container").text(elType);
+    
+    let position = $(target).offset();
+    $(".rut-element-type-container").css({"left":position.left+$(target).width()-$(".rut-element-type-container").width()-4,"top":position.top-$(".rut-element-type-container").height()-8});
+    
+}
+
 function changeTool(el){
     let currentTool = selectTool(el);
     $("#rut-tool-name").data("tool-name",currentTool);
