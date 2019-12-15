@@ -28,7 +28,7 @@ var toolList = {
                 $(el).attr("contenteditable","true");
                 getItemTextEditor(el);
             }else{
-                if($(el).prop("tagName") != "IMG"){
+                if($(el).prop("tagName") != "IMG" & $(el).prop("tagName") != "INPUT" & $(el).prop("tagName") != "TEXTAREA" ){
                     $(el).resizable();
                 }
             }  
@@ -226,6 +226,13 @@ var toolList = {
     input:{
         title:"Поле",
         template:"<input class='rut-display rut-insertable rut-dynamic' data-el-name='Поле'>",
+        execute: function(el){
+            appendElement(el,this.template);
+        }
+    },
+    textarea:{
+        title:"Поле для ввода",
+        template:"<textarea class='rut-display rut-dynamic' data-el-name='Поле для ввода'></textarea>",
         execute: function(el){
             appendElement(el,this.template);
         }
