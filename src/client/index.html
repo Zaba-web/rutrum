@@ -3,27 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Rutrum</title>
+    
     <script src="libs/jquery.js"></script>
     <script src="libs/jquery-ui.js"></script>
+    
+    <script src="libs/networkLib.js"></script>
     <script src="libs/rutSysLib.js"></script>
     <script src="libs/functions.js"></script>
     <script src="libs/propertiesList.js"></script>
     <script src="libs/toolList.js"></script>
     <script src="libs/opertaionsList.js"></script>
+    
     <script src="assets/scripts/init.js"></script>
     <script src="assets/scripts/composer.js"></script>
     <script src="assets/scripts/toolHandler.js"></script>
     <script src="assets/scripts/styleConstructor.js"></script>
     <script src="assets/scripts/vendor/chosen.jquery.js"></script>
+    
     <script src="assets/scripts/gui/guiPreload.js"></script>
     <script src="assets/scripts/gui/guiTools.js"></script>
     <script src="assets/scripts/gui/guiProps.js"></script>
     <script src="assets/scripts/gui/guiDockers.js"></script>
     <script src="assets/scripts/gui/guiWindowsTriggers.js"></script>
     <script src="assets/scripts/gui/mainGui.js"></script>
+    
     <script src="assets/scripts/hotkeys.js"></script>
+    
     <link rel="stylesheet" href="assets/styles/main.css">
     <link rel="stylesheet" href="assets/styles/fonts.css">
+    
     <link rel="stylesheet" href="assets/styles/vendor/chosen.css">
     <link rel="stylesheet" href="assets/styles/vendor/bootstrap-grid.min.css">
     <link rel="stylesheet" href="assets/styles/vendor/jquery-ui.css">
@@ -124,7 +132,20 @@
     			    </ul>
     			</li>
     			<li class="rut-open-tutorial">Справка</li>
+    			 <li>
+                   Темы
+    			    <ul class="rut-sub-menu">
+    			        <li class="rut-theme-change" data-theme="themeDark">Темная</li>
+                        <li class="rut-theme-change" data-theme="themeLight">Альтернативная<sup>In dev</sup></li>
+    			    </ul>
+    			</li>
     		</ul>
+    		<span class="rut-user-name">
+    		    Вход не выполнен
+    		</span>
+    		<div class="rut-user-exit" title="Выйти из аккаунта">
+    		    <img src="assets/images/logoutIcon.svg">
+    		</div>
     	</nav>
     	<div class="rut-window-controlls">
     		<div class="rut-app-minimaze">
@@ -273,6 +294,7 @@
                        <li id="rut-form" class="rut-tool" data-rut-tool-category="forms">Форма</li>
                        <li id="rut-label" class="rut-tool" data-rut-tool-category="forms">Метка</li>
                        <li id="rut-input" class="rut-tool" data-rut-tool-category="forms">Поле</li>
+                       <li id="rut-textarea" class="rut-tool" data-rut-tool-category="forms">Поле для ввода</li>
                     </ul> 
                     <div class="rut-toolbar-item-hint">
                        <h4 class="rut-h4">Инструмент "Формы" [F]</h4>
@@ -298,6 +320,12 @@
             </div>
             <div class="rut-dockers-item-inner-container" id="rut-dockers-item-inner-container-viewer">
 
+            </div>
+            <div class="rut-dockers-item" data-container="rut-dockers-item-inner-container-cloud">
+                Хранилище
+            </div>
+            <div class="rut-dockers-item-inner-container" id="rut-dockers-item-inner-container-cloud">
+                
             </div>
         </div>
     </main>
@@ -372,7 +400,19 @@
         
     </div>
     
-    <div class="rut-start-window-wrapper">
+    <div class="rut-window-wrapper" id="rut-register-window">
+        
+    </div>
+    
+    <div class="rut-window-wrapper" id="rut-login-window">
+        
+    </div>
+    
+    <div class="rut-window-wrapper" id="rut-cloud-project-open-window">
+        
+    </div>
+    
+    <div class="rut-start-window-wrapper" id="elem">
         <div class="rut-start-window-container">
             <div class="rut-start-window-logo">
                 <img src="assets/images/logo.svg" alt="" width="64">
@@ -381,10 +421,18 @@
             <h1 class="rut-h1">Rutrum Beta</h1>
             
             <ul class="rut-start-window-menu">
+               
                 <li class="rut-menu-new-project">Создать новый проект</li>
+                
                 <li>
                     <label for="rut-open-project-input" style="cursor: pointer">Открыть существующий проект</label>
                 </li>
+                  
+                <li class="rut-menu-open-cloud-project">Открыть проект с облака</li>
+                   
+                <li class="rut-open-login rut-login-menu">Войти в аккаунт</li>
+                <li class="rut-open-register rut-login-menu">Создать аккаунт</li>
+                
                 <li class="rut-open-tutorial">Руководство пользователя</li>
             </ul>
             
@@ -392,6 +440,13 @@
             
         </div>
     </div>
+    
+    <div class="rut-cloud-load-wrapper">
+        <div class="rut-cloud-loading">
+            
+        </div>
+    </div>
+    
     <div class="rut-element-type-container">
     
     </div>
@@ -400,6 +455,5 @@
             
         </div>
     </aside>
-    
 </body>
 </html>
