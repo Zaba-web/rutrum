@@ -53,7 +53,7 @@ var propertiesCollection = {
     },
     border_bottom:{
         name:"[B] Нижняя рамка",
-        value:"border",
+        value:"border-bottom",
         hint:"[ширина] [тип] [цвет]"
     },
     border_left:{
@@ -137,7 +137,7 @@ var propertiesCollection = {
         hint:"[flat | preserve-3d]"
     },
     transition:{
-        name:"[T] Параметры перехода",
+        name:"[T] Время перехода",
         value:"transition",
         hint:"[время]"
     },
@@ -273,7 +273,7 @@ var propertiesCollection = {
     },
     line_height:{
         name:"[TX] Междустрочный интервал",
-        value:"leine-height",
+        value:"line-height",
         hint:"[размер]"
     },
     tab_size:{
@@ -282,7 +282,7 @@ var propertiesCollection = {
         hint:"[число]"
     },
     text_align:{
-        name:"[TX] Выраванивание текста",
+        name:"[TX] Выравнивание текста",
         value:"text-align",
         hint:"[center | justify | left | right | start | end]"
     },
