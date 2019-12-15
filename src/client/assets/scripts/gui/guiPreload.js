@@ -1,11 +1,12 @@
 $(document).ready(function(){
         
     
-    
+    loadTheme(systemSettings.theme); // applying a theme
     
     // loading separate parts 
     loadPart("propertyBar","#rut-dockers-item-inner-container-properties");
     loadPart("viewerBar","#rut-dockers-item-inner-container-viewer");
+    loadPart("cloudBar","#rut-dockers-item-inner-container-cloud");
     loadPart("textEditBar",".rut-item-text-editor-container");
     loadPart("newClassWindow","#rut-class-window");
     loadPart("editClassWindow","#rut-class-edit-window");
@@ -16,7 +17,9 @@ $(document).ready(function(){
     loadPart("addNewFont","#rut-add-font-window");
     loadPart("newScriptWindow","#rut-add-script-window");
     loadPart("newMediaQuery","#rut-add-media-window");
-    
+    loadPart("registerWindow","#rut-register-window");
+    loadPart("loginWindow","#rut-login-window");
+    loadPart("cloudOpenWindow","#rut-cloud-project-open-window");
     
     
     

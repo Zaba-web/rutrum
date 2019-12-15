@@ -101,5 +101,15 @@ $(document).ready(function(){
          $("#rut-add-media-window").fadeIn(150);
     });
     
+    $(".rut-open-register").click(function(){
+         $(".rut-window-wrapper").fadeOut();
+         $("#rut-register-window").fadeIn(150);
+    });
+    
+    $(".rut-open-login").click(function(){
+         $(".rut-window-wrapper").fadeOut();
+         $("#rut-login-window").fadeIn(150);
+    });
+    
 });   
     

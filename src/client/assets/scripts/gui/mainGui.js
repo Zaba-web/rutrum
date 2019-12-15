@@ -133,6 +133,55 @@ $(document).ready(function(){
         Updater.updateAllProjectData();
     });
     
+    /*Cloud system events*/
+    
+    $(document).on("click",".rut-cloud-delete",function(){
+        let cloudProjectName = $(this).data("name");
+        removeCloudProject(window.user.login,window.user.password,cloudProjectName);
+        $(this).parent().parent().remove();
+    });
+    
+    $(document).on("click",".rut-cloud-download",function(){
+        let cloudProjectName = $(this).data("name");
+        downloadCloudProject(window.user.login, window.user.password, cloudProjectName);
+        $(".rut-window-wrapper").fadeOut();
+        $(".rut-cloud-project-selected").removeClass("rut-cloud-project-selected");
+        $("[data-name="+cloudProjectName+"]").parent().parent().addClass("rut-cloud-project-selected");
+    });
+    
+    $(document).on("click",".rut-cloud-upload",function(){
+        let cloudProjectName = $(this).data("name");
+        
+        let projectName = window.projectDir.split("/");
+        projectName = projectName[projectName.length-1];
+        
+        if(cloudProjectName == projectName){
+            ProjectSaver.save();
+            $(".rut-upload-project-to-cloud").click();
+            notify("Проект сохранен.");
+        }else{
+            notify("Вы не можете загрузить текущий проект на место другого.");
+        }
+        
+    });
+    
+    $(document).on("click",".rut-cloud-local-save",function(){
+        window.tempName = $(this).data("name");
+        
+        $("#rut-project-save-cloud-file").click();
+        
+    });
+    
+    $("#rut-project-save-cloud-file").change(function(){
+        let saveLocalPath = $(this).val()+"/";
+        saveLocalPath = saveLocalPath.replace(/\\/g,"/");
+        $(this).val("");
+        
+        downloadCloudProject(window.user.login, window.user.password, window.tempName, saveLocalPath);
+    });
+    
+    /**/
+    
     $("#rut-edit-class-save").click(function(){
         let classManager = new CSSClassesManager();
         if(classManager.addClass()){
@@ -265,6 +314,12 @@ $(document).ready(function(){
         $(".rut-workspace-container").fadeOut(150);
     });
     
+    $(".rut-menu-open-cloud-project").click(function(){
+        $(".rut-window-wrapper").fadeOut(150);
+        getProjectList(window.user.login,window.user.password,"min");
+        $("#rut-cloud-project-open-window ").fadeIn(150);
+    });
+    
     $("#rut-menu-export-project").click(function(){
         let exporter = new Exporter();
         exporter.export();
@@ -346,10 +401,77 @@ $(document).ready(function(){
         gui.Shell.openItem(path+"/rutrum.chm");
     });
     
+    $("#rut-create-account-submit").click(function(){
+        
+        let login = $("#rut-create-account-login").val();
+        let password = $("#rut-create-account-password").val();
+        let password_re = $("#rut-create-account-password_re").val();
+        let email = $("#rut-create-account-email").val();
+        let first_name = $("#rut-create-account-name").val();
+        let second_name = $("#rut-create-account-surname").val();
+        
+        registerAccount(login,password,password_re,email,first_name,second_name);
+        
+    });
     
+    $("#rut-login-account-submit").click(function(){
+        
+        let login = $("#rut-login-account-login").val();
+        let password = $("#rut-login-account-password").val();
+        let remember = $("#rut-login-account-remember:checked").val();
+        
+        loginToAccount(login,password,remember);
+        
+    });
     
+    $(".rut-upload-project-to-cloud").click(function(){
+        showLoading();
+        uploadProject();
+    });
     
+    $('#rut-project-upload-submit').on('click', function() {
+        
+        
+        var file_data = $('#rut-project-upload-file').prop('files')[0];
+        var form_data = new FormData(); 
+
+        form_data.append('file', file_data);
+        form_data.append("login", window.user.login);
+        form_data.append("password", window.user.password);
+
+        $.ajax({
+            url: 'http://api.rutrum.tech/api/Controllers/FileUploader.php',
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(response){
+                
+                hideLoading();
+                
+                notify(response);
+                getProjectList(window.user.login,window.user.password);
+                
+                let projectName = window.projectDir.split("/");
+                projectName = projectName[projectName.length-1];
+                
+                let fs = require('fs');
+                fs.unlinkSync(window.projectDir+"/"+projectName+".zip");
+                
+            }
+         });
+    });
     
+    $(".rut-user-exit").click(function(){
+        accountLogout();
+    });
+    
+    $(".rut-theme-change").click(function(){
+        let themeName = $(this).data("theme");
+        loadTheme(themeName);
+    });
     
 });
 
