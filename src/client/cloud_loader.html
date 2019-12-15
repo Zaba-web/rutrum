@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <input id = 'input0' type = 'file'/>
+  <script type="text/javascript">
+  
+		var gui = require('nw.gui');
+		var winCloudLoader = gui.Window.get();
+		
+		winCloudLoader.hide();
+		
+		let projectDir = window.opener.projectDir;
+		
+		let projectName = projectDir.split("/");
+		projectName = projectName[projectName.length-1];
+		
+        var f = new File(projectDir+"/"+projectName+".zip", projectName+".zip");
+        var files = new FileList();
+        files.append(f);
+        document.getElementById('input0').files = files;
+		
+		
+		let input = document.getElementById("input0");
+		
+		window.opener.document.getElementById("rut-project-upload-file").files = input.files
+		
+		window.opener.document.getElementById("rut-project-upload-submit").click();
+		winCloudLoader.close();
+		
+  </script>
+</body>
+</html>

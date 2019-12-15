@@ -1,0 +1,49 @@
+<div class="rut-class-window-container">
+    <h4 class="rut-h4 rut-h4-tools-group-title">Регистрация аккаунта</h4>
+    <br>
+    <div class="rut-class-window-item-container">
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4">Логин:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-create-account-login" class="rut-inner-controls" type="text" style="width:100%">
+        </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4">E-Mail:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-create-account-email" class="rut-inner-controls" type="text" style="width:100%">
+        </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4">Имя:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-create-account-name" class="rut-inner-controls" type="text" style="width:100%">
+        </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4">Фамилия:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-create-account-surname" class="rut-inner-controls" type="text" style="width:100%">
+        </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4">Пароль:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-create-account-password" class="rut-inner-controls" type="password" style="width:100%">
+        </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4">Повторите пароль:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-create-account-password_re" class="rut-inner-controls" type="password" style="width:100%">
+        </div>
+    </div>
+    <br>
+    <input type="button" class="rut-inner-controls" value="Зарегистрироваться" id="rut-create-account-submit">
+    
+    <div class="rut-class-window-close">
+        <img src="assets/images/closeIcon.svg">
+    </div>
+    
+</div>

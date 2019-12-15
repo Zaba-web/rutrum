@@ -1,0 +1,253 @@
+// out: theme_template.css, compress: true
+  @Text_color: #fff;
+    @Primary_color: #19191A;
+    @Secondary_color: #5d5f61;
+    @Accent_color: #71AAEB;
+    @Opacity_1:rgba(25, 25, 26, .8);
+    @Opacity_2: rgba(44, 44, 45, .8);
+    @Opacity_3: rgba(25, 25, 26, .9);
+    @Opacity_4: rgba(25, 25, 26, 0.5);
+    @Additional_1: #d5d5d5;
+    @Additional_2: #232323;
+    @Shadow: rgba(25, 25, 26, 0.68);
+    @Project_Pannel_Line: #454647;
+    @Scrollbar_Container: #313641;
+    @Scrollbar_Thumb: #272A30;
+
+
+.rut-h4{
+    color:@Text_color;
+}
+.rut-p{
+    color:@Text_color;
+}
+body.rut{
+    background: @Additional_2;
+}
+
+.rut-main-top-container{
+    background: @Primary_color;
+}
+
+.rut-main-top-container nav>ul>li{
+	color:@Text_color;
+}
+.rut-sub-menu{
+    background: @Primary_color;
+}
+
+.rut-hotkey{
+    color:@Additional_1;
+}
+
+.rut-sub-menu>li:hover{
+    background:@Opacity_2;
+}
+.rut-main-top-container nav>ul>li:hover{
+	background:@Opacity_2;
+}
+
+.rut-window-controlls div:hover{
+	background:@Opacity_2;
+}
+.rut-project-pannel-container{
+	background: @Primary_color;
+}
+.rut-rut-project-pannel-line{
+
+    border:1px solid @Project_Pannel_Line;
+}
+.rut-project-pannel-container span{
+    color:@Text_color;
+}
+
+.rut-display-mode{
+    background: @Primary_color;
+}
+
+.rut-display-mode:hover{
+    background: @Accent_color;
+}
+.rut-display-mode-active{
+    background: @Accent_color;
+}
+
+.rut-display-mode span{
+    color:@Text_color;
+}
+
+.rut-toolbar-container::before{
+    background: @Opacity_1;
+}
+
+.rut-workspace-wrapper{
+    background: @Secondary_color;
+}
+
+.rut-workspace-container{
+    background: @Text_color;
+}
+.rut-dockers-container{
+    background:@Opacity_1;
+}
+.rut-dockers-item{
+    color:@Text_color;
+}
+.rut-dockets-item-active{
+    background:@Accent_color;
+}
+.rut-dockers-item:hover{
+    background:@Accent_color;
+}
+
+.rut-toolbar-container>ul>li:hover{
+    background: @Accent_color;
+}
+
+.rut-toolbar-item-expandable::after{
+    background:@Text_color;
+}
+.rut-toolbar-item-hint{
+    background: @Opacity_1;
+}
+
+.rut-project-pannel-container span ul li:hover{
+    background: @Opacity_2;
+}
+.rut-sub-toolbar-submenu{
+    background:@Opacity_1;
+}
+.rut-sub-toolbar-submenu li{
+    color:@Text_color;
+}
+.rut-sub-toolbar-submenu li:hover{
+    background:@Accent_color;
+}
+
+.rut-toolbar-item-active{
+    background: @Accent_color;
+}
+.rut-workspace-container .rut-display{
+    outline:1px dashed #c2c2c2;
+}
+.rut-workspace-container .rut-display:hover{
+    outline: 1px solid #3b97e3;
+}
+.rut-workspace-container .rut-element-selected{
+    outline: 2px solid #3b97e3;
+}
+
+
+.rut-dockers-item-inner-container{
+    background:@Opacity_1;
+}
+.rut-dockers-item-inner-container::-webkit-scrollbar, .rut-class-window-container::-webkit-scrollbar, .rut-class-properties-container::-webkit-scrollbar{
+    background: @Scrollbar_Container;
+}
+.rut-dockers-item-inner-container::-webkit-scrollbar-thumb, .rut-class-window-container::-webkit-scrollbar-thumb, .rut-class-properties-container::-webkit-scrollbar-thumb{
+    background: @Scrollbar_Thumb;
+}
+
+.rut-inner-controls, .rut-controls-button-like{
+    background: @Secondary_color;
+    color:@Text_color;
+}
+
+[type='button'].rut-inner-controls:hover,.rut-controls-button-like:hover{
+    background:@Accent_color;
+}
+.rut-inner-controls:focus{
+    border:1px solid @Accent_color;
+}
+
+
+.rut-item-opertaions-container{
+    background: @Opacity_1;
+}
+
+.rut-item-opertaions-container>ul>li:hover{
+    background: @Primary_color;
+}
+.rut-item-text-editor-container{
+    background: @Opacity_1;
+}
+
+.rut-inner-controls-light{
+    background: @Secondary_color;
+}
+.rut-docker-prop-group-header{
+    background:@Opacity_1;
+}
+.rut-docker-prop-group-body{
+    background:@Opacity_1;
+}
+.rut-docker-prop-main-header{
+    background:@Opacity_1;
+}
+.rut-class-window-container{
+    background: @Opacity_3;
+}
+.rut-status{
+    color:@Text_color;
+}
+
+.rut-preview{
+    background: @Text_color;
+}
+
+.rut-class-list-item,.rut-element-class-list-container{
+    color:@Text_color;
+}
+
+.rut-notification-container{
+    color:@Text_color;
+    background:@Primary_color;
+}
+.rut-notification-progress{
+    background: @Accent_color;
+}
+
+.rut-move-pointer{
+    background: #62c462;
+}
+.rut-start-window-wrapper{
+    background: @Opacity_4;
+}
+.rut-start-window-container{
+    background: @Opacity_1;
+    box-shadow:         5px 5px 19px 0px @Shadow;
+}
+
+.rut-h1{
+    color:@Text_color;
+}
+
+.rut-start-window-menu>li{
+    color:@Text_color;
+}
+.rut-start-window-menu>li:hover{
+    color:@Accent_color;
+}
+.rut-start-window-credits{
+    color:@Text_color;
+}
+.rut-link{
+    color:@Text_color;
+}
+.rut-loading{
+    background-color: @Primary_color;
+}
+.rut-element-type-container{
+    background:@Accent_color;
+    color:@Text_color;
+}
+.rut-user-name{
+    color:@Text_color;
+}
+.rut-cloud-loading{
+    background-color:@Opacity_1;
+    box-shadow:5px 5px 19px 0px @Shadow;
+}
+.rut-cloud-project-selected{
+    background:@Accent_color;
+}

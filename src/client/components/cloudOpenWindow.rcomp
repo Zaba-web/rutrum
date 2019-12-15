@@ -1,0 +1,14 @@
+<div class="rut-class-window-container">
+    <h4 class="rut-h4 rut-h4-tools-group-title">Список проектов в облаке</h4>
+    <br>
+    <div class="rut-class-window-item-container" id="rut-cloud-list-minified">
+       
+    </div>
+    
+    <br>
+    
+    <div class="rut-class-window-close">
+        <img src="assets/images/closeIcon.svg">
+    </div>
+    
+</div>

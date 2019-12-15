@@ -1,0 +1,31 @@
+<div class="rut-class-window-container">
+    <h4 class="rut-h4 rut-h4-tools-group-title">Вход в аккаунт</h4>
+    <br>
+    <div class="rut-class-window-item-container">
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4">Логин:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-login-account-login" class="rut-inner-controls" type="text" style="width:100%">
+        </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4">Пароль:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-login-account-password" class="rut-inner-controls" type="password" style="width:100%">
+        </div>
+        <div class="rut-class-window-item">
+            <h4 class="rut-h4">Запомнить меня:</h4>
+        </div>
+        <div class="rut-class-window-item">
+            <input id="rut-login-account-remember" value="remember" type="checkbox">
+        </div>
+    </div>
+    <br>
+    <input type="button" class="rut-inner-controls" value="Войти" id="rut-login-account-submit">
+    
+    <div class="rut-class-window-close">
+        <img src="assets/images/closeIcon.svg">
+    </div>
+    
+</div>
