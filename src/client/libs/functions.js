@@ -26,6 +26,7 @@ function updateCountDataInfo(){
     }else{
         $(".rut-project-name").text("");
     }
+    
 }
 
 String.prototype.replaceAll = function(search, replacement) {
@@ -63,8 +64,97 @@ function resizeWorkspace(event){
 }
 
 function notify(text){
-    
     $(".rut-notification-text").text(text);
     $(".rut-notification-container").fadeIn(100);
     setTimeout(function(){$(".rut-notification-container").fadeOut(100);},3000)
+}
+
+function updateLoginMenu(){
+    if(window.isLogin){
+        $(".rut-login-menu").hide();
+    }
+}
+
+function openCloudLoader(){
+    window.gui = require('nw.gui');
+    
+    var subWin = gui.Window.open ('cloud_loader.html', {
+        position: 'center',
+        width: 1,
+        height: 1
+    });
+}
+
+function checkSettings(fs,nwDir){
+    
+    if(!fs.existsSync(nwDir+"/settings.json")){
+        fs.writeFileSync(nwDir+"/settings.json",'{"remember":0,"login":"","password":"","theme":"themeDark"}');
+    }
+}
+
+function readSettings(){
+    
+    let fs = require('fs');
+    
+    let path = require('path');
+    let nwPath = process.execPath;
+    let nwDir = path.dirname(nwPath);
+    
+    checkSettings(fs,nwDir);
+    
+    
+    let settingsRaw = fs.readFileSync(nwDir+"/settings.json");
+    let settings = JSON.parse(settingsRaw);
+    
+    return settings;
+}
+
+function setSettings(key,value){
+    
+    let fs = require('fs');
+
+    let path = require('path');
+    let nwPath = process.execPath;
+    let nwDir = path.dirname(nwPath);
+    
+    checkSettings(fs,nwDir);
+    
+    let settings = readSettings();
+    
+    settings[key] = value;
+    fs.writeFileSync(nwDir+"/settings.json",JSON.stringify(settings));
+}
+
+function autologin(systemSettings){
+    if(systemSettings.remember == 1){
+        if(systemSettings.login != "" && systemSettings.password != ""){
+            loginToAccount(systemSettings.login,systemSettings.password);
+        }else{
+            notify("Не удалось выполнить автовход.");
+            setSettings("remember",0);
+        }
+    }
+}
+
+function showLoading(){
+    $(".rut-cloud-load-wrapper").css("display","flex");
+    $(".rut-cloud-load-wrapper").fadeIn(150);
+}
+
+function hideLoading(){
+    $(".rut-cloud-load-wrapper").fadeOut(150);
+}
+
+function loadTheme(name){
+    let $ = document; 
+
+    let head  = $.getElementsByTagName('head')[0];
+    let link  = $.createElement('link');
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = '../assets/styles/themes/'+name+'.css';
+    head.appendChild(link);
+    
+    setSettings("theme",name);
+
 }
