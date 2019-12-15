@@ -1,3 +1,5 @@
+var systemSettings = readSettings();
+
 function centerWindow(win){
     setTimeout(function(){
         win.setPosition("center");
@@ -23,7 +25,7 @@ setTimeout(
             },1)
             
         });
-
+        autologin(systemSettings);
     },2000)
 
 var elBuffer;
@@ -31,6 +33,20 @@ var styleBuffer;
 var activePage;
 var workStatus = "editing";
 var projectDir;
+var tempName;
+
+var path = process.cwd();
+
+var isLogin = false;
+var user = {
+    login: null,
+    password: null,
+    email: null,
+    firstName: null,
+    secondName: null
+}
+
+var cloudProjects;
 
 var projectMaintenance = {};
 
